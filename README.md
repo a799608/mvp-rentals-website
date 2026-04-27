@@ -1,0 +1,112 @@
+# MVP Rentals — Direct-Booking Website
+
+Live: https://a799608.github.io/mvp-rentals-website/
+
+Static site (HTML/CSS/vanilla JS) + Google Apps Script backend. Hosted on
+GitHub Pages. Property data, rates, and payment handles all live in
+`assets/config.js` — edit that file to update content.
+
+## What's here
+
+```
+index.html                          Landing page + 6-property grid
+privacy.html                        Privacy Policy (TCR-compliant)
+terms.html                          Terms of Service (TCR-compliant)
+booking-request-received.html       Confirmation page after form submit
+trails/index.html                   Per-property page (one per slug)
+wylie/index.html
+pound/index.html
+maccauley/index.html
+milton/index.html
+petrarch/index.html
+assets/
+  config.js                         Property data, rates, payment-method flags
+  style.css                         Shared stylesheet (design tokens at top)
+  calendar.js                       Live-availability month-grid widget
+  booking.js                        Form submission + total calculation
+_gas/                               Google Apps Script project (clasp)
+  Code.gs                           availability GET + booking-request POST
+  appsscript.json                   manifest (web app config + OAuth scopes)
+  .clasp.json                       links to the script project
+```
+
+## How a booking happens
+
+1. Guest opens a property page.
+2. JS in `calendar.js` calls the GAS GET endpoint for `availability` data.
+3. Booked dates are greyed; weekday/weekend prices show on each open cell.
+4. Guest picks check-in + check-out, fills in the form, submits.
+5. JS POSTs the request to the GAS endpoint.
+6. GAS appends a row to the **Booking Requests** tab on the `mvp_bookings`
+   sheet and emails Will at wm.m.morris@gmail.com.
+7. Guest sees the confirmation page.
+8. Will replies and arranges payment (Venmo / Zelle for v1).
+
+## Placeholders to fill in
+
+Open `assets/config.js` and search for `@` to find every placeholder. They are
+tagged like `@TRAILS_WEEKDAY_RATE_HERE`. Categories:
+
+### Per-property (×6: Trails, Wylie, Pound, MacCauley, Milton, Petrarch)
+- `@<NAME>_TAGLINE_HERE` — short subtitle under the property name
+- `@<NAME>_MAX_GUESTS_HERE`, `@<NAME>_BEDROOMS_HERE`, `@<NAME>_BATHROOMS_HERE`
+- `@<NAME>_DESCRIPTION_HERE` — about 80 words
+- `@<NAME>_WEEKDAY_RATE_HERE` — number, e.g. 295
+- `@<NAME>_WEEKEND_RATE_HERE` — number, e.g. 365
+- `@<NAME>_CLEANING_FEE_HERE` — number, e.g. 150
+- `@<NAME>_PET_FEE_HERE` — number; pet fee structure controlled by `petFeeType`
+  (`per-stay` default, or `per-pet`, or `per-night`)
+
+### Payments
+- `@VENMO_HANDLE_HERE` — e.g. `@properties-bymorris` (your @handle exactly)
+- `@ZELLE_EMAIL_OR_PHONE_HERE` — the email or phone Zelle is registered to
+
+The Venmo + Zelle blocks are live (`enabled: true`). PayPal, Stripe, Apple Pay,
+Google Pay, and ACH are scaffolded with `enabled: false` — flip them on later.
+
+## Updating rates / handles / copy
+
+1. Edit `assets/config.js`.
+2. Commit + push to master. GitHub Pages redeploys in 30-60 seconds.
+3. Hard-refresh the live page to see the change.
+
+No build step. No framework. No deploy pipeline.
+
+## How availability stays in sync
+
+The GAS GET endpoint reads `mvp_bookings` Sheet1 (the same sheet your daily-ops
+pipeline writes to). Active reservations = rows where Property (col D) is
+non-blank AND Cancelled Date (col AU) is blank. So the calendar is always in
+sync with whatever the existing pipeline is doing — no separate iCal,
+no manual block-out, nothing to remember.
+
+## GAS endpoint URL
+
+Both GET (availability) and POST (booking-request) live on the same web app:
+
+```
+https://script.google.com/macros/s/AKfycbxSb0ZFe_XbDMviK9BKrXz64gBbv7WE3oylP4LyVjZ1MpOcy5Z8sdkhe_t7BGrKxDt6qQ/exec
+```
+
+If that URL ever rotates (re-deploy creates a new versioned URL), update both
+`endpoints.availability` and `endpoints.submitBooking` in `assets/config.js`.
+
+## Updating GAS code
+
+```bash
+cd _gas
+clasp push      # uploads Code.gs + appsscript.json to the script project
+clasp deploy    # creates a new versioned web-app URL (the old @1 keeps working)
+```
+
+For most code changes you can just `clasp push` without re-deploying — the
+existing deployment uses HEAD when set up that way, but the safest pattern is
+to deploy a new version and update the URL in `config.js`.
+
+## Brand / legal
+
+MVP Rentals is a doing-business-as name of Proper TTs LLC (Pennsylvania,
+EIN 39-4982848). 502 W 7th St Ste 100, Erie, PA 16502.
+
+Privacy and Terms include the TCR-required SMS consent language used to clear
+the Twilio A2P 10DLC campaign.

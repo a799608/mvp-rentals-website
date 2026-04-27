@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MVP Rentals — Direct Booking</title>
+  <meta name="description" content="MVP Rentals direct-booking site for our six Pocono homes. No platform fees — book directly with the owner.">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/config.js" defer></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">MVP Rentals</a>
+    <nav>
+      <a href="index.html">Homes</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="background-image:url('https://a799608.github.io/mvp-guest-guides/trails/hero.jpg');">
+  <div class="hero-overlay">
+    <h1>Book Direct. Save the Fees.</h1>
+    <div class="tagline">Six hand-picked Pocono homes. Pet-friendly options. Book directly with us — no platform service fees.</div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Our Homes</h2>
+    <p class="lede">Each home sleeps a different group, fits a different vibe. Pick your spot, check the calendar, and request your dates.</p>
+    <div id="prop-grid" class="prop-grid"></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>How Booking Works</h2>
+    <ol>
+      <li>Pick a home and your dates on its calendar.</li>
+      <li>Submit your request — we&apos;ll see it in seconds.</li>
+      <li>We&apos;ll text or email you back to confirm and arrange payment (Venmo or Zelle).</li>
+      <li>You get the same property, the same Will, and skip the platform service fee.</li>
+    </ol>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:wm.m.morris@gmail.com">wm.m.morris@gmail.com</a>
+      <a href="tel:+16106210769">(610) 621-0769</a>
+    </div>
+    <div class="legal">
+      MVP Rentals is a d/b/a of Proper TTs LLC (PA). EIN 39-4982848. 502 W 7th St Ste 100, Erie, PA 16502.
+      Transactional SMS only — message &amp; data rates may apply, frequency varies, text STOP to opt out, HELP for help.
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  var grid = document.getElementById("prop-grid");
+  if (!grid || !window.SITE_CONFIG) return;
+  window.SITE_CONFIG.properties.forEach(function (p) {
+    var card = document.createElement("a");
+    card.className = "prop-card";
+    card.href = p.slug + "/";
+    card.style.setProperty("--accent", p.color);
+    var img = document.createElement("img");
+    img.className = "card-img";
+    img.src = p.heroPhoto;
+    img.alt = p.name + " — " + p.address;
+    img.loading = "lazy";
+    card.appendChild(img);
+    var body = document.createElement("div");
+    body.className = "card-body";
+    var h3 = document.createElement("h3");
+    h3.textContent = p.name;
+    var addr = document.createElement("div");
+    addr.className = "addr";
+    addr.textContent = p.address;
+    var rate = document.createElement("div");
+    rate.className = "from-rate";
+    var weekday = Number(p.rates.weekday);
+    if (!isNaN(weekday)) rate.textContent = "From $" + weekday + "/night";
+    else rate.textContent = "Rates available on request";
+    body.appendChild(h3);
+    body.appendChild(addr);
+    body.appendChild(rate);
+    card.appendChild(body);
+    grid.appendChild(card);
+  });
+});
+</script>
+
+</body>
+</html>

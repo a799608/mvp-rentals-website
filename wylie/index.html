@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>wylie — MVP Rentals</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-slug="wylie">
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">MVP Rentals</a>
+    <nav>
+      <a href="../index.html">Homes</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="hero"></section>
+
+<section>
+  <div class="container">
+    <h2 id="hero-h2">Loading…</h2>
+    <p id="prop-desc" class="lede"></p>
+    <h3 style="margin-top:24px;">What&apos;s included</h3>
+    <ul id="prop-included" class="included-list"></ul>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Rates</h2>
+    <div id="rate-card" class="rate-card"></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Pick Your Dates</h2>
+    <p style="color:var(--ink-soft); font-size:0.95rem;">Click a date to set check-in, then click another date for check-out. Booked nights are greyed out.</p>
+    <div id="calendar" class="calendar-wrap"></div>
+    <div id="total-panel" class="total-panel"></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Request to Book</h2>
+    <form id="booking-form" class="booking-form" novalidate>
+      <div class="row">
+        <div>
+          <label for="bf-name">Name</label>
+          <input id="bf-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div>
+          <label for="bf-email">Email</label>
+          <input id="bf-email" name="email" type="email" autocomplete="email" required>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="bf-phone">Phone</label>
+          <input id="bf-phone" name="phone" type="tel" autocomplete="tel" required>
+        </div>
+        <div>
+          <label for="bf-party">Party size</label>
+          <input id="bf-party" name="partySize" type="number" min="1" max="20" required>
+        </div>
+      </div>
+      <div class="sms-consent">
+        <label style="display:flex; align-items:flex-start; gap:8px; font-size:0.9rem; text-transform:none; letter-spacing:0; font-weight:400; color:var(--ink);">
+          <input type="checkbox" name="smsConsent" value="yes" style="margin-top:3px;" required>
+          <span>By checking this box and providing your phone number, you agree to receive transactional SMS messages from MVP Rentals about your stay (booking confirmation, check-in details, reminders). Message frequency varies. Standard message and data rates may apply. Reply STOP to opt out, HELP for help. See our <a href="../privacy.html">Privacy Policy</a> and <a href="../terms.html">Terms</a>.</span>
+        </label>
+      </div>
+      <div class="row">
+        <div>
+          <label for="bf-pets">Bringing pets?</label>
+          <select id="bf-pets" name="pets">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="bf-petcount">If yes, how many?</label>
+          <input id="bf-petcount" name="petCount" type="number" min="0" max="5" value="0" disabled>
+        </div>
+      </div>
+      <div class="row full">
+        <div>
+          <label for="bf-msg">Anything we should know? (optional)</label>
+          <textarea id="bf-msg" name="message" placeholder="Anniversary trip, accessibility needs, ETA, etc."></textarea>
+        </div>
+      </div>
+      <button type="submit">Send request</button>
+      <div class="form-message" role="status"></div>
+    </form>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>How to Pay</h2>
+    <p style="color:var(--ink-soft); font-size:0.95rem;">After we confirm your dates, send payment via one of the methods below.</p>
+    <div id="payments"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../terms.html">Terms</a>
+      <a href="mailto:wm.m.morris@gmail.com">wm.m.morris@gmail.com</a>
+      <a href="tel:+16106210769">(610) 621-0769</a>
+    </div>
+    <div class="legal">
+      MVP Rentals is a d/b/a of Proper TTs LLC (PA). EIN 39-4982848. 502 W 7th St Ste 100, Erie, PA 16502.
+      Transactional SMS only — message &amp; data rates may apply, frequency varies, text STOP to opt out, HELP for help.
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/config.js"></script>
+<script src="../assets/calendar.js"></script>
+<script src="../assets/booking.js"></script>
+<script>
+window.SITE_CONFIG.basePath = "../";
+(function () {
+  var slug = document.body.getAttribute("data-slug");
+  var prop = window.SITE_CONFIG.getProperty(slug);
+  if (!prop) {
+    document.querySelector("main, section").innerHTML = "<div class=\"container\"><p>Property not found.</p></div>";
+    return;
+  }
+  document.title = prop.name + " — MVP Rentals";
+  document.body.style.setProperty("--accent", prop.color);
+
+  var hero = document.getElementById("hero");
+  hero.style.backgroundImage = "url('" + prop.heroPhoto + "')";
+  var overlay = document.createElement("div");
+  overlay.className = "hero-overlay";
+  var h1 = document.createElement("h1");
+  h1.textContent = prop.name;
+  var tagline = document.createElement("div");
+  tagline.className = "tagline";
+  tagline.textContent = (prop.tagline && prop.tagline.indexOf("@") !== 0) ? prop.tagline : prop.address;
+  overlay.appendChild(h1);
+  overlay.appendChild(tagline);
+  hero.appendChild(overlay);
+
+  document.getElementById("hero-h2").textContent = "About " + prop.name;
+  document.getElementById("prop-desc").textContent = prop.description;
+
+  var includedEl = document.getElementById("prop-included");
+  (prop.included || []).forEach(function (item) {
+    var li = document.createElement("li");
+    li.textContent = item;
+    includedEl.appendChild(li);
+  });
+
+  var rateEl = document.getElementById("rate-card");
+  function fmt(v, prefix) {
+    if (typeof v === "string" && v.indexOf("@") === 0) return "Ask";
+    var n = Number(v);
+    if (isNaN(n)) return "Ask";
+    return (prefix || "$") + n;
+  }
+  var rates = [
+    { label: "Weekday / night", value: fmt(prop.rates.weekday) },
+    { label: "Weekend / night", value: fmt(prop.rates.weekend) },
+    { label: "Cleaning fee", value: fmt(prop.rates.cleaningFee) },
+    { label: "Pet fee (" + (prop.rates.petFeeType || "per-stay") + ")", value: fmt(prop.rates.petFee) },
+  ];
+  rates.forEach(function (r) {
+    var item = document.createElement("div");
+    item.className = "rate-item";
+    item.innerHTML = "<div class=\"label\">" + r.label + "</div><div class=\"value\">" + r.value + "</div>";
+    rateEl.appendChild(item);
+  });
+
+  var totalPanel = window.MVPBooking.makeTotalPanel({
+    container: document.getElementById("total-panel"),
+    property: prop,
+  });
+
+  window.MVPCalendar.create({
+    container: document.getElementById("calendar"),
+    property: prop,
+    endpoint: window.SITE_CONFIG.endpoints.availability,
+    onChange: function (sel) { totalPanel.onCalendarChange(sel); },
+  });
+
+  window.MVPBooking.makeBookingForm({
+    form: document.getElementById("booking-form"),
+    totalPanel: totalPanel,
+    property: prop,
+    endpoint: window.SITE_CONFIG.endpoints.submitBooking,
+  });
+
+  window.MVPBooking.renderPayments(document.getElementById("payments"));
+})();
+</script>
+
+</body>
+</html>

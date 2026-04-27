@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Booking request received — MVP Rentals</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">MVP Rentals</a>
+    <nav>
+      <a href="index.html">Homes</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<main class="confirmation">
+  <div class="check">✓</div>
+  <h1>Request received.</h1>
+  <p id="summary">Thanks — we&apos;ll get back to you shortly.</p>
+  <p style="margin-top:18px;">
+    Watch your email and phone — we usually reply within a few hours during the day.
+    Questions in the meantime? Email
+    <a href="mailto:wm.m.morris@gmail.com">wm.m.morris@gmail.com</a>
+    or text <a href="tel:+16106210769">(610) 621-0769</a>.
+  </p>
+  <p style="margin-top:22px;"><a href="index.html">← Back to all homes</a></p>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:wm.m.morris@gmail.com">wm.m.morris@gmail.com</a>
+      <a href="tel:+16106210769">(610) 621-0769</a>
+    </div>
+    <div class="legal">
+      MVP Rentals is a d/b/a of Proper TTs LLC (PA).
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var qs = new URLSearchParams(window.location.search);
+  var name = qs.get("name");
+  var prop = qs.get("property");
+  var ci = qs.get("checkIn");
+  var co = qs.get("checkOut");
+  if (name && prop && ci && co) {
+    var s = "Thanks " + name + " — we have your request for " + prop + ", " + ci + " to " + co + ". We will reply shortly to confirm and arrange payment.";
+    document.getElementById("summary").textContent = s;
+  }
+})();
+</script>
+
+</body>
+</html>

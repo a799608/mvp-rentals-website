@@ -1,0 +1,12 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# clasp (project metadata IS committed; user-level credentials are NOT)
+# .clasprc.json lives in $HOME, not in this repo, but ignore here too just in case.
+.clasprc.json
