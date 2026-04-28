@@ -237,12 +237,29 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
       if (availableCount === 0) {
         hintEl.className = 'avail-hint warn';
         hintEl.textContent = 'No homes open for those dates. Try a different range.';
-      } else if (availableCount === 6) {
-        hintEl.className = 'avail-hint ok';
-        hintEl.textContent = 'All 6 homes are open — pick one.';
+        var listEl0 = document.getElementById('availList'); listEl0.classList.remove('shown');
       } else {
-        hintEl.className = 'avail-hint ok';
-        hintEl.textContent = availableCount + ' of 6 homes open. Click one to see details.';
+        var listEl0 = document.getElementById('availList');
+        listEl0.innerHTML = '';
+        var availableCells = allCells.filter(function (c) { return c.classList.contains('highlighted'); });
+        availableCells.forEach(function (cell) {
+          var name = cell.getAttribute('data-prop');
+          var slug = cell.getAttribute('data-slug');
+          var imgSrc = cell.querySelector('img').src;
+          var item = document.createElement('div');
+          item.className = 'item';
+          item.innerHTML = '<img src="' + imgSrc + '" alt=""><div><div class="name">' + name + '</div><div class="meta">Click to view details &amp; book</div></div><span class="go">View &rarr;</span>';
+          item.addEventListener('click', function () {
+            var qs = '';
+            var ci2 = checkInEl.value, co2 = checkOutEl.value;
+            if (ci2 && co2 && ci2 < co2) qs = '?checkIn=' + ci2 + '&checkOut=' + co2;
+            window.location.href = slug + '/' + qs;
+          });
+          listEl0.appendChild(item);
+        });
+        hintEl.className = 'avail-hint ok actionable';
+        hintEl.textContent = availableCount + ' of 6 homes open. Click here to see them.';
+        listEl0.classList.add('shown');
       }
     });
   }
