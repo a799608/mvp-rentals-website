@@ -85,14 +85,9 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
 .filter-chip input[type=checkbox] { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; }
 
 .logo-wrap { position: relative; }
-.snow-layer { position: fixed; inset: 0; pointer-events: none; z-index: 5; overflow: hidden; }
-.snowflake { position: absolute; top: -30px; color: rgba(235,245,255,0.95); opacity: 0; animation: snowfall linear infinite; pointer-events: none; text-shadow: 0 0 6px rgba(255,255,255,0.85); }
-@keyframes snowfall {
-  0%   { transform: translateY(0) rotate(0deg);    opacity: 0; }
-  10%  { opacity: 0.95; }
-  90%  { opacity: 0.85; }
-  100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
-}
+.snowflake { position: absolute; color: rgba(220,240,255,0.9); font-size: 9px; opacity: 0; animation: snowfall linear infinite; pointer-events: none; z-index: 20; text-shadow: 0 0 4px rgba(255,255,255,0.7); }
+@keyframes snowfall { 0% { transform: translateY(-8px) rotate(0deg); opacity: 0.9; } 80% { opacity: 0.6; } 100% { transform: translateY(100px) rotate(180deg); opacity: 0; } }
+
 .value-props { display: flex; justify-content: center; gap: 14px; margin: 4px 0 18px; flex-wrap: wrap; }
 .value-prop { font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 0.4px; text-transform: uppercase; font-weight: 600; }
 .value-prop::before { content: '•'; color: var(--gold); margin-right: 6px; }
@@ -351,20 +346,20 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
 
   showAlwaysClickable();
   function createSnowflakes() {
-    var wrap = document.getElementById('logoWrap');
-    if (!wrap) return;
-    var glyphs = ['?', '?', '?', '?', '?', '?'];
-    for (var i = 0; i < 14; i++) {
-      var sf = document.createElement('span');
-      sf.className = 'snowflake';
-      sf.textContent = glyphs[i % glyphs.length];
-      sf.style.left = (Math.random() * 88 + 6) + '%';
-      sf.style.fontSize = (7 + Math.random() * 7) + 'px';
-      sf.style.animationDuration = (2.5 + Math.random() * 3.5) + 's';
-      sf.style.animationDelay = (Math.random() * 5) + 's';
-      wrap.appendChild(sf);
-    }
+  var wrap = document.getElementById('logoWrap');
+  if (!wrap) return;
+  var glyphs = ['❄', '❅', '❆', '•', '·', '✦'];
+  for (var i = 0; i < 14; i++) {
+    var sf = document.createElement('span');
+    sf.className   = 'snowflake';
+    sf.textContent = glyphs[i % glyphs.length];
+    sf.style.left              = (Math.random() * 88 + 6) + '%';
+    sf.style.fontSize          = (7 + Math.random() * 7) + 'px';
+    sf.style.animationDuration = (2.5 + Math.random() * 3.5) + 's';
+    sf.style.animationDelay    = (Math.random() * 5) + 's';
+    wrap.appendChild(sf);
   }
+}
   createSnowflakes();
 })();
 </script>
