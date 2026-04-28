@@ -83,33 +83,21 @@
     var property = opts.property;
     var onChange = opts.onChange || function () {};
     var endpoint = opts.endpoint;
+    var monthsToShow = opts.months || 3;
 
     var weekday = Number(property.rates.weekday);
     var weekend = Number(property.rates.weekend);
     var ratesUsable = !isNaN(weekday) && !isNaN(weekend);
 
     var bookedSet = new Set();
-    var displayMonth = startOfMonth(new Date());
     var checkIn = null;
     var checkOut = null;
 
     container.innerHTML = "";
-    var controls = document.createElement("div");
-    controls.className = "calendar-controls";
-    var prevBtn = document.createElement("button");
-    prevBtn.type = "button";
-    prevBtn.textContent = "← Prev";
-    var label = document.createElement("div");
-    label.className = "calendar-month-label";
-    var nextBtn = document.createElement("button");
-    nextBtn.type = "button";
-    nextBtn.textContent = "Next →";
-    controls.appendChild(prevBtn);
-    controls.appendChild(label);
-    controls.appendChild(nextBtn);
 
-    var grid = document.createElement("div");
-    grid.className = "calendar-grid";
+    var monthsWrap = document.createElement("div");
+    monthsWrap.className = "calendar-months";
+    container.appendChild(monthsWrap);
 
     var legend = document.createElement("div");
     legend.className = "calendar-legend";
@@ -118,9 +106,6 @@
       '<span><span class="swatch" style="background:#FBE9B6"></span>Open weekend</span>' +
       '<span><span class="swatch" style="background:#E5E0D2"></span>Booked</span>' +
       '<span><span class="swatch" style="background:var(--accent,#1F6224)"></span>Selected</span>';
-
-    container.appendChild(controls);
-    container.appendChild(grid);
     container.appendChild(legend);
 
     function emitChange() {
@@ -136,11 +121,8 @@
         d = addDays(d, 1);
       }
       onChange({
-        checkIn: checkIn,
-        checkOut: checkOut,
-        nights: nights,
-        weekendNights: weekendNights,
-        weekdayNights: weekdayNights,
+        checkIn: checkIn, checkOut: checkOut, nights: nights,
+        weekendNights: weekendNights, weekdayNights: weekdayNights,
       });
     }
 
@@ -154,33 +136,32 @@
       return true;
     }
 
-    function handleCellClick(cellYmd, cellDate, isPast, isBooked) {
-      if (isPast || isBooked) return;
+    function handleCellClick(cellYmd) {
       if (!checkIn || (checkIn && checkOut)) {
-        // start fresh
-        checkIn = cellYmd;
-        checkOut = null;
+        checkIn = cellYmd; checkOut = null;
       } else {
-        // we have a checkIn; treat this click as checkOut
-        if (cellYmd <= checkIn) {
-          checkIn = cellYmd;
-          checkOut = null;
-        } else if (!rangeIsClear(checkIn, cellYmd)) {
-          // dragged across a booked night — reset to this cell as new checkIn
-          checkIn = cellYmd;
-          checkOut = null;
-        } else {
-          checkOut = cellYmd;
-        }
+        if (cellYmd <= checkIn) { checkIn = cellYmd; checkOut = null; }
+        else if (!rangeIsClear(checkIn, cellYmd)) { checkIn = cellYmd; checkOut = null; }
+        else { checkOut = cellYmd; }
       }
-      render();
+      renderAll();
       emitChange();
     }
 
-    function render() {
-      label.textContent = displayMonth.toLocaleString("en-US", { month: "long", year: "numeric" });
+    function renderMonth(monthDate) {
+      var wrap = document.createElement("div");
+      wrap.className = "calendar-month";
+
+      var label = document.createElement("div");
+      label.className = "calendar-month-label";
+      label.textContent = monthDate.toLocaleString("en-US", { month: "long", year: "numeric" });
+      wrap.appendChild(label);
+
+      var grid = document.createElement("div");
+      grid.className = "calendar-grid";
+      wrap.appendChild(grid);
+
       var today = new Date(); today.setHours(0,0,0,0);
-      grid.innerHTML = "";
       var dows = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
       dows.forEach(function (d) {
         var hd = document.createElement("div");
@@ -188,16 +169,17 @@
         hd.textContent = d;
         grid.appendChild(hd);
       });
-      var first = new Date(displayMonth);
+
+      var first = new Date(monthDate);
       var firstDow = first.getDay();
-      var daysInMonth = new Date(displayMonth.getFullYear(), displayMonth.getMonth() + 1, 0).getDate();
+      var daysInMonth = new Date(monthDate.getFullYear(), monthDate.getMonth() + 1, 0).getDate();
       for (var i = 0; i < firstDow; i++) {
         var empty = document.createElement("div");
         empty.className = "cal-cell empty";
         grid.appendChild(empty);
       }
       for (var dnum = 1; dnum <= daysInMonth; dnum++) {
-        var cellDate = new Date(displayMonth.getFullYear(), displayMonth.getMonth(), dnum);
+        var cellDate = new Date(monthDate.getFullYear(), monthDate.getMonth(), dnum);
         var cellYmd = ymd(cellDate);
         var isPast = cellDate < today;
         var isBooked = bookedSet.has(cellYmd);
@@ -219,34 +201,33 @@
         priceEl.textContent = ratesUsable && !isPast && !isBooked ? fmtMoney(price) : "";
         cell.appendChild(dayEl);
         cell.appendChild(priceEl);
-        (function (yy, dd, past, booked) {
-          cell.addEventListener("click", function () { handleCellClick(yy, dd, past, booked); });
-        })(cellYmd, cellDate, isPast, isBooked);
+        if (!isPast && !isBooked) {
+          (function (yy) {
+            cell.addEventListener("click", function () { handleCellClick(yy); });
+          })(cellYmd);
+        }
         grid.appendChild(cell);
       }
-      // disable prev button if displaying current month or earlier
-      var thisMonthStart = startOfMonth(today);
-      prevBtn.disabled = displayMonth <= thisMonthStart;
+      return wrap;
     }
 
-    prevBtn.addEventListener("click", function () {
-      displayMonth = new Date(displayMonth.getFullYear(), displayMonth.getMonth() - 1, 1);
-      render();
-    });
-    nextBtn.addEventListener("click", function () {
-      displayMonth = new Date(displayMonth.getFullYear(), displayMonth.getMonth() + 1, 1);
-      render();
-    });
+    function renderAll() {
+      monthsWrap.innerHTML = "";
+      var start = startOfMonth(new Date());
+      for (var m = 0; m < monthsToShow; m++) {
+        var monthDate = new Date(start.getFullYear(), start.getMonth() + m, 1);
+        monthsWrap.appendChild(renderMonth(monthDate));
+      }
+    }
 
-    // initial render with empty bookedSet, then refresh after fetch
-    render();
+    renderAll();
     fetchAvailability(property.name, endpoint).then(function (ranges) {
       bookedSet = buildBookedSet(ranges);
-      render();
+      renderAll();
     });
 
     return {
-      reset: function () { checkIn = null; checkOut = null; render(); emitChange(); },
+      reset: function () { checkIn = null; checkOut = null; renderAll(); emitChange(); },
     };
   }
 
