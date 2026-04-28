@@ -240,13 +240,24 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
     hintEl.className = 'avail-hint';
     hintEl.textContent = 'Checking availability…';
     fetchAvailability().then(function (avail) {
+      var guests = parseInt(document.getElementById('guestsInput').value || '0', 10);
+      var needGame = document.getElementById('filterGameRoom').checked;
+      var needTheater = document.getElementById('filterTheater').checked;
       var availableCount = 0;
       allCells.forEach(function (cell) {
         var name = cell.getAttribute('data-prop');
+        var slug = cell.getAttribute('data-slug');
+        var prop = window.SITE_CONFIG.getProperty(slug);
+        var maxG = prop ? Number(prop.maxGuests) : 99;
         var booked = (avail[name] || []);
         var conflict = rangeOverlapsBooked(ci, co, booked);
+        var tooSmall = guests > 0 && maxG < guests;
+        var amenities = (prop && prop.included) || [];
+        var hasGame = amenities.some(function (a) { return /game|arcade/i.test(a); });
+        var hasTheater = amenities.some(function (a) { return /theater/i.test(a); });
+        var missingAmenity = (needGame && !hasGame) || (needTheater && !hasTheater);
         cell.classList.remove('always-clickable');
-        if (conflict) {
+        if (conflict || tooSmall || missingAmenity) {
           cell.classList.add('dimmed');
           cell.classList.remove('highlighted');
         } else {
