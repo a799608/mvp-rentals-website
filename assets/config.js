@@ -92,14 +92,14 @@ window.SITE_CONFIG = {
         "Free washer & dryer"
       ],
       photos: [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/07bd588b-235c-453a-9b8c-49d028427465.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/a03d0e90-392a-48eb-95bd-6cd6a1ddc5b5.jpeg",
-      "https://a0.muscache.com/im/pictures/8ad4c11a-6881-440f-9985-74f7eb0bb18e.jpg",
-      "https://a0.muscache.com/im/pictures/ca610c5c-ca37-4810-8052-dfdbb2ce0460.jpg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/77bea69f-bfa5-4a85-b24f-f895602d9c4f.jpeg",
-      "https://a0.muscache.com/im/pictures/11f07e6a-a6f1-480b-b7fc-52bc46918ef1.jpg",
-      "https://a0.muscache.com/im/pictures/eb504f3a-a50a-4f84-b0d4-b6990860573b.jpg",
-      "https://a0.muscache.com/im/pictures/a12be2df-3c8f-41ff-978a-fd17b330ad4a.jpg"
+      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-1.jpg",
+      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-2.jpg",
+      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-3.jpg",
+      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-4.jpg",
+      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-5.jpg",
+      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-6.jpg",
+      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-7.jpg",
+      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-8.jpg"
       ],
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/1273155947919003993",
@@ -137,14 +137,14 @@ window.SITE_CONFIG = {
         "Free washer & dryer"
       ],
       photos: [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTY2MTI3Mjk%3D/original/845a0345-3dfa-47fd-9f24-f9d294cd7fe9.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-16612729/original/dce5bdf2-6508-4b80-8a5a-67a567d53793.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTY2MTI3Mjk%3D/original/372e13e0-8b0b-49b2-bb4b-ddba9dc3ce3e.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTY2MTI3Mjk%3D/original/ee785998-b1e9-4d33-97c3-40299789db43.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTY2MTI3Mjk%3D/original/8bd4af83-199a-48a9-adcb-b499b2b2d9f7.jpeg",
-      "https://a0.muscache.com/im/pictures/da734186-1065-47bf-8a4e-11c3000c2ace.jpg",
-      "https://a0.muscache.com/im/pictures/b7b0f065-9b17-4576-a42e-522b59de26f2.jpg",
-      "https://a0.muscache.com/im/pictures/8cea2039-c136-4368-96fb-1d6d70260f06.jpg"
+      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-1.jpg",
+      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-2.jpg",
+      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-3.jpg",
+      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-4.jpg",
+      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-5.jpg",
+      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-6.jpg",
+      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-7.jpg",
+      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-8.jpg"
       ],
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/16612729",
@@ -182,14 +182,14 @@ window.SITE_CONFIG = {
         "Free washer & dryer"
       ],
       photos: [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/51762f3c-6bde-4c73-b99a-abc691e149ff.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/cc48e0bc-df12-4f52-b92a-a97c1bfbbf50.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/c0bbd523-cb37-438a-bed5-aadd7ab347c6.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/2e908238-3873-427f-91e0-b905f126d5da.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/982f3c97-cd98-4456-b4f6-ddeb2f43eca1.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/7af3fd1c-166c-4029-8f16-bb6eac92b503.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NDAyMjkzMjA=/original/2eb13cfe-e156-421b-8c26-a460d9c774d1.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/a77d26a7-28bc-4bc1-b784-4cbcf22d2035.jpeg"
+      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-1.jpg",
+      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-2.jpg",
+      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-3.jpg",
+      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-4.jpg",
+      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-5.jpg",
+      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-6.jpg",
+      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-7.jpg",
+      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-8.jpg"
       ],
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/40229320",
@@ -227,14 +227,14 @@ window.SITE_CONFIG = {
         "Pets allowed"
       ],
       photos: [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/b8d46698-c619-4b73-88d2-e1c2990983a0.png",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/110bfc08-4a13-4404-aa9c-ef7d219b7f04.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/c63bae85-7673-40f4-90be-e1fea0210382.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/d1f04608-c288-4502-bbd5-d34392cc4720.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/580e7958-b09b-45c1-aa0f-64ab1b62d16d.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/055ef451-04c4-4aa0-877f-24e1754515bb.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/0db00cfc-8abb-456e-8565-1a1beac142c4.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/c7e5d05a-904a-4c40-8fd1-4e4d200a5341.jpeg"
+      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-1.jpg",
+      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-2.jpg",
+      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-3.jpg",
+      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-4.jpg",
+      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-5.jpg",
+      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-6.jpg",
+      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-7.jpg",
+      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-8.jpg"
       ],
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/776227061200723382",
@@ -272,14 +272,14 @@ window.SITE_CONFIG = {
         "HDTV with Netflix, Hulu, Amazon Prime, Disney+"
       ],
       photos: [
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ=/original/cc069248-7b2b-4b56-8a58-4aa52f927d13.png",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/283af09a-20d9-46eb-9226-11781eeb036f.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/4f58b947-fec6-4ee0-9c2b-bd0f8ba605f5.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/8bd98efe-faa2-4eb2-afe1-c69e03247100.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/cdc8caf3-5045-46a5-975d-456ca2bcaeb9.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/a4c2ca0d-6510-4ca8-910c-60e94b3182a5.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-15973534/original/c58f23ab-3cf7-4d1d-9f29-167dc3a9772f.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-15973534/original/53b86447-4060-4b41-b9d7-3a51dd0df7e3.jpeg"
+      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-1.jpg",
+      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-2.jpg",
+      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-3.jpg",
+      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-4.jpg",
+      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-5.jpg",
+      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-6.jpg",
+      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-7.jpg",
+      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-8.jpg"
       ],
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/15973534",
@@ -317,14 +317,14 @@ window.SITE_CONFIG = {
         "Washer & dryer"
       ],
       photos: [
-      "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/3c3c9626-fde7-4a85-b7ff-d2adf66c76cb.jpeg",
-      "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/ab88c8ea-03e1-45a9-807c-9cd833c395fa.jpeg",
-      "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/3d638bc5-6952-48a0-b675-42e381a49cc8.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/e490f194-392b-4428-9f97-49d9e30709f2.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/ab3dcf03-bf18-4ff9-bf9f-f74bd87811c0.jpeg",
-      "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/d48dff5a-2870-477e-b358-e022486a48b3.jpeg",
-      "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/339530c6-5705-4ea9-a70a-c64b32bd8d65.jpeg",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/39348a39-400e-4a29-8890-582450dcfc13.jpeg"
+      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-1.jpg",
+      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-2.jpg",
+      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-3.jpg",
+      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-4.jpg",
+      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-5.jpg",
+      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-6.jpg",
+      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-7.jpg",
+      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-8.jpg"
       ],
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/1100977895146044046",
