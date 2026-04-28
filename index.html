@@ -23,7 +23,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
 .prop-cell { position: relative; overflow: hidden; transition: all 0.7s ease; cursor: default; }
 .prop-cell::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.48); z-index: 1; transition: background 0.7s ease; }
 .prop-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s ease; }
-.prop-cell .prop-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.72)); color: #fff; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; padding: 22px 8px 7px; text-align: center; z-index: 2; transition: color 0.5s, opacity 0.5s; }
+.prop-cell .prop-label { position: absolute; bottom: 36px; left: 0; right: 0; color: #fff; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; padding: 4px 8px; text-align: center; z-index: 2; transition: color 0.5s, opacity 0.5s; text-shadow: 0 2px 6px rgba(0,0,0,0.85); }
 .prop-cell.dimmed::before { background: rgba(0,0,0,0.75); }
 .prop-cell.dimmed .prop-label { opacity: 0.3; }
 .prop-cell.highlighted { cursor: pointer; }
@@ -59,8 +59,8 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
 .browse-link { display: inline-block; margin-top: 14px; color: rgba(255,255,255,0.55); font-size: 11px; text-decoration: underline; cursor: pointer; }
 .browse-link:hover { color: var(--gold); }
 
-.bottom-links { position: fixed; bottom: 14px; left: 0; right: 0; text-align: center; z-index: 11; font-size: 11px; color: rgba(255,255,255,0.5); }
-.bottom-links a { color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 10px; }
+.bottom-links { position: fixed; bottom: 0; left: 0; right: 0; text-align: center; z-index: 11; font-size: 11px; color: rgba(255,255,255,0.7); padding: 24px 0 12px; background: linear-gradient(to bottom, rgba(7,18,10,0) 0%, rgba(7,18,10,0.85) 60%, rgba(7,18,10,0.95) 100%); pointer-events: none; }
+.bottom-links a { color: rgba(255,255,255,0.85); text-decoration: none; margin: 0 12px; pointer-events: auto; }
 .bottom-links a:hover { color: var(--gold); }
 
 @media (max-width: 480px) {
