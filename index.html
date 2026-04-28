@@ -296,6 +296,13 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
   });
   checkOutEl.addEventListener('change', refresh);
 
+  hintEl.addEventListener('click', function () {
+    if (!hintEl.classList.contains('actionable')) return;
+    var ci = checkInEl.value, co = checkOutEl.value;
+    if (!ci || !co || ci >= co) return;
+    window.location.href = 'available.html?checkIn=' + ci + '&checkOut=' + co;
+  });
+
   showAlwaysClickable();
 })();
 </script>
