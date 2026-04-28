@@ -80,7 +80,7 @@ window.SITE_CONFIG = {
       bedrooms: 3,
       bathrooms: 2,
       beds: 6,
-      description: "A private cottage tucked into thick pines at the edge of a Pocono lake community. Three-floor layout includes a third-floor covered deck ? perfect for rain or snow storms. Fully equipped kitchen, beach access, shared seasonal pool, washer/dryer, and HDTV with streaming. Fenced yard for pets. Ten minutes to Jim Thorpe, near ski slopes and water parks.",
+      description: "A private cottage tucked into thick pines at the edge of a Pocono lake community. Three-floor layout includes a third-floor covered deck — perfect for rain or snow storms. Fully equipped kitchen, beach access, shared seasonal pool, washer/dryer, and HDTV with streaming. Fenced yard for pets. Ten minutes to Jim Thorpe, near ski slopes and water parks.",
       included: [
         "Beach access",
         "Shared outdoor pool (seasonal)",
@@ -111,7 +111,7 @@ window.SITE_CONFIG = {
         cleaningFee: 175,
         petFee: 25,
         petFeeType: "per-night",
-        smartPricingNote: "From $95/night via Smart Pricing ? final rate confirmed when we reply."
+        smartPricingNote: "From $95/night via Smart Pricing — final rate confirmed when we reply."
       }
     },
     {
@@ -125,7 +125,7 @@ window.SITE_CONFIG = {
       bedrooms: 3,
       bathrooms: 2,
       beds: 6,
-      description: "A charming cabin retreat in Albrightsville with a fully fenced yard, lake and beach access, and shared seasonal pool. Sleeps 10 across 3 bedrooms. Ideal for families and groups who want the outdoors close by ? hiking, skiing, and water parks all nearby. Full kitchen, streaming HDTV, washer/dryer, and self check-in. Pets warmly welcome.",
+      description: "A charming cabin retreat in Albrightsville with a fully fenced yard, lake and beach access, and shared seasonal pool. Sleeps 10 across 3 bedrooms. Ideal for families and groups who want the outdoors close by — hiking, skiing, and water parks all nearby. Full kitchen, streaming HDTV, washer/dryer, and self check-in. Pets warmly welcome.",
       included: [
         "Beach access",
         "Shared outdoor pool (seasonal)",
@@ -156,7 +156,7 @@ window.SITE_CONFIG = {
         cleaningFee: 175,
         petFee: 25,
         petFeeType: "per-night",
-        smartPricingNote: "From $115/night via Smart Pricing ? final rate confirmed when we reply."
+        smartPricingNote: "From $115/night via Smart Pricing — final rate confirmed when we reply."
       }
     },
     {
@@ -201,7 +201,7 @@ window.SITE_CONFIG = {
         cleaningFee: 175,
         petFee: 25,
         petFeeType: "per-night",
-        smartPricingNote: "From $95/night via Smart Pricing ? final rate confirmed when we reply."
+        smartPricingNote: "From $95/night via Smart Pricing — final rate confirmed when we reply."
       }
     },
     {
@@ -215,7 +215,7 @@ window.SITE_CONFIG = {
       bedrooms: 4,
       bathrooms: 2,
       beds: 7,
-      description: "The ultimate Pocono group retreat ? featuring an arcade, two dedicated game rooms, a theater room area, and TVs in every room. Fully fenced backyard with wire mesh fence for pets. Sleeps 12 across 4 bedrooms with 7 beds. Beach access, shared pool, full kitchen, washer/dryer. Near Jim Thorpe, ski resorts, and Pocono Speedway.",
+      description: "The ultimate Pocono group retreat — featuring an arcade, two dedicated game rooms, a theater room area, and TVs in every room. Fully fenced backyard with wire mesh fence for pets. Sleeps 12 across 4 bedrooms with 7 beds. Beach access, shared pool, full kitchen, washer/dryer. Near Jim Thorpe, ski resorts, and Pocono Speedway.",
       included: [
         "Beach access",
         "Shared outdoor pool (seasonal)",
@@ -246,7 +246,7 @@ window.SITE_CONFIG = {
         cleaningFee: 240,
         petFee: 25,
         petFeeType: "per-night",
-        smartPricingNote: "From $225/night via Smart Pricing ? final rate confirmed when we reply."
+        smartPricingNote: "From $225/night via Smart Pricing — final rate confirmed when we reply."
       }
     },
     {
@@ -291,7 +291,7 @@ window.SITE_CONFIG = {
         cleaningFee: 225,
         petFee: 25,
         petFeeType: "per-night",
-        smartPricingNote: "From $150/night via Smart Pricing ? final rate confirmed when we reply."
+        smartPricingNote: "From $150/night via Smart Pricing — final rate confirmed when we reply."
       }
     },
     {
@@ -336,7 +336,7 @@ window.SITE_CONFIG = {
         cleaningFee: 125,
         petFee: 25,
         petFeeType: "per-night",
-        smartPricingNote: "From $95/night via Smart Pricing ? final rate confirmed when we reply."
+        smartPricingNote: "From $95/night via Smart Pricing — final rate confirmed when we reply."
       }
     },
   ],
