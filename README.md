@@ -114,3 +114,12 @@ the Twilio A2P 10DLC campaign.
 ## Roadmap / TODO
 
 - [ ] **Cycle property photos on cards** — only `hero.jpg` exists per property right now. To enable rotating photos on the landing-page tiles and the `available.html` cards, drop additional images into the `mvp-guest-guides` repo at `<slug>/photo1.jpg`, `<slug>/photo2.jpg`, etc. Then update `assets/config.js` (add a `gallery: []` array per property) and the cycling JS (cross-fade every 4-5s) on both `index.html` and `available.html`.
+
+## Rate methodology (v1.1+)
+
+All six properties use Airbnb Smart Pricing (no fixed weekday/weekend rate). For the website:
+- `weekday` rate = Smart Pricing floor (lowest configured rate)
+- `weekend` rate = floor + $50 (a placeholder uplift)
+- `cleaningFee` and `petFee` = verified from the VRBO host fees-settings page
+
+The `smartPricingNote` field on each property holds the disclaimer the property page can show: "From $X/night via Smart Pricing — final rate confirmed when we reply." Edit `assets/config.js` to swap in fixed rates whenever you want.
