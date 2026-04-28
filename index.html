@@ -68,6 +68,17 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
   .landing-card h1 { font-size: 22px; }
   .date-row { grid-template-columns: 1fr; }
 }
+
+.avail-hint.actionable { color: var(--gold); cursor: pointer; text-decoration: underline; font-weight: 600; }
+.avail-hint.actionable:hover { color: #fff; }
+.avail-list { display: none; margin-top: 12px; max-height: 240px; overflow-y: auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; text-align: left; }
+.avail-list.shown { display: block; }
+.avail-list .item { display: flex; align-items: center; gap: 10px; padding: 8px 6px; border-radius: 8px; cursor: pointer; transition: background 0.15s; }
+.avail-list .item:hover { background: rgba(255,255,255,0.08); }
+.avail-list .item img { width: 44px; height: 44px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
+.avail-list .item .name { font-size: 14px; font-weight: 700; color: #fff; }
+.avail-list .item .meta { font-size: 11px; color: rgba(255,255,255,0.55); }
+.avail-list .item .go { color: var(--gold); font-size: 12px; margin-left: auto; }
 </style>
 </head>
 <body>
@@ -122,6 +133,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
       </div>
     </div>
     <div class="avail-hint" id="availHint">Pick your dates &mdash; available homes will light up.</div>
+    <div class="avail-list" id="availList"></div>
     <a class="browse-link" id="browseAll">Or just browse all six homes &rarr;</a>
   </div>
 </div>
@@ -201,6 +213,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
       showAlwaysClickable();
       hintEl.className = 'avail-hint err';
       hintEl.textContent = 'Check-out must be after check-in.';
+      var listEl = document.getElementById('availList'); if (listEl) listEl.classList.remove('shown');
       return;
     }
     hintEl.className = 'avail-hint';
