@@ -272,3 +272,10 @@ section + section { border-top: 1px solid var(--line); }
 .calendar-month { background: #fff; border-radius: var(--radius-md); padding: 14px 14px 16px; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
 .calendar-month .calendar-month-label { font-family: var(--font-display); font-size: 1.05rem; color: var(--green-dark); text-align: center; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 2px solid var(--cream-dark); }
 @media (max-width: 980px) { .calendar-months { grid-template-columns: 1fr; gap: 16px; } }
+
+
+/* ========= property photo gallery ========= */
+.photo-gallery-section { padding: 24px 0 0; }
+.photo-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.photo-gallery img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-md); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; background: var(--cream-dark); }
+.photo-gallery img:hover { transform: scale(1.02); box-shadow: var(--shadow-md); }

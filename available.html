@@ -95,6 +95,9 @@ header .brand { color: #fff; font-size: 22px; font-weight: 800; letter-spacing: 
   var qs = new URLSearchParams(window.location.search);
   var ci = qs.get('checkIn');
   var co = qs.get('checkOut');
+  var guests = parseInt(qs.get('guests') || '0', 10);
+  var needGame = qs.get('gameRoom') === '1';
+  var needTheater = qs.get('theater') === '1';
   var dateLine = document.getElementById('dateLine');
   var nightsLine = document.getElementById('nightsLine');
   var summary = document.getElementById('summary');
@@ -111,7 +114,7 @@ header .brand { color: #fff; font-size: 22px; font-weight: 800; letter-spacing: 
   }
 
   dateLine.textContent = pretty(ci) + '  >  ' + pretty(co);
-  nightsLine.textContent = nights(ci, co) + ' nights';
+  nightsLine.textContent = nights(ci, co) + ' nights' + (guests > 0 ? ' ? ' + guests + ' guests' : '');
 
   var endpoint = (window.SITE_CONFIG && window.SITE_CONFIG.endpoints && window.SITE_CONFIG.endpoints.availability) || '';
   var fetchP;
@@ -125,7 +128,12 @@ header .brand { color: #fff; font-size: 22px; font-weight: 800; letter-spacing: 
     var props = (window.SITE_CONFIG && window.SITE_CONFIG.properties) || [];
     var available = props.filter(function (p) {
       var booked = avail[p.name] || [];
-      return !rangeOverlapsBooked(ci, co, booked);
+      if (rangeOverlapsBooked(ci, co, booked)) return false;
+      if (guests > 0 && Number(p.maxGuests) < guests) return false;
+      var amenities = p.included || [];
+      if (needGame && !amenities.some(function(a){return /game|arcade/i.test(a);})) return false;
+      if (needTheater && !amenities.some(function(a){return /theater/i.test(a);})) return false;
+      return true;
     });
 
     if (!available.length) {
@@ -134,18 +142,18 @@ header .brand { color: #fff; font-size: 22px; font-weight: 800; letter-spacing: 
       return;
     }
 
-    summary.innerHTML = '<strong>' + available.length + ' of ' + props.length + '</strong> homes open. Click any to see details and book.';
+    var hdr = '<strong>' + available.length + ' of ' + props.length + '</strong> homes open' + (guests > 0 ? ' that fit ' + guests + ' guest' + (guests===1?'':'s') : '') + '. Click any to see details and book.'; summary.innerHTML = hdr;
 
     available.forEach(function (p) {
       var a = document.createElement('a');
       a.className = 'card';
-      a.href = p.slug + '/?checkIn=' + ci + '&checkOut=' + co;
+      a.href = p.slug + '/?checkIn=' + ci + '&checkOut=' + co + (guests > 0 ? '&guests=' + guests : '');
       a.style.borderLeftColor = p.color;
       a.innerHTML =
         '<img src="' + p.heroPhoto + '" alt="' + p.name + '" loading="lazy">' +
         '<div class="card-body">' +
           '<div class="name">' + p.name + '</div>' +
-          '<div class="addr">' + p.address + '</div>' +
+          '<div class="addr">' + p.address + ' ? sleeps ' + p.maxGuests + '</div>' +
           '<div class="cta">View details &amp; book &rarr;</div>' +
         '</div>';
       grid.appendChild(a);

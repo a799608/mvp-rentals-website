@@ -20,6 +20,12 @@
 </header>
 
 <section class="hero" id="hero"></section>
+<section class="photo-gallery-section">
+  <div class="container">
+    <h2>Photos</h2>
+    <div id="photo-gallery" class="photo-gallery"></div>
+  </div>
+</section>
 
 <section>
   <div class="container">
@@ -202,6 +208,17 @@ window.SITE_CONFIG.basePath = "../";
   });
 
   window.MVPBooking.renderPayments(document.getElementById("payments"));
+  var galleryEl = document.getElementById('photo-gallery');
+  if (galleryEl && prop.photos && prop.photos.length) {
+    prop.photos.forEach(function (url) {
+      var img = document.createElement('img');
+      img.src = url;
+      img.alt = prop.name;
+      img.loading = 'lazy';
+      galleryEl.appendChild(img);
+    });
+  }
+
 })();
 </script>
 
