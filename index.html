@@ -85,8 +85,14 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
 .filter-chip input[type=checkbox] { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; }
 
 .logo-wrap { position: relative; }
-.snowflake { position: absolute; color: rgba(220,240,255,0.9); font-size: 9px; opacity: 0; animation: snowfall linear infinite; pointer-events: none; z-index: 20; text-shadow: 0 0 4px rgba(255,255,255,0.7); }
-@keyframes snowfall { 0% { transform: translateY(-8px) rotate(0deg); opacity: 0.9; } 80% { opacity: 0.6; } 100% { transform: translateY(120px) rotate(180deg); opacity: 0; } }
+.snow-layer { position: fixed; inset: 0; pointer-events: none; z-index: 5; overflow: hidden; }
+.snowflake { position: absolute; top: -30px; color: rgba(235,245,255,0.95); opacity: 0; animation: snowfall linear infinite; pointer-events: none; text-shadow: 0 0 6px rgba(255,255,255,0.85); }
+@keyframes snowfall {
+  0%   { transform: translateY(0) rotate(0deg);    opacity: 0; }
+  10%  { opacity: 0.95; }
+  90%  { opacity: 0.85; }
+  100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+}
 .value-props { display: flex; justify-content: center; gap: 14px; margin: 4px 0 18px; flex-wrap: wrap; }
 .value-prop { font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 0.4px; text-transform: uppercase; font-weight: 600; }
 .value-prop::before { content: '•'; color: var(--gold); margin-right: 6px; }
