@@ -110,3 +110,7 @@ EIN 39-4982848). 502 W 7th St Ste 100, Erie, PA 16502.
 
 Privacy and Terms include the TCR-required SMS consent language used to clear
 the Twilio A2P 10DLC campaign.
+
+## Roadmap / TODO
+
+- [ ] **Cycle property photos on cards** — only `hero.jpg` exists per property right now. To enable rotating photos on the landing-page tiles and the `available.html` cards, drop additional images into the `mvp-guest-guides` repo at `<slug>/photo1.jpg`, `<slug>/photo2.jpg`, etc. Then update `assets/config.js` (add a `gallery: []` array per property) and the cycling JS (cross-fade every 4-5s) on both `index.html` and `available.html`.
