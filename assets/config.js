@@ -92,14 +92,14 @@ window.SITE_CONFIG = {
         "Free washer & dryer"
       ],
       photos: [
-      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-1.jpg",
-      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-2.jpg",
-      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-3.jpg",
-      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-4.jpg",
-      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-5.jpg",
-      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-6.jpg",
-      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-7.jpg",
-      "https://a799608.github.io/mvp-rentals-website/trails/photos/trails-8.jpg"
+      "photos/trails-1.jpg",
+      "photos/trails-2.jpg",
+      "photos/trails-3.jpg",
+      "photos/trails-4.jpg",
+      "photos/trails-5.jpg",
+      "photos/trails-6.jpg",
+      "photos/trails-7.jpg",
+      "photos/trails-8.jpg"
       ],
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/1273155947919003993",
@@ -137,14 +137,14 @@ window.SITE_CONFIG = {
         "Free washer & dryer"
       ],
       photos: [
-      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-1.jpg",
-      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-2.jpg",
-      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-3.jpg",
-      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-4.jpg",
-      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-5.jpg",
-      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-6.jpg",
-      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-7.jpg",
-      "https://a799608.github.io/mvp-rentals-website/wylie/photos/wylie-8.jpg"
+      "photos/wylie-1.jpg",
+      "photos/wylie-2.jpg",
+      "photos/wylie-3.jpg",
+      "photos/wylie-4.jpg",
+      "photos/wylie-5.jpg",
+      "photos/wylie-6.jpg",
+      "photos/wylie-7.jpg",
+      "photos/wylie-8.jpg"
       ],
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/16612729",
@@ -182,14 +182,14 @@ window.SITE_CONFIG = {
         "Free washer & dryer"
       ],
       photos: [
-      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-1.jpg",
-      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-2.jpg",
-      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-3.jpg",
-      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-4.jpg",
-      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-5.jpg",
-      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-6.jpg",
-      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-7.jpg",
-      "https://a799608.github.io/mvp-rentals-website/pound/photos/pound-8.jpg"
+      "photos/pound-1.jpg",
+      "photos/pound-2.jpg",
+      "photos/pound-3.jpg",
+      "photos/pound-4.jpg",
+      "photos/pound-5.jpg",
+      "photos/pound-6.jpg",
+      "photos/pound-7.jpg",
+      "photos/pound-8.jpg"
       ],
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/40229320",
@@ -227,14 +227,14 @@ window.SITE_CONFIG = {
         "Pets allowed"
       ],
       photos: [
-      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-1.jpg",
-      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-2.jpg",
-      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-3.jpg",
-      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-4.jpg",
-      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-5.jpg",
-      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-6.jpg",
-      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-7.jpg",
-      "https://a799608.github.io/mvp-rentals-website/maccauley/photos/maccauley-8.jpg"
+      "photos/maccauley-1.jpg",
+      "photos/maccauley-2.jpg",
+      "photos/maccauley-3.jpg",
+      "photos/maccauley-4.jpg",
+      "photos/maccauley-5.jpg",
+      "photos/maccauley-6.jpg",
+      "photos/maccauley-7.jpg",
+      "photos/maccauley-8.jpg"
       ],
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/776227061200723382",
@@ -272,14 +272,14 @@ window.SITE_CONFIG = {
         "HDTV with Netflix, Hulu, Amazon Prime, Disney+"
       ],
       photos: [
-      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-1.jpg",
-      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-2.jpg",
-      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-3.jpg",
-      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-4.jpg",
-      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-5.jpg",
-      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-6.jpg",
-      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-7.jpg",
-      "https://a799608.github.io/mvp-rentals-website/milton/photos/milton-8.jpg"
+      "photos/milton-1.jpg",
+      "photos/milton-2.jpg",
+      "photos/milton-3.jpg",
+      "photos/milton-4.jpg",
+      "photos/milton-5.jpg",
+      "photos/milton-6.jpg",
+      "photos/milton-7.jpg",
+      "photos/milton-8.jpg"
       ],
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/15973534",
@@ -317,14 +317,14 @@ window.SITE_CONFIG = {
         "Washer & dryer"
       ],
       photos: [
-      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-1.jpg",
-      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-2.jpg",
-      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-3.jpg",
-      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-4.jpg",
-      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-5.jpg",
-      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-6.jpg",
-      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-7.jpg",
-      "https://a799608.github.io/mvp-rentals-website/petrarch/photos/petrarch-8.jpg"
+      "photos/petrarch-1.jpg",
+      "photos/petrarch-2.jpg",
+      "photos/petrarch-3.jpg",
+      "photos/petrarch-4.jpg",
+      "photos/petrarch-5.jpg",
+      "photos/petrarch-6.jpg",
+      "photos/petrarch-7.jpg",
+      "photos/petrarch-8.jpg"
       ],
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/1100977895146044046",
