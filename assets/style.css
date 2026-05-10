@@ -301,5 +301,9 @@ section + section { border-top: 1px solid var(--line); }
 
 /* ========= per-property word cloud ========= */
 .wordcloud-section { padding: 40px 0; }
-.wordcloud-section h2 { margin-bottom: 6px; }
+.wordcloud-section h2 { margin-bottom: 6px; font-size: 3rem; line-height: 1.1; }
+@keyframes throb-a { 0%, 100% { color: #d62828; } 50% { color: #ffd60a; } }
+@keyframes throb-b { 0%, 100% { color: #ffd60a; } 50% { color: #d62828; } }
+.throb-love { animation: throb-a 1.5s ease-in-out infinite; font-weight: 700; }
+.throb-will { animation: throb-b 1.5s ease-in-out infinite; font-weight: 700; }
 .wordcloud-section img { border-radius: var(--radius-md); }
