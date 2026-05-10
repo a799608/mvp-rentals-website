@@ -792,7 +792,14 @@ window.SITE_CONFIG = {
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/f42bc027-7088-4eba-870d-83cb275e13f3.jpeg",
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/2d28d2b3-2699-472e-b444-00c24fdda377.jpeg"
         ],
-        "Full bathroom": [],
+        "Full bathroom": [
+          "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/3d638bc5-6952-48a0-b675-42e381a49cc8.jpeg",
+          "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/eb332875-0687-46ef-81b9-638c4dd12d21.jpeg",
+          "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/d85b7023-55dd-401a-9494-2cc474756aa1.jpeg",
+          "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/a15f135e-b9cc-43ed-94b8-efad28d9c536.jpeg",
+          "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/404a4c9a-afd4-4b40-827c-e31494549b2d.jpeg",
+          "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/736f4dc7-5375-493e-81c9-2312f1f8f89d.jpeg"
+        ],
         "Exterior": [],
         "Additional photos": []
       },
