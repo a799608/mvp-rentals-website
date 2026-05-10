@@ -92,6 +92,10 @@
     var bookedSet = new Set();
     var checkIn = null;
     var checkOut = null;
+    var pendingInitial = null;
+    if (opts.initialCheckIn && opts.initialCheckOut && opts.initialCheckIn < opts.initialCheckOut) {
+      pendingInitial = { ci: opts.initialCheckIn, co: opts.initialCheckOut };
+    }
 
     container.innerHTML = "";
 
@@ -223,7 +227,13 @@
     renderAll();
     fetchAvailability(property.name, endpoint).then(function (ranges) {
       bookedSet = buildBookedSet(ranges);
+      if (pendingInitial && rangeIsClear(pendingInitial.ci, pendingInitial.co)) {
+        checkIn = pendingInitial.ci;
+        checkOut = pendingInitial.co;
+      }
+      pendingInitial = null;
       renderAll();
+      if (checkIn && checkOut) emitChange();
     });
 
     return {
@@ -247,6 +257,10 @@
     var bookedSet = new Set();
     var checkIn = null;
     var checkOut = null;
+    var pendingInitial = null;
+    if (opts.initialCheckIn && opts.initialCheckOut && opts.initialCheckIn < opts.initialCheckOut) {
+      pendingInitial = { ci: opts.initialCheckIn, co: opts.initialCheckOut };
+    }
 
     container.innerHTML = "";
     var monthsWrap = document.createElement("div");

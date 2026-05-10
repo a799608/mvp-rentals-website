@@ -56,9 +56,6 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
 .avail-hint.warn { color: #ffd0a8; }
 .avail-hint.err { color: #ff8080; }
 
-.browse-link { display: inline-block; margin-top: 14px; color: rgba(255,255,255,0.55); font-size: 11px; text-decoration: underline; cursor: pointer; }
-.browse-link:hover { color: var(--gold); }
-
 .bottom-links { position: fixed; bottom: 0; left: 0; right: 0; text-align: center; z-index: 11; font-size: 11px; color: rgba(255,255,255,0.7); padding: 24px 0 12px; background: linear-gradient(to bottom, rgba(7,18,10,0) 0%, rgba(7,18,10,0.85) 60%, rgba(7,18,10,0.95) 100%); pointer-events: none; }
 .bottom-links a { color: rgba(255,255,255,0.85); text-decoration: none; margin: 0 12px; pointer-events: auto; }
 .bottom-links a:hover { color: var(--gold); }
@@ -114,6 +111,39 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
 @media (max-width: 480px) {
   .union-cal-host .calendar-months { grid-template-columns: 1fr; gap: 8px; }
   .union-cal-host .cal-cell { font-size: 12px; }
+}
+
+/* Start-Your-Trip submit-flow additions */
+.start-trip-btn { display: block; width: 100%; margin: 14px 0 6px; padding: 14px 18px; background: var(--gold); color: #07120a; border: none; border-radius: 12px; font-size: 15px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; cursor: pointer; transition: background 0.15s, transform 0.05s, box-shadow 0.15s; box-shadow: 0 4px 14px rgba(200,153,10,0.35); font-family: 'Segoe UI', Arial, sans-serif; }
+.start-trip-btn:hover { background: #e0ad15; box-shadow: 0 6px 18px rgba(200,153,10,0.5); }
+.start-trip-btn:active { transform: translateY(1px); }
+.start-trip-btn:disabled { background: rgba(200,153,10,0.4); cursor: wait; box-shadow: none; }
+.avail-hint.err { color: #ff8080; }
+/* Modal fade-out */
+.landing-card { transition: opacity 0.45s ease, transform 0.45s ease; }
+.landing-card.fading-out { opacity: 0; transform: scale(0.96) translateY(-8px); pointer-events: none; }
+.landing-card.hidden { display: none !important; }
+/* Tile result classes — applied after Start Your Trip submit */
+.prop-cell.result-available { cursor: pointer; }
+.prop-cell.result-available::before { background: rgba(0,0,0,0.05); }
+.prop-cell.result-available img { transform: scale(1.07); }
+.prop-cell.result-available .prop-label { color: var(--gold); font-size: 12px; letter-spacing: 1.5px; opacity: 1; }
+.prop-cell.result-available::after { content: ''; position: absolute; inset: 0; border: 3px solid var(--gold); z-index: 3; pointer-events: none; box-shadow: inset 0 0 20px rgba(200,153,10,0.35); }
+.prop-cell.result-unavailable { cursor: not-allowed; opacity: 0.3; }
+.prop-cell.result-unavailable::before { background: rgba(0,0,0,0.78); }
+.prop-cell.result-unavailable img { transform: none; filter: grayscale(0.4); }
+.prop-cell.result-unavailable .prop-label { color: rgba(255,255,255,0.5); }
+/* Floating "Change dates" button shown after submit */
+.change-dates-btn { position: fixed; top: 18px; right: 18px; z-index: 50; background: rgba(5,18,7,0.86); color: var(--gold); border: 1.5px solid var(--gold); border-radius: 24px; padding: 10px 18px; font-size: 13px; font-weight: 700; letter-spacing: 0.4px; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 4px 18px rgba(0,0,0,0.45); display: none; opacity: 0; transition: opacity 0.35s ease, background 0.15s, color 0.15s; font-family: 'Segoe UI', Arial, sans-serif; }
+.change-dates-btn.shown { display: inline-block; opacity: 1; }
+.change-dates-btn:hover { background: var(--gold); color: #07120a; }
+.change-dates-btn .icon { margin-right: 6px; font-size: 14px; }
+/* Result summary line under "Change dates" button */
+.result-summary { position: fixed; top: 60px; right: 18px; z-index: 49; font-size: 12px; color: rgba(255,255,255,0.85); background: rgba(5,18,7,0.78); border-radius: 14px; padding: 6px 12px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: none; max-width: 260px; text-align: right; }
+.result-summary.shown { display: inline-block; }
+@media (max-width: 480px) {
+  .change-dates-btn { top: 12px; right: 12px; padding: 8px 14px; font-size: 12px; }
+  .result-summary { top: 50px; right: 12px; font-size: 11px; max-width: 200px; }
 }
 </style>
 </head>
@@ -185,11 +215,13 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
       <label class="filter-chip"><input type="checkbox" id="filterGameRoom"> <span>Game room</span></label>
       <label class="filter-chip"><input type="checkbox" id="filterTheater"> <span>Theater room</span></label>
     </div>
-    <div class="avail-hint" id="availHint">Pick your dates &mdash; available homes will light up.</div>
-    <div class="avail-list" id="availList"></div>
-    <a class="browse-link" id="browseAll">Or just browse all six homes &rarr;</a>
+    <button type="button" class="start-trip-btn" id="startTripBtn">Start Your Trip &rarr;</button>
+    <div class="avail-hint" id="availHint">Pick your dates &mdash; we&rsquo;ll light up the homes that are open.</div>
   </div>
 </div>
+
+<button type="button" class="change-dates-btn" id="changeDatesBtn"><span class="icon">&larr;</span>Change dates</button>
+<div class="result-summary" id="resultSummary"></div>
 
 <div class="bottom-links">
   <a href="privacy.html">Privacy</a>
@@ -207,10 +239,14 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
   var hintEl = document.getElementById('availHint');
   var grid = document.getElementById('propGrid');
   var allCells = Array.from(grid.querySelectorAll('.prop-cell'));
-  var browseLink = document.getElementById('browseAll');
+  var startBtn = document.getElementById('startTripBtn');
+  var changeBtn = document.getElementById('changeDatesBtn');
+  var summaryFloat = document.getElementById('resultSummary');
+  var landingCard = document.querySelector('.landing-card');
 
   var availabilityCache = null;
   var fetchPromise = null;
+  var hasResult = false; // true once Start Your Trip has been clicked successfully
 
   function ymdToday() { var d = new Date(); d.setHours(0,0,0,0); return d.toISOString().slice(0,10); }
   function fmt(d) { return d.toISOString().slice(0,10); }
@@ -241,177 +277,203 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
     return false;
   }
 
-  function clearStates() {
+  function clearStateClasses() {
     allCells.forEach(function (c) {
       c.classList.remove('dimmed');
       c.classList.remove('highlighted');
       c.classList.remove('always-clickable');
+      c.classList.remove('result-available');
+      c.classList.remove('result-unavailable');
     });
   }
 
   function showAlwaysClickable() {
+    clearStateClasses();
     allCells.forEach(function (c) { c.classList.add('always-clickable'); });
   }
 
-  function refresh() {
-    var ci = checkInEl.value, co = checkOutEl.value;
-    if (!ci || !co) {
-      clearStates();
-      showAlwaysClickable();
-      hintEl.className = 'avail-hint';
-      hintEl.textContent = 'Pick your dates — available homes will light up.';
-      return;
-    }
-    if (ci >= co) {
-      clearStates();
-      showAlwaysClickable();
-      hintEl.className = 'avail-hint err';
-      hintEl.textContent = 'Check-out must be after check-in.';
-      var listEl = document.getElementById('availList'); if (listEl) listEl.classList.remove('shown');
-      return;
-    }
-    hintEl.className = 'avail-hint';
-    hintEl.textContent = 'Checking availability…';
-    fetchAvailability().then(function (avail) {
-      var guests = parseInt(document.getElementById('guestsInput').value || '0', 10);
-      var needGame = document.getElementById('filterGameRoom').checked;
-      var needTheater = document.getElementById('filterTheater').checked;
-      var availableCount = 0;
-      allCells.forEach(function (cell) {
-        var name = cell.getAttribute('data-prop');
-        var slug = cell.getAttribute('data-slug');
-        var prop = window.SITE_CONFIG.getProperty(slug);
-        var maxG = prop ? Number(prop.maxGuests) : 99;
-        var booked = (avail[name] || []);
-        var conflict = rangeOverlapsBooked(ci, co, booked);
-        var tooSmall = guests > 0 && maxG < guests;
-        var amenities = (prop && prop.included) || [];
-        var hasGame = amenities.some(function (a) { return /game|arcade/i.test(a); });
-        var hasTheater = amenities.some(function (a) { return /theater/i.test(a); });
-        var missingAmenity = (needGame && !hasGame) || (needTheater && !hasTheater);
-        cell.classList.remove('always-clickable');
-        if (conflict || tooSmall || missingAmenity) {
-          cell.classList.add('dimmed');
-          cell.classList.remove('highlighted');
-        } else {
-          cell.classList.remove('dimmed');
-          cell.classList.add('highlighted');
-          availableCount++;
-        }
-      });
-      if (availableCount === 0) {
-        hintEl.className = 'avail-hint warn';
-        hintEl.textContent = guests > 0 ? 'No homes open for those dates that fit ' + guests + ' guests.' : 'No homes open for those dates. Try a different range.';
-        var listEl0 = document.getElementById('availList'); listEl0.classList.remove('shown');
-      } else {
-        var listEl0 = document.getElementById('availList');
-        listEl0.innerHTML = '';
-        var availableCells = allCells.filter(function (c) { return c.classList.contains('highlighted'); });
-        availableCells.forEach(function (cell) {
-          var name = cell.getAttribute('data-prop');
-          var slug = cell.getAttribute('data-slug');
-          var imgSrc = cell.querySelector('img').src;
-          var item = document.createElement('div');
-          item.className = 'item';
-          item.innerHTML = '<img src="' + imgSrc + '" alt=""><div><div class="name">' + name + '</div><div class="meta">Click to view details &amp; book</div></div><span class="go">View &rarr;</span>';
-          item.addEventListener('click', function () {
-            var qs = '';
-            var ci2 = checkInEl.value, co2 = checkOutEl.value;
-            if (ci2 && co2 && ci2 < co2) qs = '?checkIn=' + ci2 + '&checkOut=' + co2;
-            window.location.href = slug + '/' + qs;
-          });
-          listEl0.appendChild(item);
-        });
-        hintEl.className = 'avail-hint ok actionable';
-        hintEl.textContent = availableCount + ' of 6 homes open. Click here to see them.';
-        listEl0.classList.add('shown');
-      }
-    });
+  function setHint(cls, text) {
+    hintEl.className = 'avail-hint' + (cls ? ' ' + cls : '');
+    hintEl.textContent = text;
   }
 
   function navigateToCell(cell) {
+    if (cell.classList.contains('result-unavailable')) return;
     var slug = cell.getAttribute('data-slug');
     var ci = checkInEl.value, co = checkOutEl.value;
     var qs = '';
-    if (ci && co && ci < co) qs = '?checkIn=' + ci + '&checkOut=' + co;
+    if (ci && co && ci < co) {
+      qs = '?checkIn=' + ci + '&checkOut=' + co;
+      var g = parseInt(document.getElementById('guestsInput').value || '0', 10);
+      if (g > 0) qs += '&guests=' + g;
+    }
     window.location.href = slug + '/' + qs;
   }
 
   allCells.forEach(function (cell) {
     cell.addEventListener('click', function () {
-      if (cell.classList.contains('highlighted') || cell.classList.contains('always-clickable')) {
+      if (cell.classList.contains('result-unavailable')) return;
+      if (cell.classList.contains('result-available') ||
+          cell.classList.contains('always-clickable')) {
         navigateToCell(cell);
       }
     });
   });
 
-  browseLink.addEventListener('click', function (e) {
-    e.preventDefault();
-    checkInEl.value = '';
-    checkOutEl.value = '';
-    refresh();
-  });
+  function fmtRange(ci, co) {
+    if (!ci || !co) return '';
+    var a = parseYmd(ci), b = parseYmd(co);
+    var nights = Math.round((b - a) / (1000*60*60*24));
+    var opts = { month: 'short', day: 'numeric' };
+    return a.toLocaleDateString('en-US', opts) + ' \u2192 ' + b.toLocaleDateString('en-US', opts) + ' (' + nights + ' night' + (nights === 1 ? '' : 's') + ')';
+  }
 
-  checkInEl.addEventListener('change', function () {
-    if (checkInEl.value && (!checkOutEl.value || checkOutEl.value <= checkInEl.value)) {
-      checkOutEl.value = fmt(addDays(parseYmd(checkInEl.value), 2));
-    }
-    checkOutEl.min = checkInEl.value || ymdToday();
-    refresh();
-  });
-  checkOutEl.addEventListener('change', refresh);
-  document.getElementById('guestsInput').addEventListener('input', refresh);
-  document.getElementById('filterGameRoom').addEventListener('change', refresh);
-  document.getElementById('filterTheater').addEventListener('change', refresh);
-
-  hintEl.addEventListener('click', function () {
-    if (!hintEl.classList.contains('actionable')) return;
+  function applyResults(avail) {
     var ci = checkInEl.value, co = checkOutEl.value;
-    if (!ci || !co || ci >= co) return;
-    var g = parseInt(document.getElementById('guestsInput').value || '0', 10);
-    var gq = g > 0 ? '&guests=' + g : '';
-    var aq = '';
-    if (document.getElementById('filterGameRoom').checked) aq += '&gameRoom=1';
-    if (document.getElementById('filterTheater').checked) aq += '&theater=1';
-    window.location.href = 'available.html?checkIn=' + ci + '&checkOut=' + co + gq + aq;
+    var guests = parseInt(document.getElementById('guestsInput').value || '0', 10);
+    var needGame = document.getElementById('filterGameRoom').checked;
+    var needTheater = document.getElementById('filterTheater').checked;
+    var availableCount = 0;
+    var availableNames = [];
+    allCells.forEach(function (cell) {
+      cell.classList.remove('dimmed','highlighted','always-clickable',
+                             'result-available','result-unavailable');
+      var name = cell.getAttribute('data-prop');
+      var slug = cell.getAttribute('data-slug');
+      var prop = window.SITE_CONFIG.getProperty(slug);
+      var maxG = prop ? Number(prop.maxGuests) : 99;
+      var booked = (avail[name] || []);
+      var conflict = rangeOverlapsBooked(ci, co, booked);
+      var tooSmall = guests > 0 && maxG < guests;
+      var amenities = (prop && prop.included) || [];
+      var hasGame = amenities.some(function (a) { return /game|arcade/i.test(a); });
+      var hasTheater = amenities.some(function (a) { return /theater/i.test(a); });
+      var missingAmenity = (needGame && !hasGame) || (needTheater && !hasTheater);
+      if (conflict || tooSmall || missingAmenity) {
+        cell.classList.add('result-unavailable');
+      } else {
+        cell.classList.add('result-available');
+        availableCount++;
+        availableNames.push(name);
+      }
+    });
+    return { count: availableCount, names: availableNames };
+  }
+
+  function showResultSummary(result) {
+    var ci = checkInEl.value, co = checkOutEl.value;
+    var dateStr = fmtRange(ci, co);
+    var line = result.count + ' of 6 homes open \u2014 ' + dateStr;
+    if (result.count === 0) {
+      line = 'No homes match \u2014 ' + dateStr;
+    }
+    summaryFloat.textContent = line;
+    summaryFloat.classList.add('shown');
+  }
+
+  function hideModal() {
+    landingCard.classList.add('fading-out');
+    setTimeout(function () {
+      landingCard.classList.add('hidden');
+      changeBtn.classList.add('shown');
+    }, 460);
+  }
+
+  function showModal() {
+    landingCard.classList.remove('hidden');
+    // Force reflow before removing fading-out so the transition runs.
+    void landingCard.offsetWidth;
+    landingCard.classList.remove('fading-out');
+    changeBtn.classList.remove('shown');
+    summaryFloat.classList.remove('shown');
+    showAlwaysClickable();
+    hasResult = false;
+    setHint('', 'Pick your dates \u2014 we\u2019ll light up the homes that are open.');
+  }
+
+  function handleStartTrip() {
+    var ci = checkInEl.value, co = checkOutEl.value;
+    if (!ci || !co || ci >= co) {
+      setHint('err', 'Please pick check-in and check-out dates');
+      return;
+    }
+    setHint('', 'Checking availability\u2026');
+    startBtn.disabled = true;
+    var oldLabel = startBtn.textContent;
+    startBtn.textContent = 'Checking\u2026';
+    fetchAvailability().then(function (avail) {
+      var result = applyResults(avail || {});
+      hasResult = true;
+      showResultSummary(result);
+      hideModal();
+      startBtn.disabled = false;
+      startBtn.textContent = oldLabel;
+    }).catch(function () {
+      // Even on fetch fail, treat all as available (calendar already filtered fully-booked nights).
+      var result = applyResults({});
+      hasResult = true;
+      showResultSummary(result);
+      hideModal();
+      startBtn.disabled = false;
+      startBtn.textContent = oldLabel;
+    });
+  }
+
+  startBtn.addEventListener('click', handleStartTrip);
+  changeBtn.addEventListener('click', showModal);
+
+  // When user changes dates/guests/amenities AFTER a result is showing,
+  // do NOT silently re-render tiles — they must press Start Your Trip again.
+  // But clear any stale error hint.
+  function clearErrorOnInput() {
+    if (hintEl.classList.contains('err')) {
+      setHint('', 'Pick your dates \u2014 we\u2019ll light up the homes that are open.');
+    }
+  }
+  checkInEl.addEventListener('change', clearErrorOnInput);
+  checkOutEl.addEventListener('change', clearErrorOnInput);
+  document.getElementById('guestsInput').addEventListener('input', clearErrorOnInput);
+  document.getElementById('filterGameRoom').addEventListener('change', clearErrorOnInput);
+  document.getElementById('filterTheater').addEventListener('change', clearErrorOnInput);
+
+  // Allow Enter in any modal field to trigger Start Your Trip.
+  landingCard.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleStartTrip();
+    }
   });
 
   showAlwaysClickable();
+
   function createSnowflakes() {
-  var wrap = document.getElementById('logoWrap');
-  if (!wrap) return;
-  var glyphs = ['❄', '❅', '❆', '•', '·', '✦'];
-  for (var i = 0; i < 14; i++) {
-    var sf = document.createElement('span');
-    sf.className   = 'snowflake';
-    sf.textContent = glyphs[i % glyphs.length];
-    sf.style.left              = (Math.random() * 88 + 6) + '%';
-    sf.style.fontSize          = (7 + Math.random() * 7) + 'px';
-    sf.style.animationDuration = (2.5 + Math.random() * 3.5) + 's';
-    sf.style.animationDelay    = (Math.random() * 5) + 's';
-    wrap.appendChild(sf);
+    var wrap = document.getElementById('logoWrap');
+    if (!wrap) return;
+    var glyphs = ['\u2744', '\u2745', '\u2746', '\u2022', '\u00b7', '\u2726'];
+    for (var i = 0; i < 14; i++) {
+      var sf = document.createElement('span');
+      sf.className   = 'snowflake';
+      sf.textContent = glyphs[i % glyphs.length];
+      sf.style.left              = (Math.random() * 88 + 6) + '%';
+      sf.style.fontSize          = (7 + Math.random() * 7) + 'px';
+      sf.style.animationDuration = (2.5 + Math.random() * 3.5) + 's';
+      sf.style.animationDelay    = (Math.random() * 5) + 's';
+      wrap.appendChild(sf);
+    }
   }
-}
   createSnowflakes();
 
   // Inline union-mode calendar: black out only nights where ALL 6 properties are booked.
   (function bootUnionCalendar() {
-    var host = document.getElementById("unionCalendar");
-    var summary = document.getElementById("unionCalSummary");
+    var host = document.getElementById('unionCalendar');
+    var summary = document.getElementById('unionCalSummary');
     if (!host || !window.MVPCalendar || !window.MVPCalendar.createUnion) return;
     var props = (window.SITE_CONFIG && window.SITE_CONFIG.properties) || [];
     var names = props.map(function (p) { return p.name; });
     function setNativeInputs(ci, co) {
-      checkInEl.value = ci || "";
-      checkOutEl.value = co || "";
+      checkInEl.value = ci || '';
+      checkOutEl.value = co || '';
       checkOutEl.min = ci || ymdToday();
-    }
-    function fmtRange(ci, co) {
-      if (!ci || !co) return "No dates selected";
-      var a = parseYmd(ci), b = parseYmd(co);
-      var nights = Math.round((b - a) / (1000*60*60*24));
-      var opts = { month: "short", day: "numeric" };
-      return a.toLocaleDateString("en-US", opts) + " → " + b.toLocaleDateString("en-US", opts) + " (" + nights + " night" + (nights === 1 ? "" : "s") + ")";
     }
     window.MVPCalendar.createUnion({
       container: host,
@@ -420,13 +482,10 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
       propertyNames: names,
       onChange: function (sel) {
         setNativeInputs(sel.checkIn, sel.checkOut);
-        summary.textContent = fmtRange(sel.checkIn, sel.checkOut);
-        refresh();
+        summary.textContent = sel.checkIn && sel.checkOut ? fmtRange(sel.checkIn, sel.checkOut) : 'No dates selected';
+        clearErrorOnInput();
       },
-      onLoaded: function (info) {
-        // Expose for diagnostics.
-        window.__unionBookedSet = info.bookedSet;
-      },
+      onLoaded: function (info) { window.__unionBookedSet = info.bookedSet; },
     });
   })();
 })();

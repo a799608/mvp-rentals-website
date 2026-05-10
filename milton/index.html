@@ -194,10 +194,16 @@ window.SITE_CONFIG.basePath = "../";
     property: prop,
   });
 
+  // Pre-select dates from URL params (?checkIn=...&checkOut=...) when present.
+  var __qp = new URLSearchParams(window.location.search);
+  var __initCi = __qp.get("checkIn") || null;
+  var __initCo = __qp.get("checkOut") || null;
   window.MVPCalendar.create({
     container: document.getElementById("calendar"),
     property: prop,
     endpoint: window.SITE_CONFIG.endpoints.availability,
+    initialCheckIn: __initCi,
+    initialCheckOut: __initCo,
     onChange: function (sel) { totalPanel.onCalendarChange(sel); },
   });
 
