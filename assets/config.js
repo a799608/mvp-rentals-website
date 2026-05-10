@@ -220,8 +220,10 @@ window.SITE_CONFIG = {
         "Outdoor seasonal community pool",
         "Wifi",
         "Pets allowed",
-        "Theater room",
-        "Arcade & game rooms"
+        "Multiple game room spaces",
+        "Game Room 1: Arcade cabinet (multi-game), pool table, ping pong",
+        "Game Room 2: Foosball, air hockey, darts",
+        "Theater room"
       ],
       photos: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/b8d46698-c619-4b73-88d2-e1c2990983a0.png",
@@ -265,7 +267,9 @@ window.SITE_CONFIG = {
         "Wifi",
         "Pets allowed",
         "HDTV with Netflix, Hulu, Amazon Prime, Disney+",
-        "Game rooms"
+        "Multiple game room spaces",
+        "Game Room 1: Pool table, arcade cabinet",
+        "Game Room 2: Foosball, ping pong, board games"
       ],
       photos: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ=/original/cc069248-7b2b-4b56-8a58-4aa52f927d13.png",
