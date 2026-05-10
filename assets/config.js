@@ -383,7 +383,12 @@ window.SITE_CONFIG = {
         "Dining area": [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/7af3fd1c-166c-4029-8f16-bb6eac92b503.jpeg"
     ],
-        "Bedroom 1": [],
+        "Bedroom 1": [
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NDAyMjkzMjA=/original/faf59f19-9786-43f7-a788-ceae8d98ca57.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NDAyMjkzMjA=/original/efebac2f-2ad6-4bc2-9fd0-499b702f4feb.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NDAyMjkzMjA=/original/3f535764-f7d1-4527-b32a-482e60546fd4.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NDAyMjkzMjA=/original/d7761160-7102-40cc-9f8f-96e80f2a0b35.jpeg"
+    ],
         "Bedroom 2": [],
         "Bedroom 3": [],
         "Full bathroom 1": [],
