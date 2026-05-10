@@ -278,6 +278,13 @@ section + section { border-top: 1px solid var(--line); }
   .cal-cell .price { font-size: 0.62rem; }
 }
 
+/* ========= utility-page CTA block (privacy/terms/etc.) ========= */
+.utility-cta { max-width: 640px; margin: 40px auto 60px; padding: 28px 24px; background: var(--panel); border-radius: var(--radius-lg); border-top: 4px solid var(--gold); box-shadow: var(--shadow-md); text-align: center; color: var(--ink); }
+.utility-cta h2 { font-size: 1.4rem; margin-bottom: 8px; color: var(--ink); }
+.utility-cta p { color: var(--ink-soft); font-size: 1rem; margin-bottom: 18px; }
+.utility-cta .cta-button { display: inline-block; background: var(--green); color: #fff; padding: 12px 28px; border-radius: var(--radius-md); font-weight: 700; font-size: 1rem; text-decoration: none; letter-spacing: 0.4px; transition: background 0.18s, transform 0.18s; }
+.utility-cta .cta-button:hover { background: var(--green-dark); color: var(--gold-soft); transform: translateY(-1px); text-decoration: none; }
+
 /* ========= 3-month calendar layout ========= */
 .calendar-months { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 14px; }
 .calendar-month { background: var(--panel); border-radius: var(--radius-md); padding: 14px 14px 16px; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
