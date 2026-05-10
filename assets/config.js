@@ -778,7 +778,12 @@ window.SITE_CONFIG = {
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/aef524bf-328d-4b86-8f94-9f1334a7bcdd.jpeg",
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/4ed5b656-070d-4bf1-83c8-3ed0012cb33b.jpeg"
         ],
-        "Bedroom 1": [],
+        "Bedroom 1": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/e490f194-392b-4428-9f97-49d9e30709f2.jpeg",
+          "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/6b675fa3-001a-49dc-bf50-1f8062b4c000.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/e4eaedba-5645-4007-aa22-c800f11a9052.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/09d51a1e-7b09-49ea-be3a-d200ff692377.jpeg"
+        ],
         "Bedroom 2": [],
         "Bedroom 3": [],
         "Full bathroom": [],
