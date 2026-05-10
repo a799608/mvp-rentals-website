@@ -1,4 +1,4 @@
-﻿// MVP Rentals — interactive month-grid calendar.
+// MVP Rentals — interactive month-grid calendar.
 // Loads availability from the GAS endpoint, renders one month at a time,
 // and emits onChange whenever the user picks a check-in/check-out range.
 // Convention: weekend = Fri + Sat night. Weekday = Sun-Thu night.
@@ -241,39 +241,66 @@
     };
   }
 
-  // Union-mode calendar for the homepage. Single-month view with prev/next
-  // navigation. Black out only nights where ALL properties are booked.
-  function makeUnionCalendar(opts) {
+  // Compute the union "all properties booked" set from a per-property availability map.
+  function buildAllBookedUnion(availability, propertyNames) {
+    var perProp = propertyNames.map(function (name) {
+      var ranges = (availability && availability[name]) || [];
+      var s = new Set();
+      ranges.forEach(function (r) {
+        if (!r || r.length < 2) return;
+        var start = parseYmd(r[0]);
+        var end = parseYmd(r[1]);
+        var d = new Date(start);
+        while (d < end) {
+          s.add(ymd(d));
+          d = addDays(d, 1);
+        }
+      });
+      return s;
+    });
+    if (perProp.length === 0) return new Set();
+    var smallest = perProp.reduce(function (a, b) { return a.size <= b.size ? a : b; });
+    var out = new Set();
+    smallest.forEach(function (k) {
+      if (perProp.every(function (s) { return s.has(k); })) out.add(k);
+    });
+    return out;
+  }
+
+  // Popover-mode union calendar for the homepage. The calendar is hidden by
+  // default and is anchored/opened next to a trigger element (one of the two
+  // date input boxes). Single-month view with prev/next nav. Black out only
+  // nights where ALL properties are booked.
+  function makeUnionPopoverCalendar(opts) {
     var container = opts.container;
-    var onChange = opts.onChange || function () {};
     var endpoint = opts.endpoint;
     var propertyNames = opts.propertyNames || [];
+    var onPick = opts.onPick || function () {};
+    var getCheckIn = opts.getCheckIn || function () { return null; };
+    var getCheckOut = opts.getCheckOut || function () { return null; };
 
-    // bookedSet contains every YMD where ALL properties are booked (i.e. the
-    // intersection of every per-property booked-set).
     var bookedSet = new Set();
     var displayMonth = startOfMonth(new Date());
-    var checkIn = null;
-    var checkOut = null;
-    var pendingInitial = null;
-    if (opts.initialCheckIn && opts.initialCheckOut && opts.initialCheckIn < opts.initialCheckOut) {
-      pendingInitial = { ci: opts.initialCheckIn, co: opts.initialCheckOut };
-    }
+    var loaded = false;
+    var activeField = "checkIn";
 
     container.innerHTML = "";
+    container.classList.add("union-cal-host", "popover-cal");
+    container.setAttribute("role", "dialog");
+    container.setAttribute("aria-label", "Pick a date");
 
     var controls = document.createElement("div");
     controls.className = "calendar-controls union-cal-controls";
     var prevBtn = document.createElement("button");
     prevBtn.type = "button";
-    prevBtn.className = "union-cal-nav";
+    prevBtn.className = "union-cal-nav popover-cal-prev";
     prevBtn.setAttribute("aria-label", "Previous month");
     prevBtn.textContent = "‹";
     var label = document.createElement("div");
     label.className = "calendar-month-label union-cal-month-label";
     var nextBtn = document.createElement("button");
     nextBtn.type = "button";
-    nextBtn.className = "union-cal-nav";
+    nextBtn.className = "union-cal-nav popover-cal-next";
     nextBtn.setAttribute("aria-label", "Next month");
     nextBtn.textContent = "›";
     controls.appendChild(prevBtn);
@@ -292,36 +319,6 @@
       '<span><span class="swatch" style="background:#0d130d"></span>All 6 homes booked</span>' +
       '<span><span class="swatch" style="background:var(--gold,#C8990A)"></span>Selected</span>';
     container.appendChild(legend);
-
-    function emitChange() {
-      if (!checkIn || !checkOut) {
-        onChange({ checkIn: null, checkOut: null });
-        return;
-      }
-      onChange({ checkIn: checkIn, checkOut: checkOut });
-    }
-
-    function rangeIsClear(startYmd, endYmd) {
-      var d = parseYmd(startYmd);
-      var e = parseYmd(endYmd);
-      while (d < e) {
-        if (bookedSet.has(ymd(d))) return false;
-        d = addDays(d, 1);
-      }
-      return true;
-    }
-
-    function handleCellClick(cellYmd) {
-      if (!checkIn || (checkIn && checkOut)) {
-        checkIn = cellYmd; checkOut = null;
-      } else {
-        if (cellYmd <= checkIn) { checkIn = cellYmd; checkOut = null; }
-        else if (!rangeIsClear(checkIn, cellYmd)) { checkIn = cellYmd; checkOut = null; }
-        else { checkOut = cellYmd; }
-      }
-      render();
-      emitChange();
-    }
 
     function render() {
       label.textContent = displayMonth.toLocaleString("en-US", { month: "long", year: "numeric" });
@@ -348,95 +345,88 @@
         empty.className = "cal-cell empty";
         grid.appendChild(empty);
       }
+
+      var ci = getCheckIn();
+      var co = getCheckOut();
+      var checkInBoundary = activeField === "checkOut" && ci ? ci : null;
+
       for (var dnum = 1; dnum <= daysInMonth; dnum++) {
         var cellDate = new Date(displayMonth.getFullYear(), displayMonth.getMonth(), dnum);
         var cellYmd = ymd(cellDate);
         var isPast = cellDate < today;
         var isFullyBooked = bookedSet.has(cellYmd);
+        var isBeforeCheckIn = checkInBoundary && cellYmd <= checkInBoundary;
+        var disabled = isPast || isFullyBooked || isBeforeCheckIn;
         var cell = document.createElement("div");
         cell.className = "cal-cell union-cell";
         if (isFullyBooked) cell.classList.add("booked");
         if (isPast) cell.classList.add("past");
-        if (checkIn && cellYmd === checkIn) cell.classList.add("endpoint");
-        if (checkOut && cellYmd === checkOut) cell.classList.add("endpoint");
-        if (checkIn && checkOut && cellYmd > checkIn && cellYmd < checkOut) cell.classList.add("in-range");
+        if (isBeforeCheckIn && !isPast && !isFullyBooked) cell.classList.add("disabled");
+        if (ci && cellYmd === ci) cell.classList.add("endpoint");
+        if (co && cellYmd === co) cell.classList.add("endpoint");
+        if (ci && co && cellYmd > ci && cellYmd < co) cell.classList.add("in-range");
+        cell.setAttribute("data-ymd", cellYmd);
         var dayEl = document.createElement("div");
         dayEl.className = "day";
         dayEl.textContent = dnum;
         cell.appendChild(dayEl);
-        if (!isPast && !isFullyBooked) {
+        if (!disabled) {
           (function (yy) {
-            cell.addEventListener("click", function () { handleCellClick(yy); });
+            cell.addEventListener("click", function () {
+              onPick({ field: activeField, date: yy });
+            });
           })(cellYmd);
         }
         grid.appendChild(cell);
       }
 
-      // Disable prev button when at or before the current month.
       var thisMonthStart = startOfMonth(today);
       prevBtn.disabled = displayMonth <= thisMonthStart;
     }
 
-    function buildUnionBookedSet(availability) {
-      var perProp = propertyNames.map(function (name) {
-        var ranges = (availability && availability[name]) || [];
-        var s = new Set();
-        ranges.forEach(function (r) {
-          if (!r || r.length < 2) return;
-          var start = parseYmd(r[0]);
-          var end = parseYmd(r[1]);
-          var d = new Date(start);
-          while (d < end) {
-            s.add(ymd(d));
-            d = addDays(d, 1);
-          }
-        });
-        return s;
-      });
-      if (perProp.length === 0) return new Set();
-      var smallest = perProp.reduce(function (a, b) { return a.size <= b.size ? a : b; });
-      var out = new Set();
-      smallest.forEach(function (k) {
-        if (perProp.every(function (s) { return s.has(k); })) out.add(k);
-      });
-      return out;
-    }
-
-    prevBtn.addEventListener("click", function () {
+    prevBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
       displayMonth = new Date(displayMonth.getFullYear(), displayMonth.getMonth() - 1, 1);
       render();
     });
-    nextBtn.addEventListener("click", function () {
+    nextBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
       displayMonth = new Date(displayMonth.getFullYear(), displayMonth.getMonth() + 1, 1);
       render();
     });
+    container.addEventListener("click", function (e) { e.stopPropagation(); });
+    container.addEventListener("mousedown", function (e) { e.stopPropagation(); });
 
     render();
     if (endpoint && endpoint.indexOf("@") !== 0) {
       fetch(endpoint, { method: "GET" })
         .then(function (r) { return r.ok ? r.json() : {}; })
         .then(function (avail) {
-          bookedSet = buildUnionBookedSet(avail || {});
-          if (pendingInitial && rangeIsClear(pendingInitial.ci, pendingInitial.co)) {
-            checkIn = pendingInitial.ci;
-            checkOut = pendingInitial.co;
-            // jump display to the month of the initial check-in
-            var ciDate = parseYmd(pendingInitial.ci);
-            displayMonth = startOfMonth(ciDate);
-          }
-          pendingInitial = null;
+          bookedSet = buildAllBookedUnion(avail || {}, propertyNames);
+          loaded = true;
           render();
-          if (checkIn && checkOut) emitChange();
           if (typeof opts.onLoaded === "function") opts.onLoaded({ bookedSet: bookedSet, availability: avail });
         })
         .catch(function () { /* keep empty bookedSet */ });
     }
 
     return {
-      reset: function () { checkIn = null; checkOut = null; render(); emitChange(); },
+      setActiveField: function (f) { activeField = f; render(); },
+      jumpToMonthOf: function (ymdStr) {
+        if (!ymdStr) return;
+        var d = parseYmd(ymdStr);
+        displayMonth = startOfMonth(d);
+        render();
+      },
+      jumpToToday: function () { displayMonth = startOfMonth(new Date()); render(); },
+      rerender: render,
       getBookedSet: function () { return bookedSet; },
+      isLoaded: function () { return loaded; },
     };
   }
 
-  window.MVPCalendar = { create: makeCalendar, createUnion: makeUnionCalendar };
+  window.MVPCalendar = {
+    create: makeCalendar,
+    createUnionPopover: makeUnionPopoverCalendar,
+  };
 })();
