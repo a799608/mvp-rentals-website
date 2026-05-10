@@ -268,7 +268,9 @@ window.SITE_CONFIG = {
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTY2MTI3Mjk%3D/original/eafd6be4-992e-440c-8989-d47a0ee48453.jpeg",
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTY2MTI3Mjk%3D/original/2a15d8e3-fbbb-4ba3-a073-edc15e32c053.jpeg"
         ],
-        "Full bathroom 1": [],
+        "Full bathroom 1": [
+          "https://a0.muscache.com/im/pictures/ada88c9e-9459-4703-bd79-ad8603c89639.jpg"
+        ],
         "Full bathroom 2": [],
         "Backyard": [],
         "Exterior": [],
