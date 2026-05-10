@@ -697,19 +697,128 @@ window.SITE_CONFIG = {
       "https://a0.muscache.com/im/pictures/hosting/Hosting-15973534/original/53b86447-4060-4b41-b9d7-3a51dd0df7e3.jpeg"
       ],
       photosByRoom: {
-        "Living room": [],
-        "Full kitchen": [],
-        "Dining area": [],
-        "Bedroom 1": [],
-        "Bedroom 2": [],
-        "Bedroom 3": [],
-        "Full bathroom 1": [],
-        "Full bathroom 2": [],
-        "Laundry area": [],
-        "Exterior": [],
-        "Game room 1": [],
-        "Game room 2": [],
-        "Additional photos": []
+        "Living room": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/4f58b947-fec6-4ee0-9c2b-bd0f8ba605f5.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/cdc8caf3-5045-46a5-975d-456ca2bcaeb9.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/8bd98efe-faa2-4eb2-afe1-c69e03247100.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/a4c2ca0d-6510-4ca8-910c-60e94b3182a5.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/283af09a-20d9-46eb-9226-11781eeb036f.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/30e2e5d0-934e-4ae8-811b-6778407cd32a.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/23d22198-b061-4143-be56-c06258f4c515.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/9cbb5f7a-11f1-4ff9-852b-c5322db4f547.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/021f432c-5950-4bed-abfb-094e775fb808.jpeg"
+        ],
+        "Full kitchen": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-15973534/original/53b86447-4060-4b41-b9d7-3a51dd0df7e3.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/a984cae1-e195-4093-9de8-9222f4a54886.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/ad02e580-3142-4ff9-92e4-c4a5d1a5e2d5.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/55df18b7-f836-4333-b421-6d680dd23498.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-15973534/original/c58f23ab-3cf7-4d1d-9f29-167dc3a9772f.jpeg"
+        ],
+        "Dining area": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/8be4cbf6-ad2b-46ad-a31d-ada1928f6a46.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/253593a7-2fd8-471f-8e15-82348b7a1783.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/dcd8bf2d-170c-4aa3-a627-e489ec6a032a.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/6311269e-b2db-4e19-8822-cd878121a3e1.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/76d5bd7a-19d5-41b3-88bf-d4b2860e9c5f.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/be77d01e-a213-4df1-807c-2a31fc3e8e8f.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/5a0fe714-f0ae-4e22-bb7f-a2ee4618ab43.jpeg"
+        ],
+        "Bedroom 1": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-15973534/original/8dc54724-fb29-4890-87b5-c12128b99bc9.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-15973534/original/556bfa64-b63e-4677-8d0f-4817a545e8a7.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-15973534/original/88ad7f78-00d6-4a8a-be26-c06deeb7ea31.jpeg"
+        ],
+        "Bedroom 2": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/7d999bb2-2d86-4863-8dc1-ccb00966535b.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/31eb0d0b-f46b-461c-b316-92f8defb7127.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/952c38b5-4eb3-4537-a8fd-26fe0c1c35fc.jpeg"
+        ],
+        "Bedroom 3": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/a3d8222c-1127-4274-a3d9-93f41f37d1ef.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/42e8bee4-7630-4efa-a7c3-74e89b1501eb.jpeg"
+        ],
+        "Full bathroom 1": [
+          "https://a0.muscache.com/im/pictures/7b8c3367-8d86-48fd-9af4-334c7afc2af5.jpg",
+          "https://a0.muscache.com/im/pictures/44238ace-1efb-4112-9059-4e1550903b55.jpg"
+        ],
+        "Full bathroom 2": [
+          "https://a0.muscache.com/im/pictures/92436a32-7e9e-4e84-9fd1-4b688474691d.jpg",
+          "https://a0.muscache.com/im/pictures/cc7319b0-eff7-4ab8-8846-b8246d9f4cdc.jpg"
+        ],
+        "Laundry area": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-15973534/original/de1cab00-3ca6-4d01-afe5-f21a7d7ab24a.jpeg"
+        ],
+        "Exterior": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/c16497fe-01b8-4b75-88e9-382ca6d3ae4a.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/35cccc7a-3b61-49b1-9469-fdeabde0b03a.jpeg",
+          "https://a0.muscache.com/im/pictures/b3293d45-e9e3-4014-a9ea-26ef6e3a3446.jpg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/66fb2d72-88b0-4ec4-9eae-6dc409ea1d8b.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/07761015-7256-44ff-8fc8-6a4d1f937a4e.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/1fff5839-0125-4aaa-8222-24b8019597b2.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/3414b26d-dd1e-4604-b180-d5c64c0a46dd.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/aa42288e-8a9e-41e0-85d0-fc0b2a4717ef.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/6b03ac36-f541-429a-96e6-a7ea1ba47192.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/9a2648c3-7a65-4437-9170-31580d818282.jpeg"
+        ],
+        "Game room 1": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/af7f18b8-d323-4cb5-81f2-a406f3c2d2bb.png",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/de1e3370-3ba1-4e3d-8e7d-378e7102c79d.jpeg",
+          "https://a0.muscache.com/im/pictures/miso/Hosting-15973534/original/1f048377-70f0-45f2-9f57-cb96535cdfb1.jpeg",
+          "https://a0.muscache.com/im/pictures/miso/Hosting-15973534/original/32292b0a-795c-4463-ba37-88fbb8a03618.jpeg",
+          "https://a0.muscache.com/im/pictures/miso/Hosting-15973534/original/91a1fed1-cd6d-425f-ab69-35884d1b4a23.jpeg",
+          "https://a0.muscache.com/im/pictures/miso/Hosting-15973534/original/f56c1f42-424c-4d18-a37a-d4bfbbd78dea.jpeg",
+          "https://a0.muscache.com/im/pictures/miso/Hosting-15973534/original/bb1727c3-7186-4009-a53a-0cc2abe32fd9.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/cd9a86e3-1e7f-4ccf-986f-c8e9f61acc27.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/ee08e3c5-786c-431d-a0a5-c878ec23730e.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/8903b48f-24c1-47e3-ac9e-fd705595351f.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/01e23e36-4ef3-467e-a0f1-22d6a004d4f3.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/f9d4457a-9221-4606-8e5f-c3f5b1e1cf59.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/5911e80e-7d65-4d20-bd5c-e053ae373b95.jpeg",
+          "https://a0.muscache.com/im/pictures/miso/Hosting-15973534/original/d39fc9b4-63fb-4202-baa4-b7c6dbc057e2.jpeg",
+          "https://a0.muscache.com/im/pictures/miso/Hosting-15973534/original/7b7327e6-a8de-4397-9012-4f093ee6b5cc.jpeg"
+        ],
+        "Game room 2": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-15973534/original/d1459022-2825-4261-b185-9a24320ad4d1.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-15973534/original/1b43a4da-1741-415b-a602-c56553d48437.jpeg"
+        ],
+        "Additional photos": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/97f110f5-ed2c-4880-bae9-14e33c311128.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-15973534/original/e820dd87-14cf-4396-8905-28f47ac550fa.jpeg",
+          "https://a0.muscache.com/im/pictures/6ad4d72b-da53-41c2-9b74-eff433899fd4.jpg",
+          "https://a0.muscache.com/im/pictures/004b2b34-8411-4d3c-aa74-3c26c4e87c76.jpg",
+          "https://a0.muscache.com/im/pictures/3b8fb299-6798-4b7b-a40d-301b7783be31.jpg",
+          "https://a0.muscache.com/im/pictures/ff4f467e-462b-47a4-a6dd-1924c6f7f671.jpg",
+          "https://a0.muscache.com/im/pictures/8848918b-4806-457b-969a-e52884b24071.jpg",
+          "https://a0.muscache.com/im/pictures/1040f54f-045b-4391-a325-0e383e2d80ec.jpg",
+          "https://a0.muscache.com/im/pictures/3110cfa7-61fa-4ed4-b262-c8a202167f5f.jpg",
+          "https://a0.muscache.com/im/pictures/54d97f61-fdeb-42dc-a559-6c84e3858fc5.jpg",
+          "https://a0.muscache.com/im/pictures/0126fe6d-3365-4fff-9db1-0c3331759f1e.jpg",
+          "https://a0.muscache.com/im/pictures/61d0e484-0766-413b-a716-d50b43a43486.jpg",
+          "https://a0.muscache.com/im/pictures/2c0eb78e-86e7-451e-938b-6dbd41f797f4.jpg",
+          "https://a0.muscache.com/im/pictures/46d9dc67-31b0-45a4-bc35-a6cdf221792b.jpg",
+          "https://a0.muscache.com/im/pictures/49f368b8-4f5d-44fa-b3b8-9f108da7200d.jpg",
+          "https://a0.muscache.com/im/pictures/cd2215a3-1548-4b16-b91b-4ce648e76b02.jpg",
+          "https://a0.muscache.com/im/pictures/99085764-fbf9-461f-903f-cb9574d74124.jpg",
+          "https://a0.muscache.com/im/pictures/81fe0b14-c8c2-4845-8583-fc767cad444a.jpg",
+          "https://a0.muscache.com/im/pictures/b0f0a497-97d2-4614-8887-7e6cdcbe9253.jpg",
+          "https://a0.muscache.com/im/pictures/5043fc6b-52a2-40b5-a0a6-fefde72b9783.jpg",
+          "https://a0.muscache.com/im/pictures/d6fa788a-5b69-404f-a203-78797bc6c092.jpg",
+          "https://a0.muscache.com/im/pictures/06bc9545-8702-4208-bc4a-ce06ddf29fc2.jpg",
+          "https://a0.muscache.com/im/pictures/1650673f-1941-4240-ad00-beac36cb89df.jpg",
+          "https://a0.muscache.com/im/pictures/8c1bba99-3ed2-4f41-8213-76456c893aa3.jpg",
+          "https://a0.muscache.com/im/pictures/d53c7ff5-24cb-4a0e-a514-5299644ef3ee.jpg",
+          "https://a0.muscache.com/im/pictures/98127c8c-b989-4c56-9d47-3bc51fb013c1.jpg",
+          "https://a0.muscache.com/im/pictures/f201f419-ff73-4b01-a1b4-91119e3ad8a7.jpg",
+          "https://a0.muscache.com/im/pictures/53cf02ea-cb53-48eb-b938-a7b10f93a409.jpg",
+          "https://a0.muscache.com/im/pictures/0fc6aa82-e32f-4a23-be61-1b4d4b5c9101.jpg",
+          "https://a0.muscache.com/im/pictures/2c31080f-e2d9-4be7-a414-1868342c064f.jpg",
+          "https://a0.muscache.com/im/pictures/45d8b150-b654-4afa-a32b-4d080cf0c81c.jpg",
+          "https://a0.muscache.com/im/pictures/618eedb4-84ad-4fd3-9e7a-13ae564f1ef8.jpg",
+          "https://a0.muscache.com/im/pictures/18eac55b-9225-448f-aa20-6d17e1833027.jpg",
+          "https://a0.muscache.com/im/pictures/28f163a6-8e72-4020-a507-cc0826b0b382.jpg",
+          "https://a0.muscache.com/im/pictures/72b93101-9c03-42c3-8355-8d4846274729.jpg"
+        ]
       },
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/15973534",
