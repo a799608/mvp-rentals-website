@@ -357,28 +357,32 @@
     }
 
     function buildUnionBookedSet(availability) {
-      // For each YMD, count how many properties are booked that night.
-      // Mark YMD as fully-booked only when count === totalProps.
-      var counts = {};
-      propertyNames.forEach(function (name) {
+      // For each property, build the set of YMDs where THAT property is booked
+      // (overlapping ranges within one property collapse to a single night).
+      // Then a YMD is fully-booked iff it appears in every per-property set.
+      var perProp = propertyNames.map(function (name) {
         var ranges = (availability && availability[name]) || [];
+        var s = new Set();
         ranges.forEach(function (r) {
           if (!r || r.length < 2) return;
           var start = parseYmd(r[0]);
           var end = parseYmd(r[1]);
           var d = new Date(start);
           while (d < end) {
-            var k = ymd(d);
-            counts[k] = (counts[k] || 0) + 1;
+            s.add(ymd(d));
             d = addDays(d, 1);
           }
         });
+        return s;
       });
-      var s = new Set();
-      Object.keys(counts).forEach(function (k) {
-        if (counts[k] >= totalProps) s.add(k);
+      if (perProp.length === 0) return new Set();
+      // Intersect every per-property set.
+      var smallest = perProp.reduce(function (a, b) { return a.size <= b.size ? a : b; });
+      var out = new Set();
+      smallest.forEach(function (k) {
+        if (perProp.every(function (s) { return s.has(k); })) out.add(k);
       });
-      return s;
+      return out;
     }
 
     renderAll();
