@@ -219,33 +219,73 @@ window.SITE_CONFIG.basePath = "../";
     var __pbr = prop.photosByRoom;
     var __hasGrouped = __pbr && typeof __pbr === 'object' && Object.keys(__pbr).length > 0;
     if (__hasGrouped) {
-      galleryEl.classList.add('photo-gallery--grouped');
       Object.keys(__pbr).forEach(function (room) {
         var urls = Array.isArray(__pbr[room]) ? __pbr[room] : [];
-        var section = document.createElement('div');
-        section.className = 'photo-room';
-        var heading = document.createElement('h3');
-        heading.className = 'photo-room__heading';
-        heading.textContent = room + ' (' + urls.length + ')';
-        section.appendChild(heading);
-        if (urls.length) {
-          var grid = document.createElement('div');
-          grid.className = 'photo-room__grid';
-          urls.forEach(function (url) {
-            var img = document.createElement('img');
-            img.src = url;
-            img.alt = prop.name + ' - ' + room;
-            img.loading = 'lazy';
-            grid.appendChild(img);
-          });
-          section.appendChild(grid);
-        } else {
-          var ph = document.createElement('div');
-          ph.className = 'photo-room__placeholder';
-          ph.textContent = 'No photos yet';
-          section.appendChild(ph);
+        if (!urls.length) return; // skip empty rooms
+        var cell = document.createElement('div');
+        cell.className = 'photo-cell';
+        cell.setAttribute('data-current-index', '0');
+
+        var frame = document.createElement('div');
+        frame.className = 'photo-cell__frame';
+
+        var img = document.createElement('img');
+        img.className = 'photo-cell__img';
+        img.src = urls[0];
+        img.alt = prop.name + ' - ' + room + ' (photo 1 of ' + urls.length + ')';
+        img.loading = 'lazy';
+        frame.appendChild(img);
+
+        var label = document.createElement('div');
+        label.className = 'photo-cell__label';
+        var roomName = document.createElement('span');
+        roomName.className = 'photo-cell__room';
+        roomName.textContent = room;
+        var count = document.createElement('span');
+        count.className = 'photo-cell__count';
+        count.textContent = urls.length + ' photo' + (urls.length === 1 ? '' : 's');
+        label.appendChild(roomName);
+        label.appendChild(count);
+
+        if (urls.length > 1) {
+          var prev = document.createElement('button');
+          prev.type = 'button';
+          prev.className = 'photo-cell__nav photo-cell__nav--prev';
+          prev.setAttribute('aria-label', 'Previous photo of ' + room);
+          prev.innerHTML = '&#x2039;';
+          var next = document.createElement('button');
+          next.type = 'button';
+          next.className = 'photo-cell__nav photo-cell__nav--next';
+          next.setAttribute('aria-label', 'Next photo of ' + room);
+          next.innerHTML = '&#x203A;';
+
+          (function (cellEl, imgEl, urlList, roomLabel) {
+            function show(idx) {
+              var n = urlList.length;
+              var i = ((idx % n) + n) % n;
+              cellEl.setAttribute('data-current-index', String(i));
+              imgEl.src = urlList[i];
+              imgEl.alt = prop.name + ' - ' + roomLabel + ' (photo ' + (i + 1) + ' of ' + n + ')';
+            }
+            prev.addEventListener('click', function (e) {
+              e.preventDefault();
+              var cur = parseInt(cellEl.getAttribute('data-current-index') || '0', 10);
+              show(cur - 1);
+            });
+            next.addEventListener('click', function (e) {
+              e.preventDefault();
+              var cur = parseInt(cellEl.getAttribute('data-current-index') || '0', 10);
+              show(cur + 1);
+            });
+          })(cell, img, urls, room);
+
+          frame.appendChild(prev);
+          frame.appendChild(next);
         }
-        galleryEl.appendChild(section);
+
+        cell.appendChild(frame);
+        cell.appendChild(label);
+        galleryEl.appendChild(cell);
       });
     } else if (prop.photos && prop.photos.length) {
       prop.photos.forEach(function (url) {
