@@ -82,16 +82,20 @@ window.SITE_CONFIG = {
       bathrooms: 2,
       beds: 6,
       description: "A private cottage tucked into thick pines at the edge of a Pocono lake community. Three-floor layout includes a third-floor covered deck — perfect for rain or snow storms. Fully equipped kitchen, beach access, shared seasonal pool, washer/dryer, and HDTV with streaming. Fenced yard for pets. Ten minutes to Jim Thorpe, near ski slopes and water parks.",
-      included: [
-        "Beach access",
-        "Lake access",
-        "Pool access (outdoor seasonal community)",
-        "High speed Wi-Fi (~400 Mbps)",
-        "Pets encouraged",
-        "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
-        "Half acre lot",
-        "In-home washer & dryer",
-      ],
+      included: {
+        community: [
+          "Beach access",
+          "Lake access",
+          "Pool access (outdoor seasonal community)",
+        ],
+        home: [
+          "High speed Wi-Fi (~400 Mbps)",
+          "Pets encouraged",
+          "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
+          "Half acre lot",
+          "In-home washer & dryer",
+        ]
+      },
       photos: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/07bd588b-235c-453a-9b8c-49d028427465.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/a03d0e90-392a-48eb-95bd-6cd6a1ddc5b5.jpeg",
@@ -224,16 +228,20 @@ window.SITE_CONFIG = {
       bathrooms: 2,
       beds: 6,
       description: "A charming cabin retreat in Albrightsville with a fully fenced yard, lake and beach access, and shared seasonal pool. Sleeps 10 across 3 bedrooms. Ideal for families and groups who want the outdoors close by — hiking, skiing, and water parks all nearby. Full kitchen, streaming HDTV, washer/dryer, and self check-in. Pets warmly welcome.",
-      included: [
-        "Beach access",
-        "Lake access",
-        "Pool access (outdoor seasonal community)",
-        "High speed Wi-Fi (~400 Mbps)",
-        "Pets encouraged",
-        "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
-        "Half acre lot",
-        "In-home washer & dryer",
-      ],
+      included: {
+        community: [
+          "Beach access",
+          "Lake access",
+          "Pool access (outdoor seasonal community)",
+        ],
+        home: [
+          "High speed Wi-Fi (~400 Mbps)",
+          "Pets encouraged",
+          "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
+          "Half acre lot",
+          "In-home washer & dryer",
+        ]
+      },
       photos: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTY2MTI3Mjk%3D/original/845a0345-3dfa-47fd-9f24-f9d294cd7fe9.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-16612729/original/dce5bdf2-6508-4b80-8a5a-67a567d53793.jpeg",
@@ -348,16 +356,20 @@ window.SITE_CONFIG = {
       bathrooms: 2,
       beds: 5,
       description: "A cozy cottage in Albrightsville with a fully fenced yard, beach access, and shared seasonal pool. Comfortably sleeps 8 across 3 bedrooms. Features a full kitchen, washer/dryer, streaming HDTV, and dedicated workspace. Self check-in via keypad. Pet friendly. Close to Jim Thorpe, ski slopes, and Pocono water parks.",
-      included: [
-        "Beach access",
-        "Lake access",
-        "Pool access (outdoor seasonal community)",
-        "High speed Wi-Fi (~400 Mbps)",
-        "Pets encouraged",
-        "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
-        "Half acre lot",
-        "In-home washer & dryer",
-      ],
+      included: {
+        community: [
+          "Beach access",
+          "Lake access",
+          "Pool access (outdoor seasonal community)",
+        ],
+        home: [
+          "High speed Wi-Fi (~400 Mbps)",
+          "Pets encouraged",
+          "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
+          "Half acre lot",
+          "In-home washer & dryer",
+        ]
+      },
       photos: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/51762f3c-6bde-4c73-b99a-abc691e149ff.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/cc48e0bc-df12-4f52-b92a-a97c1bfbbf50.jpeg",
@@ -484,20 +496,24 @@ window.SITE_CONFIG = {
       bathrooms: 2,
       beds: 7,
       description: "The ultimate Pocono group retreat — featuring an arcade, two dedicated game rooms, a theater room area, and TVs in every room. Fully fenced backyard with wire mesh fence for pets. Sleeps 12 across 4 bedrooms with 7 beds. Beach access, shared pool, full kitchen, washer/dryer. Near Jim Thorpe, ski resorts, and Pocono Speedway.",
-      included: [
-        "Beach access",
-        "Lake access",
-        "Pool access (outdoor seasonal community)",
-        "High speed Wi-Fi (~400 Mbps)",
-        "Pets encouraged",
-        "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
-        "Half acre lot",
-        "Multiple game room spaces",
-        "Game Room 1: Arcade cabinet (multi-game), pool table, ping pong",
-        "Game Room 2: Foosball, air hockey, darts",
-        "Theater room",
-        "In-home washer & dryer",
-      ],
+      included: {
+        community: [
+          "Beach access",
+          "Lake access",
+          "Pool access (outdoor seasonal community)",
+        ],
+        home: [
+          "High speed Wi-Fi (~400 Mbps)",
+          "Pets encouraged",
+          "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
+          "Half acre lot",
+          "In-home washer & dryer",
+          "Multiple game room spaces",
+          "Game Room 1: Arcade cabinet (multi-game), pool table, ping pong",
+          "Game Room 2: Foosball, air hockey, darts",
+          "Theater room",
+        ]
+      },
       photos: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/b8d46698-c619-4b73-88d2-e1c2990983a0.png",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/110bfc08-4a13-4404-aa9c-ef7d219b7f04.jpeg",
@@ -681,19 +697,23 @@ window.SITE_CONFIG = {
       bathrooms: 2,
       beds: 6,
       description: "A spacious Pocono retreat designed for families and groups. Features dedicated game rooms, a fully fenced backyard for kids and pets, beach access, and shared seasonal pool. Sleeps 10 across 3 bedrooms. Full kitchen, streaming HDTV, washer, and dedicated workspace. Self check-in via keypad. Near Jim Thorpe, ski slopes, and Pocono water parks.",
-      included: [
-        "Beach access",
-        "Lake access",
-        "Pool access (outdoor seasonal community)",
-        "High speed Wi-Fi (~400 Mbps)",
-        "Pets encouraged",
-        "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
-        "Half acre lot",
-        "Multiple game room spaces",
-        "Basement Game Room: Pool table, arcade machine, ping pong, air hockey, shuffleboard, darts, Connect 4 wall game, bean bag toss",
-        "Loft Game Room: Basketball shooter, foosball",
-        "In-home washer & dryer",
-      ],
+      included: {
+        community: [
+          "Beach access",
+          "Lake access",
+          "Pool access (outdoor seasonal community)",
+        ],
+        home: [
+          "High speed Wi-Fi (~400 Mbps)",
+          "Pets encouraged",
+          "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
+          "Half acre lot",
+          "In-home washer & dryer",
+          "Multiple game room spaces",
+          "Basement Game Room: Pool table, arcade machine, ping pong, air hockey, shuffleboard, darts, Connect 4 wall game, bean bag toss",
+          "Loft Game Room: Basketball shooter, foosball",
+        ]
+      },
       photos: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ=/original/cc069248-7b2b-4b56-8a58-4aa52f927d13.png",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ%3D/original/283af09a-20d9-46eb-9226-11781eeb036f.jpeg",
@@ -853,16 +873,20 @@ window.SITE_CONFIG = {
       bathrooms: 1,
       beds: 4,
       description: "A stylish mountain modern retreat ideal for couples or small groups. Features a fully fenced yard for pets, beach and lake access, and shared seasonal pool. Sleeps 6 in 3 bedrooms with 4 beds. Full kitchen, streaming TV, washer/dryer, and dedicated workspace. Near Jim Thorpe, ski slopes, and Pocono water parks. Easy self check-in.",
-      included: [
-        "Beach access",
-        "Lake access",
-        "Pool access (outdoor seasonal community)",
-        "High speed Wi-Fi (~400 Mbps)",
-        "Pets encouraged",
-        "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
-        "Half acre lot",
-        "In-home washer & dryer",
-      ],
+      included: {
+        community: [
+          "Beach access",
+          "Lake access",
+          "Pool access (outdoor seasonal community)",
+        ],
+        home: [
+          "High speed Wi-Fi (~400 Mbps)",
+          "Pets encouraged",
+          "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
+          "Half acre lot",
+          "In-home washer & dryer",
+        ]
+      },
       photos: [
       "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/3c3c9626-fde7-4a85-b7ff-d2adf66c76cb.jpeg",
       "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/ab88c8ea-03e1-45a9-807c-9cd833c395fa.jpeg",

@@ -348,3 +348,12 @@ section + section { border-top: 1px solid var(--line); }
 .photo-cell--empty .photo-cell__frame { background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.15); }
 .photo-cell--empty .photo-cell__empty { display: flex; align-items: center; justify-content: center; height: 100%; color: rgba(255,255,255,0.45); font-style: italic; font-size: 0.95rem; letter-spacing: 0.5px; }
 .photo-cell--empty .photo-cell__count { color: rgba(232, 197, 71, 0.6); }
+
+/* Included list section headings + smaller parenthetical note */
+.included-list { list-style: none; padding-left: 0; }
+.included-list li { padding: 4px 0 4px 18px; position: relative; }
+.included-list li:not(.included-section)::before { content: "2"; position: absolute; left: 0; color: var(--gold-soft); }
+.included-list .included-section { list-style: none; padding-left: 0; font-weight: 700; color: var(--gold-soft); text-transform: uppercase; letter-spacing: 0.6px; font-size: 0.85em; margin-top: 16px; }
+.included-list .included-section:first-child { margin-top: 0; }
+.included-list .included-section::before { content: none; }
+.amenity-note { font-size: 0.78em; color: rgba(255,255,255,0.55); font-style: italic; }

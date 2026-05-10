@@ -163,11 +163,37 @@ window.SITE_CONFIG.basePath = "../";
   document.getElementById("prop-desc").textContent = prop.description;
 
   var includedEl = document.getElementById("prop-included");
-  (prop.included || []).forEach(function (item) {
+  var __inc = prop.included || {};
+  if (Array.isArray(__inc)) __inc = { home: __inc }; // backward compat
+
+  function __renderAmenityItem(item) {
     var li = document.createElement("li");
-    li.textContent = item;
-    includedEl.appendChild(li);
-  });
+    var m = item.match(/^(.*?)\s*\((.+)\)\s*$/);
+    if (m) {
+      var lbl = document.createElement("span");
+      lbl.textContent = m[1];
+      var note = document.createElement("span");
+      note.className = "amenity-note";
+      note.textContent = " (" + m[2] + ")";
+      li.appendChild(lbl);
+      li.appendChild(note);
+    } else {
+      li.textContent = item;
+    }
+    return li;
+  }
+  function __renderSection(label, items) {
+    if (!items || !items.length) return;
+    var head = document.createElement("li");
+    head.className = "included-section";
+    head.textContent = label;
+    includedEl.appendChild(head);
+    items.forEach(function (item) {
+      includedEl.appendChild(__renderAmenityItem(item));
+    });
+  }
+  __renderSection("Community", __inc.community);
+  __renderSection("Home", __inc.home);
 
   var rateEl = document.getElementById("rate-card");
   function fmt(v, prefix) {
