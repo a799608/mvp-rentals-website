@@ -114,7 +114,9 @@ window.SITE_CONFIG = {
           "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/45953964-4f74-40db-8cbb-f9ae6d112237.jpeg",
           "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/f6c029b1-64bb-47b4-958a-5f0303161f26.jpeg"
         ],
-        "Full kitchen": [],
+        "Full kitchen": [
+          "https://a0.muscache.com/im/pictures/8ad4c11a-6881-440f-9985-74f7eb0bb18e.jpg"
+        ],
         "Dining area": [],
         "Bedroom 1": [],
         "Bedroom 2": [],
