@@ -216,6 +216,20 @@ window.SITE_CONFIG = {
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NDAyMjkzMjA=/original/2eb13cfe-e156-421b-8c26-a460d9c774d1.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/a77d26a7-28bc-4bc1-b784-4cbcf22d2035.jpeg"
       ],
+      photosByRoom: {
+        "Living room 1": [],
+        "Living room 2": [],
+        "Full kitchen": [],
+        "Dining area": [],
+        "Bedroom 1": [],
+        "Bedroom 2": [],
+        "Bedroom 3": [],
+        "Full bathroom 1": [],
+        "Full bathroom 2": [],
+        "Backyard": [],
+        "Exterior": [],
+        "Additional photos": []
+      },
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/40229320",
         vrbo: "https://www.vrbo.com/3848476ha"
