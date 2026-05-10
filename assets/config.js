@@ -90,7 +90,7 @@ window.SITE_CONFIG = {
         "Pets encouraged",
         "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
         "Half acre lot",
-        "Free washer & dryer",
+        "In-home washer & dryer",
       ],
       photos: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/07bd588b-235c-453a-9b8c-49d028427465.jpeg",
@@ -232,7 +232,7 @@ window.SITE_CONFIG = {
         "Pets encouraged",
         "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
         "Half acre lot",
-        "Free washer & dryer",
+        "In-home washer & dryer",
       ],
       photos: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTY2MTI3Mjk%3D/original/845a0345-3dfa-47fd-9f24-f9d294cd7fe9.jpeg",
@@ -356,7 +356,7 @@ window.SITE_CONFIG = {
         "Pets encouraged",
         "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
         "Half acre lot",
-        "Free washer & dryer",
+        "In-home washer & dryer",
       ],
       photos: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/51762f3c-6bde-4c73-b99a-abc691e149ff.jpeg",
@@ -496,7 +496,7 @@ window.SITE_CONFIG = {
         "Game Room 1: Arcade cabinet (multi-game), pool table, ping pong",
         "Game Room 2: Foosball, air hockey, darts",
         "Theater room",
-        "Free washer & dryer",
+        "In-home washer & dryer",
       ],
       photos: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/b8d46698-c619-4b73-88d2-e1c2990983a0.png",
@@ -692,7 +692,7 @@ window.SITE_CONFIG = {
         "Multiple game room spaces",
         "Basement Game Room: Pool table, arcade machine, ping pong, air hockey, shuffleboard, darts, Connect 4 wall game, bean bag toss",
         "Loft Game Room: Basketball shooter, foosball",
-        "Free washer & dryer",
+        "In-home washer & dryer",
       ],
       photos: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ=/original/cc069248-7b2b-4b56-8a58-4aa52f927d13.png",
@@ -861,7 +861,7 @@ window.SITE_CONFIG = {
         "Pets encouraged",
         "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
         "Half acre lot",
-        "Washer & dryer",
+        "In-home washer & dryer",
       ],
       photos: [
       "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/3c3c9626-fde7-4a85-b7ff-d2adf66c76cb.jpeg",
