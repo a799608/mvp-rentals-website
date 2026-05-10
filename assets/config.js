@@ -567,7 +567,18 @@ window.SITE_CONFIG = {
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/e4758c40-fa07-4772-bc52-696347342a26.jpeg",
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/ea1f5ab0-f708-4ed4-91f6-44a316c6128b.jpeg"
         ],
-        "Exterior": [],
+        "Exterior": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/110bfc08-4a13-4404-aa9c-ef7d219b7f04.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-776227061200723382/original/ca95ffcc-71b0-4770-bd1e-f1dfc2ea1d1a.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-776227061200723382/original/a6ae5eac-dd1e-412d-9f8a-fc37c9942444.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-776227061200723382/original/3892c409-5023-448d-983c-45e9e8df1a00.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/f0761f06-1c43-40d9-8f7a-c32a81ab8ab5.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/724adfe5-92a8-4cb4-8709-ad79ae8462ce.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/8aeb0602-283b-40e4-bf7d-af8533357e4b.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/c2e28f66-2d26-4be5-91b6-bb1cac60c237.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/2522f3ef-6a4a-49c5-adee-324e064e2abb.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/c385d900-a751-4779-b37a-62d17a06b671.jpeg"
+        ],
         "Movie theater": [],
         "Game room 1": [],
         "Game room 2": [],
