@@ -271,7 +271,9 @@ window.SITE_CONFIG = {
         "Full bathroom 1": [
           "https://a0.muscache.com/im/pictures/ada88c9e-9459-4703-bd79-ad8603c89639.jpg"
         ],
-        "Full bathroom 2": [],
+        "Full bathroom 2": [
+          "https://a0.muscache.com/im/pictures/a95a421d-17ed-4c19-9ed2-bf11901409ba.jpg"
+        ],
         "Backyard": [],
         "Exterior": [],
         "Game room": [],
