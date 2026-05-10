@@ -406,7 +406,16 @@ window.SITE_CONFIG = {
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NDAyMjkzMjA=/original/2b7ff6c0-8f01-4cba-83e3-6df607c084c6.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NDAyMjkzMjA=/original/eea7a0f3-9498-4f08-9be0-64c2eac08b0d.jpeg"
     ],
-        "Backyard": [],
+        "Backyard": [
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/3362aa5b-b393-4260-bab1-ece661b2a7ea.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/0c1fc68d-e5dd-4085-8d81-b7c48c5b8a55.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/5ee5d590-2445-4f67-9061-c6938278ade4.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/1936ac87-fb15-4b6a-a2e8-b3f80b89b50a.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/6ded8e67-5829-4a87-a5f0-6a08f94eb3d3.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/183ea22d-c969-4628-852a-2dca3f29a9b0.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NDAyMjkzMjA=/original/9456e0c8-decd-4066-9c8f-0b25e8136390.jpeg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NDAyMjkzMjA=/original/7a28a2c0-e1d2-4964-a097-d9b7cd2e0b3e.jpeg"
+    ],
         "Exterior": [],
         "Additional photos": []
       },
