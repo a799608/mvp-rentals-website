@@ -605,8 +605,6 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
       e.preventDefault(); e.stopPropagation();
       toggleFor('checkOut');
     });
-    checkInEl.addEventListener('focus', function () { if (!popover.classList.contains('open')) openPopover('checkIn'); });
-    checkOutEl.addEventListener('focus', function () { if (!popover.classList.contains('open')) openPopover('checkOut'); });
 
     // Outside-click closes the popover.
     document.addEventListener('mousedown', function (e) {
