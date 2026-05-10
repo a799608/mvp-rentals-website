@@ -285,7 +285,10 @@ window.SITE_CONFIG = {
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTY2MTI3Mjk%3D/original/12dd8fd9-ce91-4e63-aaa0-12c0ffca455b.jpeg",
           "https://a0.muscache.com/im/pictures/hosting/Hosting-16612729/original/ee75acfb-dfa4-4702-9c25-d3a48bbc9158.jpeg"
         ],
-        "Game room": [],
+        "Game room": [
+          "https://a0.muscache.com/im/pictures/d545b531-fb56-4e29-8460-2acf203545fd.jpg",
+          "https://a0.muscache.com/im/pictures/94935287-57a7-4d36-91f9-ba7b224b2a9e.jpg"
+        ],
         "Additional photos": []
       },
       platformUrls: {
