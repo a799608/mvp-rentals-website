@@ -72,7 +72,10 @@
         else petCost = petFee; // per-stay default
       }
       var subtotal = weekdayCost + weekendCost;
-      var total = subtotal + cleaning + petCost;
+      var preTaxTotal = subtotal + cleaning + petCost;
+      var occupancyTax = preTaxTotal * 0.03; // 3% local occupancy tax
+      var salesTax = preTaxTotal * 0.06;     // 6% PA state sales tax
+      var total = preTaxTotal + occupancyTax + salesTax;
 
       var lines = [];
       lines.push({ label: state.checkIn + " → " + state.checkOut, value: state.nights + " night" + (state.nights === 1 ? "" : "s") });
@@ -80,6 +83,8 @@
       if (state.weekendNights) lines.push({ label: state.weekendNights + " weekend × " + dollars(weekend), value: dollars(weekendCost) });
       lines.push({ label: "Cleaning fee", value: dollars(cleaning) });
       if (state.pets && petFee !== null) lines.push({ label: "Pet fee (" + petType + ")", value: dollars(petCost) });
+      lines.push({ label: "Occupancy tax (3%)", value: dollars(occupancyTax) });
+      lines.push({ label: "Sales tax (6%)", value: dollars(salesTax) });
       lines.forEach(function (l) {
         var row = document.createElement("div");
         row.className = "line";
