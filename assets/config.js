@@ -158,6 +158,20 @@ window.SITE_CONFIG = {
       "https://a0.muscache.com/im/pictures/b7b0f065-9b17-4576-a42e-522b59de26f2.jpg",
       "https://a0.muscache.com/im/pictures/8cea2039-c136-4368-96fb-1d6d70260f06.jpg"
       ],
+      photosByRoom: {
+        "Living room": [],
+        "Full kitchen": [],
+        "Dining area": [],
+        "Bedroom 1": [],
+        "Bedroom 2": [],
+        "Bedroom 3": [],
+        "Full bathroom 1": [],
+        "Full bathroom 2": [],
+        "Backyard": [],
+        "Exterior": [],
+        "Game room": [],
+        "Additional photos": []
+      },
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/16612729",
         vrbo: "https://www.vrbo.com/3688087ha"
