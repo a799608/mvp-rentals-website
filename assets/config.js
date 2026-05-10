@@ -144,7 +144,10 @@ window.SITE_CONFIG = {
         "Full bathroom 2": [
           "https://a0.muscache.com/im/pictures/a12be2df-3c8f-41ff-978a-fd17b330ad4a.jpg"
         ],
-        "Deck": [],
+        "Deck": [
+          "https://a0.muscache.com/im/pictures/398d59c3-943f-421d-b011-4448c7f90ba1.jpg",
+          "https://a0.muscache.com/im/pictures/d67d5dde-5e08-4c63-88fc-73241ca28084.jpg"
+        ],
         "Exterior": [],
         "Additional photos": []
       },
