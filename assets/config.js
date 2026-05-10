@@ -540,7 +540,11 @@ window.SITE_CONFIG = {
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/af8bd435-e76b-4168-b91d-627daaebb96b.jpeg",
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/75048f99-2685-4bc1-b745-33093da8abbf.jpeg"
         ],
-        "Full bathroom 1": [],
+        "Full bathroom 1": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/1b6b5b99-d714-4b29-a1bd-ca35909d61e4.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/a5060dea-2286-474e-a435-910b37e42421.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/c3bdeebc-1042-4be1-9267-fba0e85a6245.jpeg"
+        ],
         "Full bathroom 2": [],
         "Backyard": [],
         "Patio": [],
