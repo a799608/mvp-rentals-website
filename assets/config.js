@@ -102,7 +102,18 @@ window.SITE_CONFIG = {
       "https://a0.muscache.com/im/pictures/a12be2df-3c8f-41ff-978a-fd17b330ad4a.jpg"
       ],
       photosByRoom: {
-        "Living room": [],
+        "Living room": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/07bd588b-235c-453a-9b8c-49d028427465.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/4e4d5ead-1a4b-4a88-a757-d1881909cc2c.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/477e69e6-60fb-40e8-9db6-44e61113f6a0.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/69f1b58f-99d9-4c77-903f-bc217362e274.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/3df5149d-75eb-46c1-9f63-6464d5b4459b.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/fe04eb96-80c5-4db3-98bd-97a5a351b278.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/65a869b3-0dac-43f9-98d4-80a3ebe1c388.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/c9e1f15b-0df9-4434-b866-be818c41e71e.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/45953964-4f74-40db-8cbb-f9ae6d112237.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/f6c029b1-64bb-47b4-958a-5f0303161f26.jpeg"
+        ],
         "Full kitchen": [],
         "Dining area": [],
         "Bedroom 1": [],
