@@ -344,6 +344,7 @@
         cell.className = "cal-cell union-cell";
         if (isFullyBooked) cell.classList.add("booked");
         if (isPast) cell.classList.add("past");
+        if (cellDate.getTime() === today.getTime()) cell.classList.add("today");
         if (checkIn && cellYmd === checkIn) cell.classList.add("endpoint");
         if (checkOut && cellYmd === checkOut) cell.classList.add("endpoint");
         if (checkIn && checkOut && cellYmd > checkIn && cellYmd < checkOut) cell.classList.add("in-range");
