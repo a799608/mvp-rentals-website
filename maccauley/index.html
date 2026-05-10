@@ -217,28 +217,34 @@ window.SITE_CONFIG.basePath = "../";
   var galleryEl = document.getElementById('photo-gallery');
   if (galleryEl) {
     var __pbr = prop.photosByRoom;
-    var __hasGrouped = __pbr && typeof __pbr === 'object' && Object.keys(__pbr).some(function (k) { return Array.isArray(__pbr[k]) && __pbr[k].length; });
+    var __hasGrouped = __pbr && typeof __pbr === 'object' && Object.keys(__pbr).length > 0;
     if (__hasGrouped) {
       galleryEl.classList.add('photo-gallery--grouped');
       Object.keys(__pbr).forEach(function (room) {
-        var urls = __pbr[room];
-        if (!Array.isArray(urls) || !urls.length) return;
+        var urls = Array.isArray(__pbr[room]) ? __pbr[room] : [];
         var section = document.createElement('div');
         section.className = 'photo-room';
         var heading = document.createElement('h3');
         heading.className = 'photo-room__heading';
-        heading.textContent = room;
+        heading.textContent = room + ' (' + urls.length + ')';
         section.appendChild(heading);
-        var grid = document.createElement('div');
-        grid.className = 'photo-room__grid';
-        urls.forEach(function (url) {
-          var img = document.createElement('img');
-          img.src = url;
-          img.alt = prop.name + ' - ' + room;
-          img.loading = 'lazy';
-          grid.appendChild(img);
-        });
-        section.appendChild(grid);
+        if (urls.length) {
+          var grid = document.createElement('div');
+          grid.className = 'photo-room__grid';
+          urls.forEach(function (url) {
+            var img = document.createElement('img');
+            img.src = url;
+            img.alt = prop.name + ' - ' + room;
+            img.loading = 'lazy';
+            grid.appendChild(img);
+          });
+          section.appendChild(grid);
+        } else {
+          var ph = document.createElement('div');
+          ph.className = 'photo-room__placeholder';
+          ph.textContent = 'No photos yet';
+          section.appendChild(ph);
+        }
         galleryEl.appendChild(section);
       });
     } else if (prop.photos && prop.photos.length) {

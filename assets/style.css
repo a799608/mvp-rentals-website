@@ -305,6 +305,7 @@ section + section { border-top: 1px solid var(--line); }
 .photo-gallery--grouped .photo-room__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
 .photo-gallery--grouped .photo-room__grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-md); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; background: var(--panel-2); }
 .photo-gallery--grouped .photo-room__grid img:hover { transform: scale(1.02); box-shadow: var(--shadow-md); }
+.photo-gallery--grouped .photo-room__placeholder { border: 1px dashed var(--line); border-radius: var(--radius-md); padding: 28px; text-align: center; color: var(--ink-dim, #888); font-style: italic; background: rgba(255,255,255,0.02); }
 
 /* ========= per-property word cloud ========= */
 .wordcloud-section { padding: 40px 0; }
