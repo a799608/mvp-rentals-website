@@ -14,6 +14,8 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 header a { color: rgba(255,255,255,0.6); font-size: 12px; text-decoration: none; letter-spacing: 0.5px; }
 header a:hover { color: var(--gold); }
 header .brand { color: #fff; font-size: 22px; font-weight: 800; letter-spacing: 0.6px; }
+header .brand-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+.nav-logo { height: 36px; width: auto; vertical-align: middle; margin-right: 10px; border-radius: 50%; }
 .hero-info { background: rgba(5,18,7,0.86); border: 1px solid rgba(255,255,255,0.09); border-radius: 16px; padding: 22px 26px; margin-bottom: 30px; }
 .hero-info h1 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 4px; }
 .hero-info .dates { color: var(--gold); font-size: 15px; font-weight: 600; letter-spacing: 0.4px; }
@@ -50,7 +52,7 @@ header .brand { color: #fff; font-size: 22px; font-weight: 800; letter-spacing: 
 
 <div class="wrap">
   <header>
-    <a class="brand" href="index.html">MVP Rentals</a>
+    <a class="brand-wrap" href="index.html"><img class="nav-logo" src="assets/logo.webp" alt="MVP Rentals"><span class="brand">MVP Rentals</span></a>
     <a href="index.html">&larr; Change dates</a>
   </header>
 

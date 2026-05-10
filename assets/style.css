@@ -63,6 +63,9 @@ h3 { font-size: 1.2rem; }
 .site-header .brand:hover { text-decoration: none; color: var(--gold-soft); }
 .site-header nav a { color: #fff; margin-left: 18px; font-size: 0.95rem; }
 .site-header nav a:hover { color: var(--gold-soft); text-decoration: none; }
+.site-header .brand-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.site-header .brand-wrap:hover { text-decoration: none; }
+.nav-logo { height: 36px; width: auto; vertical-align: middle; margin-right: 10px; border-radius: 50%; }
 
 .hero {
   position: relative;
