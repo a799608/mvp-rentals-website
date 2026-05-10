@@ -28,14 +28,15 @@ window.SITE_CONFIG = {
   // Payment methods. Flip enabled: true to surface the block on property
   // pages. Venmo + Zelle live in v1; the rest are scaffolded for later.
   payments: {
+    contactMessage: "After we review and accept your reservation request, Will will send you a Venmo payment request — just tap to pay.\n\nVenmo accepted. Other payment methods available on request.",
     venmo: {
-      enabled: true,
+      enabled: false,
       label: "Venmo",
       handle: "@VENMO_HANDLE_HERE",
       instructions: "Send to the handle above. Include your check-in date in the note.",
     },
     zelle: {
-      enabled: true,
+      enabled: false,
       label: "Zelle",
       identifier: "@ZELLE_EMAIL_OR_PHONE_HERE",
       instructions: "Send to the address/phone above. Include your check-in date in the memo.",

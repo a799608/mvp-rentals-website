@@ -116,7 +116,16 @@
   function renderPayments(container) {
     container.innerHTML = "";
     var cfg = window.SITE_CONFIG.payments;
-    var enabledKeys = Object.keys(cfg).filter(function (k) { return cfg[k].enabled; });
+    if (cfg.contactMessage) {
+      cfg.contactMessage.split(/\n\n+/).forEach(function (para) {
+        var p = document.createElement("p");
+        p.className = "pay-contact-message";
+        p.textContent = para;
+        container.appendChild(p);
+      });
+      return;
+    }
+    var enabledKeys = Object.keys(cfg).filter(function (k) { return cfg[k] && cfg[k].enabled; });
     if (!enabledKeys.length) {
       container.innerHTML = '<p class="empty-state">Payment options will be listed here.</p>';
       return;
