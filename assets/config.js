@@ -274,7 +274,12 @@ window.SITE_CONFIG = {
         "Full bathroom 2": [
           "https://a0.muscache.com/im/pictures/a95a421d-17ed-4c19-9ed2-bf11901409ba.jpg"
         ],
-        "Backyard": [],
+        "Backyard": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-16612729/original/24ad0810-584e-4c7e-9788-c98992c9f733.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-16612729/original/548fb599-95f2-4c40-92b3-13ea522d8f89.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-16612729/original/6cb4f09c-73c1-405a-88d2-caf4ff3709a7.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-16612729/original/78257d40-0a3d-456e-8936-a8c3bb3f6c68.jpeg"
+        ],
         "Exterior": [],
         "Game room": [],
         "Additional photos": []
