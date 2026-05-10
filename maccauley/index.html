@@ -221,20 +221,26 @@ window.SITE_CONFIG.basePath = "../";
     if (__hasGrouped) {
       Object.keys(__pbr).forEach(function (room) {
         var urls = Array.isArray(__pbr[room]) ? __pbr[room] : [];
-        if (!urls.length) return; // skip empty rooms
         var cell = document.createElement('div');
-        cell.className = 'photo-cell';
+        cell.className = urls.length ? 'photo-cell' : 'photo-cell photo-cell--empty';
         cell.setAttribute('data-current-index', '0');
 
         var frame = document.createElement('div');
         frame.className = 'photo-cell__frame';
 
-        var img = document.createElement('img');
-        img.className = 'photo-cell__img';
-        img.src = urls[0];
-        img.alt = prop.name + ' - ' + room + ' (photo 1 of ' + urls.length + ')';
-        img.loading = 'lazy';
-        frame.appendChild(img);
+        if (urls.length) {
+          var img = document.createElement('img');
+          img.className = 'photo-cell__img';
+          img.src = urls[0];
+          img.alt = prop.name + ' - ' + room + ' (photo 1 of ' + urls.length + ')';
+          img.loading = 'lazy';
+          frame.appendChild(img);
+        } else {
+          var ph = document.createElement('div');
+          ph.className = 'photo-cell__empty';
+          ph.textContent = 'Coming soon';
+          frame.appendChild(ph);
+        }
 
         var label = document.createElement('div');
         label.className = 'photo-cell__label';
@@ -243,7 +249,7 @@ window.SITE_CONFIG.basePath = "../";
         roomName.textContent = room;
         var count = document.createElement('span');
         count.className = 'photo-cell__count';
-        count.textContent = urls.length + ' photo' + (urls.length === 1 ? '' : 's');
+        count.textContent = urls.length === 0 ? 'Coming soon' : urls.length + ' photo' + (urls.length === 1 ? '' : 's');
         label.appendChild(roomName);
         label.appendChild(count);
 

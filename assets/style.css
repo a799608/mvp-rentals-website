@@ -344,3 +344,7 @@ section + section { border-top: 1px solid var(--line); }
 .throb-love { animation: throb-a 1.5s ease-in-out infinite; font-weight: 700; }
 .throb-will { animation: throb-b 1.5s ease-in-out infinite; font-weight: 700; }
 .wordcloud-section img { border-radius: var(--radius-md); }
+
+.photo-cell--empty .photo-cell__frame { background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.15); }
+.photo-cell--empty .photo-cell__empty { display: flex; align-items: center; justify-content: center; height: 100%; color: rgba(255,255,255,0.45); font-style: italic; font-size: 0.95rem; letter-spacing: 0.5px; }
+.photo-cell--empty .photo-cell__count { color: rgba(232, 197, 71, 0.6); }
