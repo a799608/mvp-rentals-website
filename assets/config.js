@@ -800,7 +800,15 @@ window.SITE_CONFIG = {
           "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/404a4c9a-afd4-4b40-827c-e31494549b2d.jpeg",
           "https://a0.muscache.com/im/pictures/miso/Hosting-1100977895146044046/original/736f4dc7-5375-493e-81c9-2312f1f8f89d.jpeg"
         ],
-        "Exterior": [],
+        "Exterior": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/ab3dcf03-bf18-4ff9-bf9f-f74bd87811c0.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/2bac56dd-b685-4469-94e1-4512b44f1f0f.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/03eabefb-e8c1-4868-b495-5e01c9d74bb3.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/84005968-6c7a-4d4c-8fda-5f77dcbb2ea6.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/74013cab-c278-49b5-b26d-8e3a6880eb4d.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/4e760e48-2c92-4274-b62b-1e40bcd7e944.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEwMDk3Nzg5NTE0NjA0NDA0Ng%3D%3D/original/3dfe6f52-7ea6-46f0-b9e0-dd865bd01df5.jpeg"
+        ],
         "Additional photos": []
       },
       platformUrls: {
