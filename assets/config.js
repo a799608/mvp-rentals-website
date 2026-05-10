@@ -141,7 +141,9 @@ window.SITE_CONFIG = {
           "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/286a5bc3-5508-4658-8821-7a5770378fba.jpeg",
           "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/d5593ac6-e9d6-4c45-9d98-04b9a32b70e2.jpeg"
         ],
-        "Full bathroom 2": [],
+        "Full bathroom 2": [
+          "https://a0.muscache.com/im/pictures/a12be2df-3c8f-41ff-978a-fd17b330ad4a.jpg"
+        ],
         "Deck": [],
         "Exterior": [],
         "Additional photos": []
