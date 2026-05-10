@@ -1,4 +1,4 @@
-// MVP Rentals â€” interactive month-grid calendar.
+﻿// MVP Rentals — interactive month-grid calendar.
 // Loads availability from the GAS endpoint, renders one month at a time,
 // and emits onChange whenever the user picks a check-in/check-out range.
 // Convention: weekend = Fri + Sat night. Weekday = Sun-Thu night.
@@ -241,20 +241,18 @@
     };
   }
 
-  // Union-mode calendar for the homepage. Black out only nights where ALL
-  // properties are booked. Reuses helpers above; renders identical 3-month
-  // grid but with no per-cell prices (no single rate applies across all 6).
+  // Union-mode calendar for the homepage. Single-month view with prev/next
+  // navigation. Black out only nights where ALL properties are booked.
   function makeUnionCalendar(opts) {
     var container = opts.container;
     var onChange = opts.onChange || function () {};
     var endpoint = opts.endpoint;
-    var monthsToShow = opts.months || 3;
     var propertyNames = opts.propertyNames || [];
-    var totalProps = propertyNames.length;
 
-    // bookedSet contains every YMD where ALL properties are booked (i.e.
-    // count of properties booked that night === totalProps).
+    // bookedSet contains every YMD where ALL properties are booked (i.e. the
+    // intersection of every per-property booked-set).
     var bookedSet = new Set();
+    var displayMonth = startOfMonth(new Date());
     var checkIn = null;
     var checkOut = null;
     var pendingInitial = null;
@@ -263,14 +261,34 @@
     }
 
     container.innerHTML = "";
-    var monthsWrap = document.createElement("div");
-    monthsWrap.className = "calendar-months union-cal-months";
-    container.appendChild(monthsWrap);
+
+    var controls = document.createElement("div");
+    controls.className = "calendar-controls union-cal-controls";
+    var prevBtn = document.createElement("button");
+    prevBtn.type = "button";
+    prevBtn.className = "union-cal-nav";
+    prevBtn.setAttribute("aria-label", "Previous month");
+    prevBtn.textContent = "‹";
+    var label = document.createElement("div");
+    label.className = "calendar-month-label union-cal-month-label";
+    var nextBtn = document.createElement("button");
+    nextBtn.type = "button";
+    nextBtn.className = "union-cal-nav";
+    nextBtn.setAttribute("aria-label", "Next month");
+    nextBtn.textContent = "›";
+    controls.appendChild(prevBtn);
+    controls.appendChild(label);
+    controls.appendChild(nextBtn);
+    container.appendChild(controls);
+
+    var monthWrap = document.createElement("div");
+    monthWrap.className = "calendar-month union-cal-month";
+    container.appendChild(monthWrap);
 
     var legend = document.createElement("div");
     legend.className = "calendar-legend union-cal-legend";
     legend.innerHTML =
-      '<span><span class="swatch" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18)"></span>Open at one or more homes</span>' +
+      '<span><span class="swatch" style="background:#1a2418;border:1px solid rgba(255,255,255,0.18)"></span>Open at one or more homes</span>' +
       '<span><span class="swatch" style="background:#0d130d"></span>All 6 homes booked</span>' +
       '<span><span class="swatch" style="background:var(--gold,#C8990A)"></span>Selected</span>';
     container.appendChild(legend);
@@ -301,22 +319,17 @@
         else if (!rangeIsClear(checkIn, cellYmd)) { checkIn = cellYmd; checkOut = null; }
         else { checkOut = cellYmd; }
       }
-      renderAll();
+      render();
       emitChange();
     }
 
-    function renderMonth(monthDate) {
-      var wrap = document.createElement("div");
-      wrap.className = "calendar-month union-cal-month";
-
-      var label = document.createElement("div");
-      label.className = "calendar-month-label";
-      label.textContent = monthDate.toLocaleString("en-US", { month: "long", year: "numeric" });
-      wrap.appendChild(label);
+    function render() {
+      label.textContent = displayMonth.toLocaleString("en-US", { month: "long", year: "numeric" });
+      monthWrap.innerHTML = "";
 
       var grid = document.createElement("div");
       grid.className = "calendar-grid";
-      wrap.appendChild(grid);
+      monthWrap.appendChild(grid);
 
       var today = new Date(); today.setHours(0,0,0,0);
       var dows = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
@@ -327,16 +340,16 @@
         grid.appendChild(hd);
       });
 
-      var first = new Date(monthDate);
+      var first = new Date(displayMonth);
       var firstDow = first.getDay();
-      var daysInMonth = new Date(monthDate.getFullYear(), monthDate.getMonth() + 1, 0).getDate();
+      var daysInMonth = new Date(displayMonth.getFullYear(), displayMonth.getMonth() + 1, 0).getDate();
       for (var i = 0; i < firstDow; i++) {
         var empty = document.createElement("div");
         empty.className = "cal-cell empty";
         grid.appendChild(empty);
       }
       for (var dnum = 1; dnum <= daysInMonth; dnum++) {
-        var cellDate = new Date(monthDate.getFullYear(), monthDate.getMonth(), dnum);
+        var cellDate = new Date(displayMonth.getFullYear(), displayMonth.getMonth(), dnum);
         var cellYmd = ymd(cellDate);
         var isPast = cellDate < today;
         var isFullyBooked = bookedSet.has(cellYmd);
@@ -344,7 +357,6 @@
         cell.className = "cal-cell union-cell";
         if (isFullyBooked) cell.classList.add("booked");
         if (isPast) cell.classList.add("past");
-        if (cellDate.getTime() === today.getTime()) cell.classList.add("today");
         if (checkIn && cellYmd === checkIn) cell.classList.add("endpoint");
         if (checkOut && cellYmd === checkOut) cell.classList.add("endpoint");
         if (checkIn && checkOut && cellYmd > checkIn && cellYmd < checkOut) cell.classList.add("in-range");
@@ -359,22 +371,13 @@
         }
         grid.appendChild(cell);
       }
-      return wrap;
-    }
 
-    function renderAll() {
-      monthsWrap.innerHTML = "";
-      var start = startOfMonth(new Date());
-      for (var m = 0; m < monthsToShow; m++) {
-        var monthDate = new Date(start.getFullYear(), start.getMonth() + m, 1);
-        monthsWrap.appendChild(renderMonth(monthDate));
-      }
+      // Disable prev button when at or before the current month.
+      var thisMonthStart = startOfMonth(today);
+      prevBtn.disabled = displayMonth <= thisMonthStart;
     }
 
     function buildUnionBookedSet(availability) {
-      // For each property, build the set of YMDs where THAT property is booked
-      // (overlapping ranges within one property collapse to a single night).
-      // Then a YMD is fully-booked iff it appears in every per-property set.
       var perProp = propertyNames.map(function (name) {
         var ranges = (availability && availability[name]) || [];
         var s = new Set();
@@ -391,7 +394,6 @@
         return s;
       });
       if (perProp.length === 0) return new Set();
-      // Intersect every per-property set.
       var smallest = perProp.reduce(function (a, b) { return a.size <= b.size ? a : b; });
       var out = new Set();
       smallest.forEach(function (k) {
@@ -400,20 +402,38 @@
       return out;
     }
 
-    renderAll();
+    prevBtn.addEventListener("click", function () {
+      displayMonth = new Date(displayMonth.getFullYear(), displayMonth.getMonth() - 1, 1);
+      render();
+    });
+    nextBtn.addEventListener("click", function () {
+      displayMonth = new Date(displayMonth.getFullYear(), displayMonth.getMonth() + 1, 1);
+      render();
+    });
+
+    render();
     if (endpoint && endpoint.indexOf("@") !== 0) {
       fetch(endpoint, { method: "GET" })
         .then(function (r) { return r.ok ? r.json() : {}; })
         .then(function (avail) {
           bookedSet = buildUnionBookedSet(avail || {});
-          renderAll();
+          if (pendingInitial && rangeIsClear(pendingInitial.ci, pendingInitial.co)) {
+            checkIn = pendingInitial.ci;
+            checkOut = pendingInitial.co;
+            // jump display to the month of the initial check-in
+            var ciDate = parseYmd(pendingInitial.ci);
+            displayMonth = startOfMonth(ciDate);
+          }
+          pendingInitial = null;
+          render();
+          if (checkIn && checkOut) emitChange();
           if (typeof opts.onLoaded === "function") opts.onLoaded({ bookedSet: bookedSet, availability: avail });
         })
         .catch(function () { /* keep empty bookedSet */ });
     }
 
     return {
-      reset: function () { checkIn = null; checkOut = null; renderAll(); emitChange(); },
+      reset: function () { checkIn = null; checkOut = null; render(); emitChange(); },
       getBookedSet: function () { return bookedSet; },
     };
   }
