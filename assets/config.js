@@ -133,7 +133,10 @@ window.SITE_CONFIG = {
           "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/5704a3ec-a00e-42ad-a9f6-b7bd856b1d0d.jpeg",
           "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/8c41e7d3-1537-4b46-8a76-851b440a1ff3.jpeg"
         ],
-        "Bedroom 3": [],
+        "Bedroom 3": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/2c1035a4-2792-41c7-904d-baf3253db50f.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/8e8b527a-8fdc-49d7-b087-006d97e1dc46.jpeg"
+        ],
         "Full bathroom 1": [],
         "Full bathroom 2": [],
         "Deck": [],
