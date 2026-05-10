@@ -268,8 +268,8 @@ window.SITE_CONFIG = {
         "Pets allowed",
         "HDTV with Netflix, Hulu, Amazon Prime, Disney+",
         "Multiple game room spaces",
-        "Game Room 1: Pool table, arcade cabinet",
-        "Game Room 2: Foosball, ping pong, board games"
+        "Basement Game Room: Pool table, arcade machine, ping pong, air hockey, shuffleboard, darts, Connect 4 wall game, bean bag toss",
+        "Loft Game Room: Basketball shooter, foosball"
       ],
       photos: [
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTU5NzM1MzQ=/original/cc069248-7b2b-4b56-8a58-4aa52f927d13.png",
