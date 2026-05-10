@@ -302,6 +302,13 @@ section + section { border-top: 1px solid var(--line); }
 /* ========= per-property word cloud ========= */
 .wordcloud-section { padding: 40px 0; }
 .wordcloud-section h2 { margin-bottom: 6px; font-size: 3rem; line-height: 1.1; }
+.wordcloud-section .wordcloud-subtitle {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-top: -8px;
+  margin-bottom: 12px;
+}
 @keyframes throb-a { 0%, 100% { color: #d62828; } 50% { color: #ffd60a; } }
 @keyframes throb-b { 0%, 100% { color: #ffd60a; } 50% { color: #d62828; } }
 .throb-love { animation: throb-a 1.5s ease-in-out infinite; font-weight: 700; }
