@@ -109,17 +109,10 @@
           <textarea id="bf-msg" name="message" placeholder="Anniversary trip, accessibility needs, ETA, etc."></textarea>
         </div>
       </div>
-      <button type="submit">Send request</button>
+      <p class="form-payment-note"><em>Once details are finalized, Will will send you a Venmo payment request directly. Your reservation is confirmed as soon as payment is received.</em></p>
+      <button type="submit">Start Your Trip</button>
       <div class="form-message" role="status"></div>
     </form>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <h2>How to Pay</h2>
-    <p style="color:var(--ink-soft); font-size:0.95rem;">After we confirm your dates, send payment via one of the methods below.</p>
-    <div id="payments"></div>
   </div>
 </section>
 
@@ -215,7 +208,6 @@ window.SITE_CONFIG.basePath = "../";
     endpoint: window.SITE_CONFIG.endpoints.submitBooking,
   });
 
-  window.MVPBooking.renderPayments(document.getElementById("payments"));
   var galleryEl = document.getElementById('photo-gallery');
   if (galleryEl && prop.photos && prop.photos.length) {
     prop.photos.forEach(function (url) {

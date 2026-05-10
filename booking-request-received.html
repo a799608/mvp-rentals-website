@@ -22,13 +22,7 @@
 <main class="confirmation">
   <div class="check">✓</div>
   <h1>Request received.</h1>
-  <p id="summary">Thanks — we&apos;ll get back to you shortly.</p>
-  <p style="margin-top:18px;">
-    Watch your email and phone — we usually reply within a few hours during the day.
-    Questions in the meantime? Email
-    <a href="mailto:wm.m.morris@gmail.com">wm.m.morris@gmail.com</a>
-    or text <a href="tel:+16106210769">(610) 621-0769</a>.
-  </p>
+  <p id="summary">Thanks! Will will be in contact regarding next steps and payment. Once details are finalized, you&apos;ll receive a Venmo payment request directly from Will. Your reservation is confirmed as soon as payment is received.</p>
   <p style="margin-top:22px;"><a href="index.html">← Back to all homes</a></p>
 
 <section class="utility-cta">
@@ -61,7 +55,7 @@
   var ci = qs.get("checkIn");
   var co = qs.get("checkOut");
   if (name && prop && ci && co) {
-    var s = "Thanks " + name + " — we have your request for " + prop + ", " + ci + " to " + co + ". We will reply shortly to confirm and arrange payment.";
+    var s = "Thanks " + name + "! We have your request for " + prop + ", " + ci + " to " + co + ". Will will be in contact regarding next steps and payment. Once details are finalized, you will receive a Venmo payment request directly from Will. Your reservation is confirmed as soon as payment is received.";
     document.getElementById("summary").textContent = s;
   }
 })();

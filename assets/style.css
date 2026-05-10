@@ -227,6 +227,7 @@ section + section { border-top: 1px solid var(--line); }
   font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 12px; line-height: 1.5;
 }
 .booking-form .sms-consent a { color: var(--gold-soft); }
+.booking-form .form-payment-note { font-size: 13px; color: var(--ink-soft); font-style: italic; margin: 0 0 12px 0; line-height: 1.45; }
 .booking-form button[type=submit] {
   background: var(--green); color: #fff; border: 0;
   padding: 12px 22px; border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600;
