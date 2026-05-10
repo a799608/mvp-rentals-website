@@ -276,6 +276,24 @@ window.SITE_CONFIG = {
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/0db00cfc-8abb-456e-8565-1a1beac142c4.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/c7e5d05a-904a-4c40-8fd1-4e4d200a5341.jpeg"
       ],
+      photosByRoom: {
+        "Living room": [],
+        "Full kitchen": [],
+        "Dining area": [],
+        "Bedroom 1": [],
+        "Bedroom 2": [],
+        "Bedroom 3": [],
+        "Bedroom 4": [],
+        "Full bathroom 1": [],
+        "Full bathroom 2": [],
+        "Backyard": [],
+        "Patio": [],
+        "Exterior": [],
+        "Movie theater": [],
+        "Game room 1": [],
+        "Game room 2": [],
+        "Additional photos": []
+      },
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/776227061200723382",
         vrbo: "https://www.vrbo.com/3133799"
