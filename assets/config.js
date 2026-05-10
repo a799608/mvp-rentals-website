@@ -579,7 +579,14 @@ window.SITE_CONFIG = {
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/2522f3ef-6a4a-49c5-adee-324e064e2abb.jpeg",
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/c385d900-a751-4779-b37a-62d17a06b671.jpeg"
         ],
-        "Movie theater": [],
+        "Movie theater": [
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/9092dc4e-9367-4ec8-aade-c05947294141.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/887ca902-3d7d-4bac-ad36-410673988a81.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/03575a76-3f0e-419c-b58d-527a7cd0fa71.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/9bad1633-f58e-4c42-b38c-aab659e36dc2.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/84ceffb5-f5bc-4b85-974e-dfbc0c1e09bb.jpeg",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6Nzc2MjI3MDYxMjAwNzIzMzgy/original/5cb0f2de-5f0f-4b52-b1a8-535ff6555653.jpeg"
+        ],
         "Game room 1": [],
         "Game room 2": [],
         "Additional photos": []
