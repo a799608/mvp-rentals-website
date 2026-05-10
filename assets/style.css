@@ -287,3 +287,8 @@ section + section { border-top: 1px solid var(--line); }
 .photo-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
 .photo-gallery img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-md); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; background: var(--panel-2); }
 .photo-gallery img:hover { transform: scale(1.02); box-shadow: var(--shadow-md); }
+
+/* ========= per-property word cloud ========= */
+.wordcloud-section { padding: 40px 0; }
+.wordcloud-section h2 { margin-bottom: 6px; }
+.wordcloud-section img { border-radius: var(--radius-md); }
