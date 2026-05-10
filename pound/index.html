@@ -215,14 +215,41 @@ window.SITE_CONFIG.basePath = "../";
   });
 
   var galleryEl = document.getElementById('photo-gallery');
-  if (galleryEl && prop.photos && prop.photos.length) {
-    prop.photos.forEach(function (url) {
-      var img = document.createElement('img');
-      img.src = url;
-      img.alt = prop.name;
-      img.loading = 'lazy';
-      galleryEl.appendChild(img);
-    });
+  if (galleryEl) {
+    var __pbr = prop.photosByRoom;
+    var __hasGrouped = __pbr && typeof __pbr === 'object' && Object.keys(__pbr).some(function (k) { return Array.isArray(__pbr[k]) && __pbr[k].length; });
+    if (__hasGrouped) {
+      galleryEl.classList.add('photo-gallery--grouped');
+      Object.keys(__pbr).forEach(function (room) {
+        var urls = __pbr[room];
+        if (!Array.isArray(urls) || !urls.length) return;
+        var section = document.createElement('div');
+        section.className = 'photo-room';
+        var heading = document.createElement('h3');
+        heading.className = 'photo-room__heading';
+        heading.textContent = room;
+        section.appendChild(heading);
+        var grid = document.createElement('div');
+        grid.className = 'photo-room__grid';
+        urls.forEach(function (url) {
+          var img = document.createElement('img');
+          img.src = url;
+          img.alt = prop.name + ' - ' + room;
+          img.loading = 'lazy';
+          grid.appendChild(img);
+        });
+        section.appendChild(grid);
+        galleryEl.appendChild(section);
+      });
+    } else if (prop.photos && prop.photos.length) {
+      prop.photos.forEach(function (url) {
+        var img = document.createElement('img');
+        img.src = url;
+        img.alt = prop.name;
+        img.loading = 'lazy';
+        galleryEl.appendChild(img);
+      });
+    }
   }
 
 })();
