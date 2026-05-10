@@ -91,6 +91,30 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
 .value-props { display: flex; justify-content: center; gap: 14px; margin: 4px 0 18px; flex-wrap: wrap; }
 .value-prop { font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 0.4px; text-transform: uppercase; font-weight: 600; }
 .value-prop::before { content: '•'; color: var(--gold); margin-right: 6px; }
+/* Union calendar (homepage) */
+.union-cal-block { margin: 18px 0 12px; text-align: left; }
+.union-cal-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; gap: 8px; }
+.union-cal-summary { font-size: 12px; color: rgba(255,255,255,0.65); }
+.union-cal-host .calendar-months { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 8px; }
+.union-cal-host .calendar-month { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 8px 8px 10px; }
+.union-cal-host .calendar-month-label { font-size: 11px; color: var(--gold); text-align: center; margin-bottom: 4px; padding-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,0.08); font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; }
+.union-cal-host .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.union-cal-host .cal-dow { font-size: 9px; text-align: center; color: rgba(255,255,255,0.45); padding: 2px 0; font-weight: 700; letter-spacing: 0.5px; }
+.union-cal-host .cal-cell { aspect-ratio: 1 / 1; min-height: 22px; display: flex; align-items: center; justify-content: center; font-size: 11px; border-radius: 4px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.9); cursor: pointer; transition: background 0.15s, transform 0.05s; user-select: none; border: 1px solid transparent; }
+.union-cal-host .cal-cell .day { font-weight: 600; line-height: 1; }
+.union-cal-host .cal-cell.empty { background: transparent; cursor: default; }
+.union-cal-host .cal-cell:hover:not(.empty):not(.booked):not(.past) { background: rgba(200,153,10,0.25); border-color: var(--gold); }
+.union-cal-host .cal-cell.booked { background: #0d130d; color: rgba(255,255,255,0.18); cursor: not-allowed; pointer-events: none; }
+.union-cal-host .cal-cell.booked .day { text-decoration: line-through; }
+.union-cal-host .cal-cell.past { opacity: 0.25; cursor: not-allowed; pointer-events: none; }
+.union-cal-host .cal-cell.in-range { background: rgba(200,153,10,0.18); }
+.union-cal-host .cal-cell.endpoint { background: var(--gold); color: #07120a; border-color: #fff; }
+.union-cal-legend { display: flex; flex-wrap: wrap; gap: 10px 14px; margin-top: 6px; font-size: 10px; color: rgba(255,255,255,0.55); }
+.union-cal-legend .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: middle; margin-right: 4px; }
+@media (max-width: 480px) {
+  .union-cal-host .calendar-months { grid-template-columns: 1fr; gap: 8px; }
+  .union-cal-host .cal-cell { font-size: 12px; }
+}
 </style>
 </head>
 <body>
@@ -134,7 +158,14 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
       <span class="value-prop">Direct from owner</span>
     </div>
 
-    <div class="date-row">
+    <div class="union-cal-block">
+      <div class="union-cal-header">
+        <div class="input-lbl">Pick your dates</div>
+        <div class="union-cal-summary" id="unionCalSummary">No dates selected</div>
+      </div>
+      <div id="unionCalendar" class="union-cal-host"></div>
+    </div>
+    <div class="date-row" style="display:none;" aria-hidden="true">
       <div>
         <div class="input-lbl">Check-in</div>
         <input type="date" id="checkInInput" class="date-input">
@@ -167,6 +198,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
 </div>
 
 <script src="assets/config.js"></script>
+<script src="assets/calendar.js"></script>
 <script>
 (function () {
   var GAS_URL = window.SITE_CONFIG && window.SITE_CONFIG.endpoints && window.SITE_CONFIG.endpoints.availability;
@@ -361,6 +393,42 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
   }
 }
   createSnowflakes();
+
+  // Inline union-mode calendar: black out only nights where ALL 6 properties are booked.
+  (function bootUnionCalendar() {
+    var host = document.getElementById("unionCalendar");
+    var summary = document.getElementById("unionCalSummary");
+    if (!host || !window.MVPCalendar || !window.MVPCalendar.createUnion) return;
+    var props = (window.SITE_CONFIG && window.SITE_CONFIG.properties) || [];
+    var names = props.map(function (p) { return p.name; });
+    function setNativeInputs(ci, co) {
+      checkInEl.value = ci || "";
+      checkOutEl.value = co || "";
+      checkOutEl.min = ci || ymdToday();
+    }
+    function fmtRange(ci, co) {
+      if (!ci || !co) return "No dates selected";
+      var a = parseYmd(ci), b = parseYmd(co);
+      var nights = Math.round((b - a) / (1000*60*60*24));
+      var opts = { month: "short", day: "numeric" };
+      return a.toLocaleDateString("en-US", opts) + " → " + b.toLocaleDateString("en-US", opts) + " (" + nights + " night" + (nights === 1 ? "" : "s") + ")";
+    }
+    window.MVPCalendar.createUnion({
+      container: host,
+      endpoint: GAS_URL,
+      months: 3,
+      propertyNames: names,
+      onChange: function (sel) {
+        setNativeInputs(sel.checkIn, sel.checkOut);
+        summary.textContent = fmtRange(sel.checkIn, sel.checkOut);
+        refresh();
+      },
+      onLoaded: function (info) {
+        // Expose for diagnostics.
+        window.__unionBookedSet = info.bookedSet;
+      },
+    });
+  })();
 })();
 </script>
 
