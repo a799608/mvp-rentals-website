@@ -539,8 +539,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
           if (state.checkOut && state.checkOut <= state.checkIn) state.checkOut = '';
           syncInputs();
           clearErrorOnInput();
-          // Auto-advance to the check-out picker.
-          openPopover('checkOut');
+          closePopover();
         } else {
           state.checkOut = info.date;
           syncInputs();
