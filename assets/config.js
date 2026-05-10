@@ -416,7 +416,11 @@ window.SITE_CONFIG = {
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NDAyMjkzMjA=/original/9456e0c8-decd-4066-9c8f-0b25e8136390.jpeg",
       "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NDAyMjkzMjA=/original/7a28a2c0-e1d2-4964-a097-d9b7cd2e0b3e.jpeg"
     ],
-        "Exterior": [],
+        "Exterior": [
+      "https://a0.muscache.com/im/pictures/fdc6b565-cf85-4bc2-8193-49b7e4323569.jpg",
+      "https://a0.muscache.com/im/pictures/c705f6cf-a5d1-4c6b-b1e7-ff2f7c957c70.jpg",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-40229320/original/52bd35b2-6d07-472d-91f2-d21598999d04.jpeg"
+    ],
         "Additional photos": []
       },
       platformUrls: {
