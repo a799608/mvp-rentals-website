@@ -168,7 +168,35 @@ window.SITE_CONFIG = {
           "https://a0.muscache.com/im/pictures/hosting/Hosting-1273155947919003993/original/eefce259-eea2-4bf8-8f01-991bfc99b8e3.jpeg",
           "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTI3MzE1NTk0NzkxOTAwMzk5Mw%3D%3D/original/efeef297-8ad2-440c-85b6-695712f87244.jpeg"
         ],
-        "Additional photos": []
+        "Additional photos": [
+          "https://a0.muscache.com/im/pictures/ca610c5c-ca37-4810-8052-dfdbb2ce0460.jpg",
+          "https://a0.muscache.com/im/pictures/fdaf81a6-68be-415f-ae47-b462ec7844aa.jpg",
+          "https://a0.muscache.com/im/pictures/18267aa0-676d-4c15-840c-1f99690d494c.jpg",
+          "https://a0.muscache.com/im/pictures/5579e26b-96bd-43f2-9f8a-1b433f3a8052.jpg",
+          "https://a0.muscache.com/im/pictures/dd02276c-0403-466c-bba5-9839f816730c.jpg",
+          "https://a0.muscache.com/im/pictures/eb457696-05a1-406a-91f7-5ee2768650f3.jpg",
+          "https://a0.muscache.com/im/pictures/25e21f79-6c6f-4990-a1be-e432df97fc1c.jpg",
+          "https://a0.muscache.com/im/pictures/4eb26406-beef-406d-8068-376a773606f0.jpg",
+          "https://a0.muscache.com/im/pictures/9813426f-ff48-441c-9634-80349deffd13.jpg",
+          "https://a0.muscache.com/im/pictures/12bddf3e-f308-4015-864e-df6468e99854.jpg",
+          "https://a0.muscache.com/im/pictures/84252d04-d209-4bd5-a8d5-0ceced34b6a6.jpg",
+          "https://a0.muscache.com/im/pictures/e04834dd-8121-4363-9376-ab7243ae9493.jpg",
+          "https://a0.muscache.com/im/pictures/96afc4a5-9584-471d-a027-f63ca328954a.jpg",
+          "https://a0.muscache.com/im/pictures/83c3534a-b1c1-4cbd-86fb-293bde5b0a88.jpg",
+          "https://a0.muscache.com/im/pictures/a788d4db-32b4-453d-a6ed-0d29739fc415.jpg",
+          "https://a0.muscache.com/im/pictures/67c9f27b-a6af-4a06-8e41-7f09667a6435.jpg",
+          "https://a0.muscache.com/im/pictures/d2366e2d-ae05-400d-9754-4a80dbb841f8.jpg",
+          "https://a0.muscache.com/im/pictures/f741284d-0753-449c-afda-c2fe46bcd2cc.jpg",
+          "https://a0.muscache.com/im/pictures/85e53a65-e1d0-4117-8a2b-4d8a9a1a975e.jpg",
+          "https://a0.muscache.com/im/pictures/4b7b33e7-33e1-4761-8aca-09d42ac515b2.jpg",
+          "https://a0.muscache.com/im/pictures/e4a6b12d-e4d5-4815-86b4-37a7df13849e.jpg",
+          "https://a0.muscache.com/im/pictures/e7914ac2-881b-42ae-a9da-8724e11b0879.jpg",
+          "https://a0.muscache.com/im/pictures/a88e4602-e512-466c-93f3-369a50c9aa67.jpg",
+          "https://a0.muscache.com/im/pictures/44052075-6ac0-4694-bdbb-48040e0105ed.jpg",
+          "https://a0.muscache.com/im/pictures/511e82bb-1ed2-4869-9990-8fe92a29197e.jpg",
+          "https://a0.muscache.com/im/pictures/406f5170-2745-4b47-ac35-c1207854c077.jpg",
+          "https://a0.muscache.com/im/pictures/8f4f2b16-64f4-4864-8281-a40202ab2398.jpg"
+        ]
       },
       platformUrls: {
         airbnb: "https://www.airbnb.com/rooms/1273155947919003993",
