@@ -247,9 +247,9 @@ section + section { border-top: 1px solid var(--line); }
 .pay-block .copy-btn:hover { background: var(--gold-soft); color: var(--bg); }
 .pay-block p { font-size: 0.9rem; color: var(--ink-soft); margin: 6px 0 0; }
 
-.included-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 6px; }
-.included-list li { padding-left: 22px; position: relative; font-size: 0.95rem; color: var(--ink); }
-.included-list li::before { content: "✓"; position: absolute; left: 0; color: var(--gold-soft); font-weight: 700; }
+.included-list { list-style: none; padding: 0; display: block; }
+.included-list li { padding: 5px 0 5px 22px; position: relative; font-size: 0.95rem; color: var(--ink); }
+.included-list li:not(.included-section)::before { content: "✓"; position: absolute; left: 0; color: var(--gold-soft); font-weight: 700; }
 
 .site-footer { background: var(--green-dark); color: #fff; padding: 28px 0; margin-top: 40px; font-size: 0.9rem; }
 .site-footer .container { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
@@ -349,11 +349,8 @@ section + section { border-top: 1px solid var(--line); }
 .photo-cell--empty .photo-cell__empty { display: flex; align-items: center; justify-content: center; height: 100%; color: rgba(255,255,255,0.45); font-style: italic; font-size: 0.95rem; letter-spacing: 0.5px; }
 .photo-cell--empty .photo-cell__count { color: rgba(232, 197, 71, 0.6); }
 
-/* Included list section headings + smaller parenthetical note */
-.included-list { list-style: none; padding-left: 0; }
-.included-list li { padding: 4px 0 4px 18px; position: relative; }
-.included-list li:not(.included-section)::before { content: "2"; position: absolute; left: 0; color: var(--gold-soft); }
-.included-list .included-section { list-style: none; padding-left: 0; font-weight: 700; color: var(--gold-soft); text-transform: uppercase; letter-spacing: 0.6px; font-size: 0.85em; margin-top: 16px; }
+/* Section headings + parenthetical note (community/home split) */
+.included-list .included-section { padding-left: 0; margin: 14px 0 4px; font-weight: 700; color: var(--gold-soft); text-transform: uppercase; letter-spacing: 0.6px; font-size: 0.8em; }
 .included-list .included-section:first-child { margin-top: 0; }
 .included-list .included-section::before { content: none; }
-.amenity-note { font-size: 0.78em; color: rgba(255,255,255,0.55); font-style: italic; }
+.amenity-note { font-size: 0.82em; color: rgba(255,255,255,0.55); font-style: italic; margin-left: 4px; }
