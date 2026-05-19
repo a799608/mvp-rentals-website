@@ -135,7 +135,6 @@
     document.getElementById('prPayHeader').textContent='Pay '+fmtMoney(payNow)+' now';
   }
 
-  document.getElementById('prBtnAmt').textContent=fmtMoney(payNow);
   var venmoUrl='https://account.venmo.com/u/'+encodeURIComponent(VENMO_HANDLE)
     +'?txn=pay&amount='+Number(payNow).toFixed(2)
     +'&note='+encodeURIComponent(memo);
@@ -155,6 +154,7 @@
 
 </body>
 </html>
+
 
 
 
