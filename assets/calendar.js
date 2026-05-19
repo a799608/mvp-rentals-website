@@ -356,10 +356,14 @@
         var isPast = cellDate < today;
         var isFullyBooked = bookedSet.has(cellYmd);
         var isBeforeCheckIn = checkInBoundary && cellYmd <= checkInBoundary;
-        var disabled = isPast || isFullyBooked || isBeforeCheckIn;
+        // For check-OUT mode, "all 6 booked that night" is irrelevant: checkout
+        // is a leaving-day, not a sleeping-night. So only disable booked nights
+        // when picking check-IN.
+        var blocksThisField = activeField === "checkIn" && isFullyBooked;
+        var disabled = isPast || blocksThisField || isBeforeCheckIn;
         var cell = document.createElement("div");
         cell.className = "cal-cell union-cell";
-        if (isFullyBooked) cell.classList.add("booked");
+        if (blocksThisField) cell.classList.add("booked");
         if (isPast) cell.classList.add("past");
         if (isBeforeCheckIn && !isPast && !isFullyBooked) cell.classList.add("disabled");
         if (ci && cellYmd === ci) cell.classList.add("endpoint");
