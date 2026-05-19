@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Your reservation is ready &mdash; MVP Rentals</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  body{padding-bottom:60px}
+  .pr-wrap{max-width:540px;margin:0 auto;padding:18px}
+  .pr-resid{display:inline-block;background:var(--gold,#C8990A);color:#3a2a00;padding:4px 10px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:14px;font-family:Menlo,Consolas,monospace}
+  .pr-title{font-size:24px;margin:0 0 4px}
+  .pr-sub{margin:0 0 22px;color:#b9bdb6;font-size:14px}
+  .pr-card{background:var(--panel,#0f2614);border:1px solid var(--line,#2a3d2f);border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+  .pr-card .head{background:var(--green-dark,#174d1c);color:#fff;padding:14px 18px;font-size:13px;letter-spacing:.5px;text-transform:uppercase;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+  .pr-card .head .resid{font-family:Menlo,Consolas,monospace;background:rgba(255,255,255,.15);padding:3px 8px;border-radius:4px;font-size:11px;text-transform:none;letter-spacing:0}
+  .pr-card .body{padding:18px}
+  .pr-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line,#2a3d2f);color:#e8e8e8;font-size:13px}
+  .pr-row:last-child{border-bottom:0}
+  .pr-row .k{color:#b9bdb6}
+  .pr-row .v{font-weight:600;font-size:15px;text-align:right}
+  .pr-row.total .k{font-size:15px;color:#fff;font-weight:600}
+  .pr-row.total .v{font-size:22px;color:var(--gold-soft,#E8C547)}
+  .pay-section{margin-top:22px;padding:18px;background:var(--panel,#0f2614);border:1px solid var(--line,#2a3d2f);border-radius:12px}
+  .pay-section h2{margin:0 0 8px;font-size:18px;color:#fff}
+  .pay-section p.intro{margin:0 0 14px;color:#b9bdb6;font-size:13px}
+  a.pay-btn{display:flex;align-items:center;justify-content:center;width:100%;padding:18px;background:#3D95CE;color:#fff;text-decoration:none;border-radius:10px;font-size:17px;font-weight:700;letter-spacing:.3px}
+  a.pay-btn:hover{background:#2e7eb1}
+  .fallback{margin-top:14px;padding:14px;background:#143119;border:1px solid var(--line,#2a3d2f);border-radius:8px;font-size:13px;color:#e8e8e8}
+  .fallback h3{margin:0 0 8px;font-size:13px;color:#fff}
+  .fb-pair{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--line,#2a3d2f);font-family:Menlo,Consolas,monospace;font-size:12px}
+  .fb-pair:last-child{border-bottom:0}
+  .fb-pair .v{color:var(--gold-soft,#E8C547);font-weight:600;text-align:right;white-space:pre-line}
+  .footer-note{margin-top:18px;font-size:12px;color:#b9bdb6;text-align:center;line-height:1.5}
+  .split-block{margin-top:14px;padding:12px;background:#143119;border-radius:8px;border:1px dashed var(--gold-soft,#E8C547)}
+  .split-block h3{margin:0 0 6px;font-size:12px;color:var(--gold-soft,#E8C547);text-transform:uppercase;letter-spacing:.5px}
+  .split-row{display:flex;justify-content:space-between;font-size:13px;padding:3px 0;color:#e8e8e8}
+  .err{padding:14px;background:#3b1c1c;border:1px solid #6b2424;color:#fcd5d5;border-radius:8px;margin-top:18px;font-size:14px}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand-wrap"><img class="nav-logo" src="assets/logo.webp" alt="MVP Rentals"><span class="brand">MVP Rentals</span></a>
+    <nav><a href="index.html">Homes</a></nav>
+  </div>
+</header>
+
+<main>
+<div class="pr-wrap">
+  <span class="pr-resid" id="prResid"></span>
+  <h1 class="pr-title">Your reservation is ready</h1>
+  <p class="pr-sub">Will has reviewed and approved your booking. Tap below to pay via Venmo.</p>
+
+  <div class="pr-card">
+    <div class="head"><span id="prPropNights"></span><span class="resid" id="prResid2"></span></div>
+    <div class="body">
+      <div class="pr-row"><span class="k">Guest</span><span class="v" id="prGuest"></span></div>
+      <div class="pr-row"><span class="k">Property</span><span class="v" id="prProperty"></span></div>
+      <div class="pr-row"><span class="k">Check-in</span><span class="v" id="prCi"></span></div>
+      <div class="pr-row"><span class="k">Check-out</span><span class="v" id="prCo"></span></div>
+      <div class="pr-row"><span class="k">Nights</span><span class="v" id="prNights"></span></div>
+      <div class="pr-row total"><span class="k">Total</span><span class="v" id="prTotal"></span></div>
+    </div>
+  </div>
+
+  <div id="prSplitBlock" class="split-block" style="display:none">
+    <h3>2-payment plan</h3>
+    <div class="split-row"><span>Payment 1 (now)</span><span id="prPay1Amt"></span></div>
+    <div class="split-row"><span>Payment 2 due</span><span id="prPay2Due"></span></div>
+    <div class="split-row"><span>Payment 2 amount</span><span id="prPay2Amt"></span></div>
+  </div>
+
+  <div class="pay-section">
+    <h2 id="prPayHeader">Pay with Venmo</h2>
+    <p class="intro">Tap the button. Venmo opens with the amount, recipient, and memo all pre-filled. Confirm the final tap inside the Venmo app.</p>
+    <a class="pay-btn" id="prVenmoBtn" href="#">Pay <span id="prBtnAmt"></span> with Venmo</a>
+    <div class="fallback">
+      <h3>On a computer? Use these details in Venmo:</h3>
+      <div class="fb-pair"><span>Send to</span><span class="v">@William-Morris-167</span></div>
+      <div class="fb-pair"><span>Amount</span><span class="v" id="prFbAmt"></span></div>
+      <div class="fb-pair"><span>Memo</span><span class="v" id="prFbMemo"></span></div>
+    </div>
+    <p class="footer-note">Your reservation is confirmed the moment payment is received.</p>
+  </div>
+
+  <div id="prMissing" class="err" style="display:none">This reservation link is missing required information. Please contact Will at (610) 621-0769.</div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="legal">MVP Rentals is a d/b/a of Proper TTs LLC (PA).</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var VENMO_HANDLE = 'William-Morris-167';
+  function qs(k){var v=new URLSearchParams(location.search).get(k);return v?v:'';}
+  function fmtDate(iso){if(!iso)return'';var d=new Date(iso+'T00:00:00');return d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});}
+  function shortDate(iso){if(!iso)return'';var p=iso.split('-');return parseInt(p[1])+'/'+parseInt(p[2]);}
+  function nightsBetween(ci,co){if(!ci||!co)return 0;return Math.round((new Date(co)-new Date(ci))/86400000);}
+  function fmtMoney(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+
+  var resid=qs('resid'),prop=qs('prop'),guest=qs('guest'),ci=qs('ci'),co=qs('co'),total=qs('total');
+  var pay1=qs('pay1'),pay2=qs('pay2'),pay2due=qs('pay2due');
+
+  if(!resid||!prop||!ci||!co||!total){document.getElementById('prMissing').style.display='';return;}
+
+  var nights=nightsBetween(ci,co);
+  var payNow=pay1?Number(pay1):Number(total);
+  var memoLines=['ResID = '+resid,'House - '+prop,'Dates - '+shortDate(ci)+'-'+shortDate(co)];
+  if(pay1&&pay2&&Number(pay2)>0){memoLines.push('Payment 1 of 2');}
+  var memo=memoLines.join('\n');
+
+  document.getElementById('prResid').textContent='RESERVATION ID -- '+resid;
+  document.getElementById('prResid2').textContent=resid;
+  document.getElementById('prPropNights').textContent=prop+' -- '+nights+' nights';
+  document.getElementById('prGuest').textContent=guest;
+  document.getElementById('prProperty').textContent=prop;
+  document.getElementById('prCi').textContent=fmtDate(ci);
+  document.getElementById('prCo').textContent=fmtDate(co);
+  document.getElementById('prNights').textContent=nights;
+  document.getElementById('prTotal').textContent=fmtMoney(total);
+
+  if(pay1&&pay2&&Number(pay2)>0){
+    document.getElementById('prSplitBlock').style.display='';
+    document.getElementById('prPay1Amt').textContent=fmtMoney(pay1);
+    document.getElementById('prPay2Amt').textContent=fmtMoney(pay2);
+    document.getElementById('prPay2Due').textContent=pay2due?fmtDate(pay2due):'TBD';
+    document.getElementById('prPayHeader').textContent='Pay '+fmtMoney(payNow)+' now';
+  }
+
+  document.getElementById('prBtnAmt').textContent=fmtMoney(payNow);
+  document.getElementById('prFbAmt').textContent=fmtMoney(payNow);
+  document.getElementById('prFbMemo').textContent=memo;
+
+  var venmoUrl='https://account.venmo.com/u/'+encodeURIComponent(VENMO_HANDLE)
+    +'?txn=pay&amount='+Number(payNow).toFixed(2)
+    +'&note='+encodeURIComponent(memo);
+  document.getElementById('prVenmoBtn').href=venmoUrl;
+})();
+</script>
+
+</body>
+</html>
