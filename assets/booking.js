@@ -224,9 +224,14 @@
         smsConsent: !!fd.get("smsConsent"),
         total: state.total,
       };
-      if (!payload.name || !payload.email || !payload.phone || !payload.partySize) {
+      if (!payload.name || !payload.partySize) {
         msgEl.classList.add("error");
-        msgEl.textContent = "Please fill in name, email, phone, and party size.";
+        msgEl.textContent = "Please fill in name and party size.";
+        return;
+      }
+      if (!payload.email && !payload.phone) {
+        msgEl.classList.add("error");
+        msgEl.textContent = "Please provide either an email or a phone number so we can reach you.";
         return;
       }
       if (!payload.smsConsent) {

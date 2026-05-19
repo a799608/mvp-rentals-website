@@ -115,11 +115,14 @@ function doPost(e) {
       return jsonResponse_({ ok: false, error: 'No payload' });
     }
     const body = JSON.parse(e.postData.contents);
-    const required = ['property', 'checkIn', 'checkOut', 'name', 'email', 'phone', 'partySize'];
+    const required = ['property', 'checkIn', 'checkOut', 'name', 'partySize'];
     for (let i = 0; i < required.length; i++) {
       if (!body[required[i]]) {
         return jsonResponse_({ ok: false, error: 'Missing field: ' + required[i] });
       }
+    }
+    if (!body.email && !body.phone) {
+      return jsonResponse_({ ok: false, error: 'Please provide either an email or a phone number.' });
     }
     const ss = SpreadsheetApp.openById(SHEET_ID);
     let tab = ss.getSheetByName(REQUESTS_TAB);
