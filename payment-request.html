@@ -132,7 +132,6 @@
     document.getElementById('prPay1Amt').textContent=fmtMoney(pay1);
     document.getElementById('prPay2Amt').textContent=fmtMoney(pay2);
     document.getElementById('prPay2Due').textContent=pay2due?(function(iso){var p=iso.split('-');var d=new Date(p[0],p[1]-1,p[2]);return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});})(pay2due):'TBD';
-    document.getElementById('prPayHeader').textContent='Pay '+fmtMoney(payNow)+' now';
   }
 
   var venmoUrl='https://account.venmo.com/u/'+encodeURIComponent(VENMO_HANDLE)
@@ -154,6 +153,7 @@
 
 </body>
 </html>
+
 
 
 
