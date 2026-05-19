@@ -68,8 +68,7 @@
 
   <div id="prSplitBlock" class="split-block" style="display:none">
     <div class="split-row"><span>Payment 1 (now)</span><span id="prPay1Amt"></span></div>
-    <div class="split-row"><span>Payment 2</span><span id="prPay2Amt"></span></div>
-    <div class="split-row"><span></span><span id="prPay2Due"></span></div>
+    <div class="split-row"><span>Payment 2 (<span id="prPay2Due"></span>)</span><span id="prPay2Amt"></span></div>
   </div>
 
   <div class="pay-section">
@@ -133,7 +132,7 @@
     document.getElementById('prSplitBlock').style.display='';
     document.getElementById('prPay1Amt').textContent=fmtMoney(pay1);
     document.getElementById('prPay2Amt').textContent=fmtMoney(pay2);
-    document.getElementById('prPay2Due').textContent=pay2due?fmtDate(pay2due):'TBD';
+    document.getElementById('prPay2Due').textContent=pay2due?(function(iso){var p=iso.split('-');var d=new Date(p[0],p[1]-1,p[2]);return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});})(pay2due):'TBD';
     document.getElementById('prPayHeader').textContent='Pay '+fmtMoney(payNow)+' now';
   }
 
