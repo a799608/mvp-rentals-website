@@ -218,6 +218,7 @@
         email: (fd.get("email") || "").trim(),
         phone: (fd.get("phone") || "").trim(),
         partySize: Number(fd.get("partySize") || 0),
+        petsRaw: petsEl ? petsEl.value : "",
         pets: petsEl ? petsEl.value === "yes" : false,
         petCount: petCountEl && !petCountEl.disabled ? Number(petCountEl.value) : 0,
         message: (fd.get("message") || "").trim(),
@@ -232,6 +233,16 @@
       if (!payload.email && !payload.phone) {
         msgEl.classList.add("error");
         msgEl.textContent = "Please provide either an email or a phone number so we can reach you.";
+        return;
+      }
+      if (payload.petsRaw !== "yes" && payload.petsRaw !== "no") {
+        msgEl.classList.add("error");
+        msgEl.textContent = "Please indicate whether you are bringing pets.";
+        return;
+      }
+      if (payload.pets && payload.petCount < 1) {
+        msgEl.classList.add("error");
+        msgEl.textContent = "Please indicate how many pets you are bringing.";
         return;
       }
       if (!payload.smsConsent) {
