@@ -132,7 +132,7 @@
     document.getElementById('prPay2Due').textContent=pay2due?(function(iso){var p=iso.split('-');var d=new Date(p[0],p[1]-1,p[2]);return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});})(pay2due):'TBD';
   }
 
-  var venmoUrl='https://account.venmo.com/u/'+encodeURIComponent(VENMO_HANDLE)
+  var venmoUrl='https://venmo.com/'+encodeURIComponent(VENMO_HANDLE)
     +'?txn=pay&amount='+Number(payNow).toFixed(2)
     +'&note='+encodeURIComponent(memo);
   document.getElementById('prVenmoBtn').href=venmoUrl;
@@ -151,6 +151,7 @@
 
 </body>
 </html>
+
 
 
 
