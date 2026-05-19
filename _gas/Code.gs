@@ -62,28 +62,45 @@ function jsonResponse_(obj) {
  */
 function doGet(e) {
   try {
+    // 5-min CacheService ? most calls serve from cache (~50ms instead of 10-15s)
+    const cache = CacheService.getScriptCache();
+    const cached = cache.get('availability_v2');
+    if (cached) {
+      return ContentService
+        .createTextOutput(cached)
+        .setMimeType(ContentService.MimeType.JSON);
+    }
     const ss = SpreadsheetApp.openById(SHEET_ID);
     const sh = ss.getSheetByName(BOOKINGS_TAB);
     if (!sh) throw new Error('Sheet not found: ' + BOOKINGS_TAB);
     const lastRow = sh.getLastRow();
     if (lastRow < DATA_START_ROW) return jsonResponse_({});
     const numRows = lastRow - DATA_START_ROW + 1;
-    const lastCol = Math.max(COL_CANCELLED, COL_CHECKOUT, COL_PROPERTY);
-    const values = sh.getRange(DATA_START_ROW, 1, numRows, lastCol).getValues();
+    // Read only the columns we need rather than all 47.
+    // D = property (col 4), E = checkin (5), F = checkout (6), AU = cancelled (47)
+    // Two small ranges = much faster than one giant range.
+    const propRange = sh.getRange(DATA_START_ROW, COL_PROPERTY, numRows, 3).getValues(); // D-F
+    const cancelRange = sh.getRange(DATA_START_ROW, COL_CANCELLED, numRows, 1).getValues(); // AU
+    // Filter to future bookings only ? past stays are irrelevant for availability checks.
+    const todayStr = Utilities.formatDate(new Date(), Session.getScriptTimeZone() || 'America/New_York', 'yyyy-MM-dd');
     const out = {};
-    values.forEach(function (row) {
-      const property = row[COL_PROPERTY - 1];
-      if (!property) return;
-      const cancelled = row[COL_CANCELLED - 1];
-      if (cancelled) return; // skip cancelled
-      const checkIn = fmtYmd_(row[COL_CHECKIN - 1]);
-      const checkOut = fmtYmd_(row[COL_CHECKOUT - 1]);
-      if (!checkIn || !checkOut) return;
+    for (let i = 0; i < propRange.length; i++) {
+      const property = propRange[i][0];
+      if (!property) continue;
+      if (cancelRange[i][0]) continue; // skip cancelled
+      const checkIn = fmtYmd_(propRange[i][1]);
+      const checkOut = fmtYmd_(propRange[i][2]);
+      if (!checkIn || !checkOut) continue;
+      if (checkOut < todayStr) continue; // past booking ? skip
       const key = String(property).trim();
       if (!out[key]) out[key] = [];
       out[key].push([checkIn, checkOut]);
-    });
-    return jsonResponse_(out);
+    }
+    const json = JSON.stringify(out);
+    try { cache.put('availability_v2', json, 300); } catch (_) {} // 5-min TTL, ignore quota errors
+    return ContentService
+      .createTextOutput(json)
+      .setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
     return jsonResponse_({ error: String(err && err.message || err) });
   }

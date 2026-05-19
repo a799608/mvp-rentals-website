@@ -377,7 +377,8 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
       var booked = (avail[name] || []);
       var conflict = rangeOverlapsBooked(ci, co, booked);
       var tooSmall = guests > 0 && maxG < guests;
-      var amenities = (prop && prop.included) || [];
+      var inc = (prop && prop.included) || [];
+      var amenities = Array.isArray(inc) ? inc : [].concat(inc.community || [], inc.home || []);
       var hasGame = amenities.some(function (a) { return /game|arcade/i.test(a); });
       var hasTheater = amenities.some(function (a) { return /theater/i.test(a); });
       var missingAmenity = (needGame && !hasGame) || (needTheater && !hasTheater);
