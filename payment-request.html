@@ -103,7 +103,7 @@
   var VENMO_HANDLE = 'William-Morris-167';
   function qs(k){var v=new URLSearchParams(location.search).get(k);return v?v:'';}
   function fmtDate(iso){if(!iso)return'';var d=new Date(iso+'T00:00:00');return d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});}
-  function shortDate(iso){if(!iso)return'';var p=iso.split('-');return parseInt(p[1])+'/'+parseInt(p[2])+'/'+String(p[0]).slice(2);}
+  function shortDate(iso){if(!iso)return'';var p=iso.split('-');return parseInt(p[1])+'.'+parseInt(p[2])+'.'+String(p[0]).slice(2);}
   function nightsBetween(ci,co){if(!ci||!co)return 0;return Math.round((new Date(co)-new Date(ci))/86400000);}
   function fmtMoney(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
 
@@ -114,9 +114,9 @@
 
   var nights=nightsBetween(ci,co);
   var payNow=pay1?Number(pay1):Number(total);
-  var memoParts=[resid, prop, shortDate(ci)+' to '+shortDate(co)];
-  if(pay1&&pay2&&Number(pay2)>0){memoParts.push('Pay 1 of 2');}
-  var memo=memoParts.join(' ');
+  var memoParts=[resid, prop, shortDate(ci)+'_to_'+shortDate(co)];
+  if(pay1&&pay2&&Number(pay2)>0){memoParts.push('Pay-1-of-2');}
+  var memo=memoParts.join('_');
 
   document.getElementById('prResid').textContent=resid;  document.getElementById('prGuest').textContent=guest;
   document.getElementById('prProperty').textContent=prop;
