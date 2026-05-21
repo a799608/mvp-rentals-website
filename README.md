@@ -185,3 +185,40 @@ The `Booking Requests` tab on `mvp_bookings` (written by `_gas/Code.gs` doPost a
 - SMS sending infrastructure (separate repo: `mvp-rentals`, GV gateway + webhook)
 - mvp_bookings spreadsheet schema (separate doc in `mvp-rentals` repo)
 
+
+
+---
+
+## payment-request.html -- Direct Booking payment page
+
+Reached from the SMS Will sends after approving a booking request on the Reservation Lifecycle dashboard. Query parameters:
+
+```
+?resid=Direct-60      reservation ID assigned by the lifecycle server
+&prop=Milton          property name
+&guest=jack+morris    guest name
+&ci=2026-05-20        check-in (YYYY-MM-DD)
+&co=2026-05-21        check-out (YYYY-MM-DD)
+&total=1.00           total amount
+&pay1=...&pay2=...    optional 2-payment plan amounts
+&pay2due=YYYY-MM-DD   optional 2-payment due date
+```
+
+Renders the booking summary card and three pay buttons (Venmo Universal Link, Zelle reveal, Check reveal). Venmo URL constructed as:
+
+```
+https://venmo.com/William-Morris-167?txn=pay&amount=1.00&note=Direct-60_Milton_5.20.26_to_5.21.26
+```
+
+### Memo format -- why underscores
+
+The memo intentionally uses URL-unreserved characters only (`A-Z a-z 0-9 - _ .`). Spaces and `/` are avoided because of a Venmo iOS pre-pay screen rendering quirk: when the memo is URL-encoded with `%20` or `+`, the Venmo iOS app displays the literal `+` character on the pre-pay screen instead of a space. Underscores and dots pass through unchanged.
+
+The downstream Venmo payment watcher (`mvp-rentals/Data/mvp_gmail_new_bookings.py`) extracts `Direct-N` via regex regardless of surrounding characters, so the underscore format is purely cosmetic for the guest.
+
+References:
+- Venmo iOS SDK encoder uses `NSUTF8` percent encoding (would produce `%20`): https://raw.githubusercontent.com/venmo/venmo-ios-sdk/master/venmo-sdk/Categories/NSURL%2BVenmoSDK.m
+- Venmo Android library does `URLEncoder.encode(...).replaceAll("\\+", "%20")`: https://github.com/venmo/app-switch-android/blob/master/VenmoLibrary.java
+- Both first-party libraries send `%20`. The iOS app's pre-pay display behavior is undocumented and renders `%20` (and `+`) literally as `+`.
+
+Full Direct Booking pipeline doc lives in the `mvp-rentals` repo: `Data/DIRECT_BOOKING_PIPELINE.md`.
