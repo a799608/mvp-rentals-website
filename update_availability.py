@@ -33,6 +33,7 @@ def main():
     out = {}
     skipped_past = 0
     skipped_cancelled = 0
+    invalid = []
     for i, row in enumerate(df_rows):
         while len(row) < 3: row.append("")
         prop = (row[0] or "").strip()
@@ -48,6 +49,9 @@ def main():
         if co < today:
             skipped_past += 1
             continue
+        if co <= ci:
+            invalid.append((i + 5, prop, str(row[1]), str(row[2])))
+            continue
         out.setdefault(prop, []).append([ci.isoformat(), co.isoformat()])
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(out, f, separators=(",", ":"))
@@ -55,6 +59,9 @@ def main():
     total = sum(len(v) for v in out.values())
     print(f"[ok] wrote {OUT_PATH} ({sz} bytes) -- {total} future bookings across {len(out)} properties, skipped {skipped_past} past + {skipped_cancelled} cancelled")
     for p, v in sorted(out.items()): print(f"   {p:12s} {len(v)} bookings")
+    if invalid:
+        print(f"[warn] skipped {len(invalid)} invalid range(s) (checkout <= checkin) -- fix these rows in mvp_bookings:")
+        for r in invalid: print(f"   row {r[0]:>4}  {r[1]:12s} checkin={r[2]} checkout={r[3]}")
 
 if __name__ == "__main__":
     main()

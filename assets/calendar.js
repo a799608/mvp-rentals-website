@@ -85,10 +85,6 @@
     var endpoint = opts.endpoint;
     var monthsToShow = opts.months || 3;
 
-    var weekday = Number(property.rates.weekday);
-    var weekend = Number(property.rates.weekend);
-    var ratesUsable = !isNaN(weekday) && !isNaN(weekend);
-
     var bookedSet = new Set();
     var checkIn = null;
     var checkOut = null;
@@ -106,10 +102,9 @@
     var legend = document.createElement("div");
     legend.className = "calendar-legend";
     legend.innerHTML =
-      '<span><span class="swatch" style="background:#EDE5D2"></span>Open weekday</span>' +
-      '<span><span class="swatch" style="background:#FBE9B6"></span>Open weekend</span>' +
-      '<span><span class="swatch" style="background:#E5E0D2"></span>Booked</span>' +
-      '<span><span class="swatch" style="background:var(--accent,#1F6224)"></span>Selected</span>';
+      '<span><span class="swatch" style="background:#174d1c"></span>Available</span>' +
+      '<span><span class="swatch" style="background:#8a8f8a"></span>Booked</span>' +
+      '<span><span class="swatch" style="background:#C8990A"></span>Selected</span>';
     container.appendChild(legend);
 
     function emitChange() {
@@ -187,11 +182,8 @@
         var cellYmd = ymd(cellDate);
         var isPast = cellDate < today;
         var isBooked = bookedSet.has(cellYmd);
-        var isWeekend = isWeekendNight(cellDate);
-        var price = isWeekend ? weekend : weekday;
         var cell = document.createElement("div");
         cell.className = "cal-cell";
-        if (isWeekend) cell.classList.add("weekend");
         if (isBooked) cell.classList.add("booked");
         if (isPast) cell.classList.add("past");
         if (checkIn && cellYmd === checkIn) cell.classList.add("endpoint");
@@ -200,11 +192,7 @@
         var dayEl = document.createElement("div");
         dayEl.className = "day";
         dayEl.textContent = dnum;
-        var priceEl = document.createElement("div");
-        priceEl.className = "price";
-        priceEl.textContent = ratesUsable && !isPast && !isBooked ? fmtMoney(price) : "";
         cell.appendChild(dayEl);
-        cell.appendChild(priceEl);
         if (!isPast && !isBooked) {
           (function (yy) {
             cell.addEventListener("click", function () { handleCellClick(yy); });

@@ -128,11 +128,12 @@ section + section { border-top: 1px solid var(--line); }
   box-shadow: var(--shadow-sm);
   border-left: 4px solid var(--accent);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
   gap: 16px;
 }
-.rate-card .rate-item .label { color: var(--ink-soft); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
-.rate-card .rate-item .value { font-size: 1.25rem; font-weight: 600; color: #fff; }
+.rate-card .rate-item .label { color: var(--ink-soft); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+.rate-card .rate-item .rate-note { display: block; font-size: 0.62rem; text-transform: none; letter-spacing: 0; color: var(--ink-soft); white-space: nowrap; margin-top: 3px; opacity: 0.85; }
+.rate-card .rate-item .value { font-size: 1.25rem; font-weight: 600; color: #fff; margin-top: 4px; }
 
 .calendar-wrap { margin-top: 20px; }
 .calendar-controls { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
@@ -154,7 +155,7 @@ section + section { border-top: 1px solid var(--line); }
   text-transform: uppercase; letter-spacing: 0.5px;
 }
 .cal-cell {
-  background: var(--panel-2);
+  background: var(--green-dark);
   aspect-ratio: 1 / 1;
   border-radius: var(--radius-sm);
   padding: 4px;
@@ -166,19 +167,13 @@ section + section { border-top: 1px solid var(--line); }
   transition: background 0.1s, border-color 0.1s;
 }
 .cal-cell .day { font-weight: 600; color: var(--ink); }
-.cal-cell .price { font-size: 0.72rem; color: var(--gold-soft); }
+.cal-cell .price { display: none; }
 .cal-cell.empty { background: transparent; cursor: default; }
-.cal-cell.weekend { background: #2a3a18; }
-.cal-cell.weekend .price { color: var(--gold-soft); font-weight: 600; }
-.cal-cell.booked { background: #1c1f1a; color: #6b6b6b; cursor: not-allowed; }
-.cal-cell.booked .day { color: #6b6b6b; text-decoration: line-through; }
-.cal-cell.booked .price { display: none; }
+.cal-cell.booked { background: #8a8f8a; color: #3a3f3a; cursor: not-allowed; }
+.cal-cell.booked .day { color: #3a3f3a; text-decoration: line-through; }
 .cal-cell.past { opacity: 0.35; cursor: not-allowed; }
-.cal-cell.selected, .cal-cell.in-range { background: var(--green); color: #fff; }
-.cal-cell.selected .day, .cal-cell.in-range .day { color: #fff; }
-.cal-cell.selected .price, .cal-cell.in-range .price { color: rgba(255,255,255,0.85); }
-.cal-cell.endpoint { background: var(--gold); color: var(--bg); border-color: var(--gold-soft); }
-.cal-cell.endpoint .day, .cal-cell.endpoint .price { color: var(--bg); }
+.cal-cell.selected, .cal-cell.in-range, .cal-cell.endpoint { background: var(--gold); color: var(--bg); border-color: var(--gold-soft); }
+.cal-cell.selected .day, .cal-cell.in-range .day, .cal-cell.endpoint .day { color: var(--bg); }
 .cal-cell:hover:not(.empty):not(.booked):not(.past) { border-color: var(--gold-soft); }
 
 .calendar-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: 0.85rem; color: var(--ink-soft); }

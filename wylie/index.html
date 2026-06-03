@@ -216,10 +216,12 @@ window.SITE_CONFIG.basePath = "../";
     return (prefix || "$") + n;
   }
   var rates = [
-    { label: "Weekday / night", value: fmt(prop.rates.weekday) },
-    { label: "Weekend / night", value: fmt(prop.rates.weekend) },
-    { label: "Cleaning fee", value: fmt(prop.rates.cleaningFee) },
-    { label: "Pet fee (" + (prop.rates.petFeeType || "per-stay") + ")", value: fmt(prop.rates.petFee) },
+    { label: "Weekly<span class='rate-note'>cleaning included</span>", value: fmt(prop.rates.weekly) },
+    { label: "Weekend<span class='rate-note'>cleaning included</span>", value: fmt(prop.rates.weekend) },
+    { label: "Midweek / night<span class='rate-note'>+ cleaning</span>", value: fmt(prop.rates.midweek) },
+    { label: "Holiday Weekend<span class='rate-note'>cleaning included</span>", value: fmt(prop.rates.holidayWeekend) },
+    { label: "Cleaning fee<span class='rate-note'>per stay</span>", value: fmt(prop.rates.cleaningFee) },
+    { label: "Pet fee<span class='rate-note'>per night</span>", value: fmt(prop.rates.petFee) },
   ];
   rates.forEach(function (r) {
     var item = document.createElement("div");

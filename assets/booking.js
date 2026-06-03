@@ -19,13 +19,38 @@
   function makeTotalPanel(opts) {
     var container = opts.container;
     var property = opts.property;
-    var weekday = safeNum(property.rates.weekday);
-    var weekend = safeNum(property.rates.weekend);
-    var cleaning = safeNum(property.rates.cleaningFee);
-    var petFee = safeNum(property.rates.petFee);
-    var petType = property.rates.petFeeType || "per-stay";
+    var r = property.rates || {};
+    var midweek = safeNum(r.midweek);
+    var weekendNight = safeNum(r.weekendNight);
+    var weekly = safeNum(r.weekly);
+    var cleaning = safeNum(r.cleaningFee);
+    var petFee = safeNum(r.petFee);
 
-    var ratesUsable = weekday !== null && weekend !== null && cleaning !== null;
+    var ratesUsable = midweek !== null && weekendNight !== null && weekly !== null && cleaning !== null;
+
+    // True when the stay contains BOTH a Friday and a Saturday night (full weekend).
+    function hasFullWeekend(ciYmd, nights) {
+      var parts = (ciYmd || "").split("-");
+      if (parts.length !== 3) return false;
+      var d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+      var fri = false, sat = false;
+      for (var i = 0; i < nights; i++) {
+        var dow = d.getDay();
+        if (dow === 5) fri = true;
+        if (dow === 6) sat = true;
+        d.setDate(d.getDate() + 1);
+      }
+      return fri && sat;
+    }
+
+    // "2026-06-05" -> "Friday 6/5"  (day-of-week helps guests catch a wrong-day pick)
+    function fmtDay(ymdStr) {
+      var p = (ymdStr || "").split("-");
+      if (p.length !== 3) return ymdStr || "";
+      var d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+      var names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      return names[d.getDay()] + " " + Number(p[1]) + "/" + Number(p[2]);
+    }
 
     container.innerHTML = "";
     var h3 = document.createElement("h3");
@@ -63,28 +88,28 @@
         state.total = null;
         return;
       }
-      var weekdayCost = state.weekdayNights * weekday;
-      var weekendCost = state.weekendNights * weekend;
-      var petCost = 0;
-      if (state.pets && petFee !== null) {
-        if (petType === "per-night") petCost = petFee * state.nights;
-        else if (petType === "per-pet") petCost = petFee * Math.max(1, state.petCount || 1);
-        else petCost = petFee; // per-stay default
+      var nights = state.nights;
+      var accommodation, accLabel, cleaningCharged;
+      if (nights >= 7) {
+        accommodation = weekly;
+        accLabel = "Weekly (" + nights + " nights)";
+        cleaningCharged = false;
+      } else {
+        var full = hasFullWeekend(state.checkIn, nights);
+        accommodation = state.weekendNights * weekendNight + state.weekdayNights * midweek;
+        cleaningCharged = !full;
+        if (full && nights === 2) accLabel = "Weekend";
+        else if (state.weekendNights > 0) accLabel = "Stay (" + nights + " night" + (nights === 1 ? "" : "s") + ")";
+        else accLabel = "Midweek (" + nights + " night" + (nights === 1 ? "" : "s") + ")";
       }
-      var subtotal = weekdayCost + weekendCost;
-      var preTaxTotal = subtotal + cleaning + petCost;
-      var occupancyTax = preTaxTotal * 0.03; // 3% local occupancy tax
-      var salesTax = preTaxTotal * 0.06;     // 6% PA state sales tax
-      var total = preTaxTotal + occupancyTax + salesTax;
+      var petCost = (state.pets && petFee !== null) ? petFee * nights : 0;
+      var total = accommodation + (cleaningCharged ? cleaning : 0) + petCost;
 
       var lines = [];
-      lines.push({ label: state.checkIn + " → " + state.checkOut, value: state.nights + " night" + (state.nights === 1 ? "" : "s") });
-      if (state.weekdayNights) lines.push({ label: state.weekdayNights + " weekday × " + dollars(weekday), value: dollars(weekdayCost) });
-      if (state.weekendNights) lines.push({ label: state.weekendNights + " weekend × " + dollars(weekend), value: dollars(weekendCost) });
-      lines.push({ label: "Cleaning fee", value: dollars(cleaning) });
-      if (state.pets && petFee !== null) lines.push({ label: "Pet fee (" + petType + ")", value: dollars(petCost) });
-      lines.push({ label: "Occupancy tax (3%)", value: dollars(occupancyTax) });
-      lines.push({ label: "Sales tax (6%)", value: dollars(salesTax) });
+      lines.push({ label: fmtDay(state.checkIn) + " → " + fmtDay(state.checkOut), value: "" });
+      lines.push({ label: accLabel, value: dollars(accommodation) });
+      lines.push({ label: "Cleaning fee", value: cleaningCharged ? dollars(cleaning) : "Included" });
+      if (state.pets && petFee !== null) lines.push({ label: "Pet fee (" + nights + " night" + (nights === 1 ? "" : "s") + ")", value: dollars(petCost) });
       lines.forEach(function (l) {
         var row = document.createElement("div");
         row.className = "line";
@@ -93,8 +118,13 @@
       });
       var tot = document.createElement("div");
       tot.className = "line total";
-      tot.innerHTML = '<span>Total</span><span>' + dollars(total) + '</span>';
+      tot.innerHTML = '<span>Estimated total</span><span>' + dollars(total) + '</span>';
       body.appendChild(tot);
+      var note = document.createElement("div");
+      note.className = "empty-state";
+      note.style.marginTop = "8px";
+      note.textContent = "Estimate only — holiday and peak rates may apply. We'll confirm your exact total when we reply to your request.";
+      body.appendChild(note);
       state.total = total;
     }
 

@@ -208,12 +208,14 @@ window.SITE_CONFIG = {
         vrbo: "https://www.vrbo.com/971220ha"
       },
       rates: {
-        weekday: 95,
-        weekend: 145,
-        cleaningFee: 175,
+        midweek: 275,
+        weekendNight: 425,
+        weekend: 850,
+        weekly: 1600,
+        holidayWeekend: 1500,
+        cleaningFee: 150,
         petFee: 25,
-        petFeeType: "per-night",
-        smartPricingNote: "From $95/night via Smart Pricing — final rate confirmed when we reply."
+        petFeeType: "per-night"
       }
     },
     {
@@ -336,12 +338,14 @@ window.SITE_CONFIG = {
         vrbo: "https://www.vrbo.com/3688087ha"
       },
       rates: {
-        weekday: 115,
-        weekend: 165,
-        cleaningFee: 175,
+        midweek: 275,
+        weekendNight: 425,
+        weekend: 850,
+        weekly: 1600,
+        holidayWeekend: 1500,
+        cleaningFee: 150,
         petFee: 25,
-        petFeeType: "per-night",
-        smartPricingNote: "From $115/night via Smart Pricing — final rate confirmed when we reply."
+        petFeeType: "per-night"
       }
     },
     {
@@ -476,12 +480,14 @@ window.SITE_CONFIG = {
         vrbo: "https://www.vrbo.com/3848476ha"
       },
       rates: {
-        weekday: 95,
-        weekend: 145,
-        cleaningFee: 175,
+        midweek: 275,
+        weekendNight: 425,
+        weekend: 850,
+        weekly: 1600,
+        holidayWeekend: 1500,
+        cleaningFee: 150,
         petFee: 25,
-        petFeeType: "per-night",
-        smartPricingNote: "From $95/night via Smart Pricing — final rate confirmed when we reply."
+        petFeeType: "per-night"
       }
     },
     {
@@ -677,12 +683,14 @@ window.SITE_CONFIG = {
         vrbo: "https://www.vrbo.com/3133799"
       },
       rates: {
-        weekday: 225,
-        weekend: 275,
-        cleaningFee: 240,
+        midweek: 400,
+        weekendNight: 625,
+        weekend: 1250,
+        weekly: 2400,
+        holidayWeekend: 2100,
+        cleaningFee: 180,
         petFee: 25,
-        petFeeType: "per-night",
-        smartPricingNote: "From $225/night via Smart Pricing — final rate confirmed when we reply."
+        petFeeType: "per-night"
       }
     },
     {
@@ -853,12 +861,14 @@ window.SITE_CONFIG = {
         vrbo: "https://www.vrbo.com/3505122ha"
       },
       rates: {
-        weekday: 150,
-        weekend: 200,
-        cleaningFee: 225,
+        midweek: 350,
+        weekendNight: 475,
+        weekend: 950,
+        weekly: 2100,
+        holidayWeekend: 1800,
+        cleaningFee: 170,
         petFee: 25,
-        petFeeType: "per-night",
-        smartPricingNote: "From $150/night via Smart Pricing — final rate confirmed when we reply."
+        petFeeType: "per-night"
       }
     },
     {
@@ -987,12 +997,14 @@ window.SITE_CONFIG = {
         vrbo: "https://www.vrbo.com/3891350"
       },
       rates: {
-        weekday: 95,
-        weekend: 145,
-        cleaningFee: 125,
+        midweek: 200,
+        weekendNight: 375,
+        weekend: 750,
+        weekly: 1400,
+        holidayWeekend: 1200,
+        cleaningFee: 120,
         petFee: 25,
-        petFeeType: "per-night",
-        smartPricingNote: "From $95/night via Smart Pricing — final rate confirmed when we reply."
+        petFeeType: "per-night"
       }
     },
   ],
