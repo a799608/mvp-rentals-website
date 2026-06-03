@@ -222,3 +222,32 @@ References:
 - Both first-party libraries send `%20`. The iOS app's pre-pay display behavior is undocumented and renders `%20` (and `+`) literally as `+`.
 
 Full Direct Booking pipeline doc lives in the `mvp-rentals` repo: `Data/DIRECT_BOOKING_PIPELINE.md`.
+
+## Link previews (Open Graph)
+
+When this site's URL is shared in a text/iMessage/social post, the preview card
+is built from the Open Graph (`og:`) `<meta>` tags in `index.html`'s `<head>`.
+
+- **`og:image`** points at **`og-cover.jpg`** in the repo root — a 1200x630
+  capture of the landing page itself (the branded booking card over the
+  property collage). This is what unfurls in shared links.
+- Without these tags, messaging apps fall back to scraping the first `<img>` on
+  the page — which was the Trails hero photo. That is why shared links used to
+  preview as the Trails property. (Fixed 2026-06-03, commit `c767330`.)
+
+### Regenerating the preview image
+
+If the landing page's look changes:
+
+```
+python tools/regenerate_og_cover.py          # rewrites og-cover.jpg (1200x630)
+# bump the ?v=N on og:image / og:image:secure_url / twitter:image in index.html
+git add og-cover.jpg index.html && git commit -m "refresh og-cover" && git push
+```
+
+### Preview caching gotcha
+
+Messaging apps cache the preview **per URL**. A link already shared before a
+preview change keeps showing the old image until the app's cache expires
+(hours–days). To force a fresh fetch, share the link once with a throwaway query
+(`?s=1`) — same page, but the app treats it as a new URL and re-fetches.
