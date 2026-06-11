@@ -275,11 +275,6 @@
         msgEl.textContent = "Please indicate how many pets you are bringing.";
         return;
       }
-      if (!payload.smsConsent) {
-        msgEl.classList.add("error");
-        msgEl.textContent = "Please agree to receive transactional SMS messages.";
-        return;
-      }
       var btn = form.querySelector("button[type=submit]");
       btn.disabled = true;
       var oldLabel = btn.textContent;
