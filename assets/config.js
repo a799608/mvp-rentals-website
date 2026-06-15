@@ -890,10 +890,12 @@ window.SITE_CONFIG = {
           "Pool access (outdoor seasonal community)",
         ],
         home: [
-          "High speed Wi-Fi (~400 Mbps)",
+          "Air conditioning",
           "Pets encouraged",
-          "4 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Fire TV)",
-          "Half acre lot",
+          "Fully fenced yard",
+          "One acre lot",
+          "High speed Wi-Fi (~400 Mbps)",
+          "2 HDTVs with streaming (Netflix, Hulu, Amazon, Disney+ / Roku TV)",
           "In-home washer & dryer",
         ]
       },
