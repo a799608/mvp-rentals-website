@@ -275,40 +275,139 @@
         msgEl.textContent = "Please indicate how many pets you are bringing.";
         return;
       }
-      var btn = form.querySelector("button[type=submit]");
-      btn.disabled = true;
-      var oldLabel = btn.textContent;
-      btn.textContent = "Sending…";
+      // Confirm the property (+ dates/total) before sending. A guest who
+      // drifted onto the wrong home's page catches it here, before the
+      // request is ever logged. Only on explicit confirm do we POST.
+      showConfirmDialog(property, payload, performSubmit);
 
-      if (!endpoint || endpoint.indexOf("@") === 0) {
-        msgEl.classList.add("error");
-        msgEl.textContent = "Booking endpoint not yet configured. Email " + window.SITE_CONFIG.brand.contactEmail + " or text " + window.SITE_CONFIG.brand.contactPhoneDisplay + " to book directly.";
-        btn.disabled = false; btn.textContent = oldLabel;
-        return;
-      }
+      async function performSubmit() {
+        var btn = form.querySelector("button[type=submit]");
+        btn.disabled = true;
+        var oldLabel = btn.textContent;
+        btn.textContent = "Sending…";
 
-      try {
-        var res = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload),
-        });
-        var json = await res.json();
-        if (!json || !json.ok) throw new Error(json && json.error || "Submission failed");
-        var qs = new URLSearchParams({
-          property: property.name,
-          checkIn: payload.checkIn,
-          checkOut: payload.checkOut,
-          name: payload.name,
-        });
-        var base = window.SITE_CONFIG.basePath || "../";
-        window.location.href = base + "booking-request-received.html?" + qs.toString();
-      } catch (err) {
-        msgEl.classList.add("error");
-        msgEl.textContent = "Could not send your request. Please email " + window.SITE_CONFIG.brand.contactEmail + " or text " + window.SITE_CONFIG.brand.contactPhoneDisplay + " to book.";
-        btn.disabled = false; btn.textContent = oldLabel;
+        if (!endpoint || endpoint.indexOf("@") === 0) {
+          msgEl.classList.add("error");
+          msgEl.textContent = "Booking endpoint not yet configured. Email " + window.SITE_CONFIG.brand.contactEmail + " or text " + window.SITE_CONFIG.brand.contactPhoneDisplay + " to book directly.";
+          btn.disabled = false; btn.textContent = oldLabel;
+          return;
+        }
+
+        try {
+          var res = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload),
+          });
+          var json = await res.json();
+          if (!json || !json.ok) throw new Error(json && json.error || "Submission failed");
+          var qs = new URLSearchParams({
+            property: property.name,
+            checkIn: payload.checkIn,
+            checkOut: payload.checkOut,
+            name: payload.name,
+          });
+          var base = window.SITE_CONFIG.basePath || "../";
+          window.location.href = base + "booking-request-received.html?" + qs.toString();
+        } catch (err) {
+          msgEl.classList.add("error");
+          msgEl.textContent = "Could not send your request. Please email " + window.SITE_CONFIG.brand.contactEmail + " or text " + window.SITE_CONFIG.brand.contactPhoneDisplay + " to book.";
+          btn.disabled = false; btn.textContent = oldLabel;
+        }
       }
     });
+  }
+
+  // Property-confirmation gate shown right before a booking request is sent.
+  // Purpose: a guest who reached the wrong home's page (e.g. via a shared link
+  // that previews a different property, or a mis-tap on the landing grid) sees
+  // the property name + photo big and unmistakable, and must confirm before the
+  // request is logged. Self-contained: inline styles, no stylesheet dependency,
+  // works identically on all six property pages.
+  function showConfirmDialog(property, payload, onConfirm) {
+    var prior = document.getElementById("booking-confirm-overlay");
+    if (prior) prior.remove();
+
+    function fmtNice(ymd) {
+      var p = (ymd || "").split("-");
+      if (p.length !== 3) return ymd || "";
+      var d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+      var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      var mons = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      return days[d.getDay()] + ", " + mons[d.getMonth()] + " " + Number(p[2]);
+    }
+
+    var accent = property.color || "#C8990A";
+    var overlay = document.createElement("div");
+    overlay.id = "booking-confirm-overlay";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-label", "Confirm the home you are requesting");
+    overlay.style.cssText = "position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(5,12,7,0.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);";
+
+    var card = document.createElement("div");
+    card.style.cssText = "background:#0c1b10;color:#fff;border:1px solid rgba(255,255,255,0.12);border-radius:18px;max-width:380px;width:100%;overflow:hidden;box-shadow:0 18px 60px rgba(0,0,0,0.6);font-family:'Segoe UI',Arial,sans-serif;";
+
+    var hero = document.createElement("div");
+    hero.style.cssText = "position:relative;height:150px;background:#0c1b10 url('" + (property.heroPhoto || "") + "') center/cover no-repeat;";
+    var shade = document.createElement("div");
+    shade.style.cssText = "position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.10),rgba(12,27,16,0.92));";
+    hero.appendChild(shade);
+    var nameWrap = document.createElement("div");
+    nameWrap.style.cssText = "position:absolute;left:18px;right:18px;bottom:12px;";
+    var kicker = document.createElement("div");
+    kicker.textContent = "You're requesting";
+    kicker.style.cssText = "font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.78);margin-bottom:3px;";
+    var nm = document.createElement("div");
+    nm.textContent = property.name;
+    nm.style.cssText = "font-size:30px;font-weight:800;letter-spacing:0.5px;line-height:1.05;color:#fff;border-left:4px solid " + accent + ";padding-left:10px;";
+    nameWrap.appendChild(kicker);
+    nameWrap.appendChild(nm);
+    hero.appendChild(nameWrap);
+    card.appendChild(hero);
+
+    var body = document.createElement("div");
+    body.style.cssText = "padding:14px 18px 4px;";
+    function line(label, value) {
+      var row = document.createElement("div");
+      row.style.cssText = "display:flex;justify-content:space-between;gap:12px;padding:7px 0;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.07);";
+      var l = document.createElement("span"); l.textContent = label; l.style.cssText = "color:rgba(255,255,255,0.6);";
+      var v = document.createElement("span"); v.textContent = value; v.style.cssText = "color:#fff;font-weight:600;text-align:right;";
+      row.appendChild(l); row.appendChild(v);
+      return row;
+    }
+    body.appendChild(line("Dates", fmtNice(payload.checkIn) + "  →  " + fmtNice(payload.checkOut)));
+    body.appendChild(line("Nights", String(payload.nights || 0)));
+    if (payload.total != null) body.appendChild(line("Estimated total", "$" + payload.total));
+    card.appendChild(body);
+
+    var btns = document.createElement("div");
+    btns.style.cssText = "display:flex;flex-direction:column;gap:8px;padding:12px 18px 18px;";
+    var confirm = document.createElement("button");
+    confirm.type = "button";
+    confirm.textContent = "Yes — request " + property.name;
+    confirm.style.cssText = "width:100%;min-height:48px;padding:14px;border:none;border-radius:11px;background:" + accent + ";color:#07120a;font-size:15px;font-weight:800;letter-spacing:0.4px;cursor:pointer;font-family:inherit;";
+    var back = document.createElement("button");
+    back.type = "button";
+    back.textContent = "← Back";
+    back.style.cssText = "width:100%;min-height:44px;padding:11px;border:1px solid rgba(255,255,255,0.22);border-radius:11px;background:transparent;color:rgba(255,255,255,0.85);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;";
+    btns.appendChild(confirm);
+    btns.appendChild(back);
+    card.appendChild(btns);
+
+    overlay.appendChild(card);
+    document.body.appendChild(overlay);
+
+    function close() {
+      document.removeEventListener("keydown", onKey);
+      overlay.remove();
+    }
+    function onKey(e) { if (e.key === "Escape") close(); }
+    document.addEventListener("keydown", onKey);
+    back.addEventListener("click", close);
+    overlay.addEventListener("click", function (e) { if (e.target === overlay) close(); });
+    confirm.addEventListener("click", function () { close(); onConfirm(); });
+    confirm.focus();
   }
 
   window.MVPBooking = {
