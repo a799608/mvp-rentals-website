@@ -26,7 +26,7 @@ def main():
     # Easier: read D:F and AU separately
     res = svc.spreadsheets().values().batchGet(
         spreadsheetId=MVP_BOOKINGS_SHEET_ID,
-        ranges=["Sheet1!D5:F", "Sheet1!AU5:AU"],
+        ranges=["Sheet1!D4:F", "Sheet1!AU4:AU"],
     ).execute()
     df_rows = res["valueRanges"][0].get("values", [])
     au_rows = res["valueRanges"][1].get("values", [])
@@ -50,7 +50,7 @@ def main():
             skipped_past += 1
             continue
         if co <= ci:
-            invalid.append((i + 5, prop, str(row[1]), str(row[2])))
+            invalid.append((i + 4, prop, str(row[1]), str(row[2])))
             continue
         out.setdefault(prop, []).append([ci.isoformat(), co.isoformat()])
     with open(OUT_PATH, "w", encoding="utf-8") as f:
