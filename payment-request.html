@@ -109,13 +109,24 @@
 
   var resid=qs('resid'),prop=qs('prop'),guest=qs('guest'),ci=qs('ci'),co=qs('co'),total=qs('total');
   var pay1=qs('pay1'),pay2=qs('pay2'),pay2due=qs('pay2due');
+  var second=qs('second')==='1',due=qs('due');
 
   if(!resid||!prop||!ci||!co||!total){document.getElementById('prMissing').style.display='';return;}
+
+  // Second-payment (balance) mode: the reservation is already confirmed and this
+  // link collects the remaining balance. `total` carries the balance amount.
+  if(second){
+    var t=document.querySelector('.pr-title'); if(t) t.textContent='Complete your final payment';
+    var s=document.querySelector('.pr-sub');
+    if(s) s.textContent='Your '+prop+' reservation is confirmed. This is your remaining balance'+(due?(', due '+fmtDate(due)):'')+'.';
+    var tl=document.querySelector('.pr-row.total .k'); if(tl) tl.textContent='Balance due';
+  }
 
   var nights=nightsBetween(ci,co);
   var payNow=pay1?Number(pay1):Number(total);
   var memoParts=[resid, prop, shortDate(ci)+'_to_'+shortDate(co)];
-  if(pay1&&pay2&&Number(pay2)>0){memoParts.push('Pay-1-of-2');}
+  if(second){memoParts.push('Pay-2-of-2');}
+  else if(pay1&&pay2&&Number(pay2)>0){memoParts.push('Pay-1-of-2');}
   var memo=memoParts.join('_');
 
   document.getElementById('prResid').textContent=resid;  document.getElementById('prGuest').textContent=guest;
