@@ -74,11 +74,18 @@ No build step. No framework. No deploy pipeline.
 
 ## How availability stays in sync
 
-The GAS GET endpoint reads `mvp_bookings` Sheet1 (the same sheet your daily-ops
-pipeline writes to). Active reservations = rows where Property (col D) is
-non-blank AND Cancelled Date (col AU) is blank. So the calendar is always in
-sync with whatever the existing pipeline is doing ??? no separate iCal,
-no manual block-out, nothing to remember.
+The calendars fetch the static `availability.json` in this repo (see
+`endpoints.availability` in `assets/config.js`). That file is regenerated from
+`mvp_bookings` Sheet1 by `publish_availability.py` — wired as the last step of
+the 15-minute `MVP_Gmail_Refresh` cycle — which commits and pushes ONLY that
+file, and only when its content changed. Active reservations = rows where
+Property is non-blank AND Cancelled Date is blank.
+
+**The working copy of this repo must stay on `master`** (GitHub Pages serves
+`master`). Since 2026-08-02 the publisher refuses to run on any other branch —
+a checkout left on a side branch once stranded 5 days of refreshes off the live
+site with zero errors raised. Full incident write-up:
+`MVP Rentals Claude Project File/Documentation/Process Guides/stale_calendar_branch_incident_2026-08-02.md`.
 
 ## GAS endpoint URL
 
