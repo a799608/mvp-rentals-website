@@ -36,6 +36,16 @@ def git(args, check=True):
 
 
 def main():
+    # 0. Branch guard: this publisher assumes the checkout is on master (GitHub
+    # Pages serves master). On any other branch the commit would strand on a
+    # side branch while `push origin master` silently no-ops -- exactly the
+    # 2026-07-28..08-02 stale-calendar incident. Refuse loudly instead.
+    branch = git(["rev-parse", "--abbrev-ref", "HEAD"]).stdout.strip()
+    if branch != "master":
+        log("ERROR checkout is on branch '%s', not master -- refusing to publish. "
+            "Run `git checkout master` in the site repo." % branch)
+        return 1
+
     # 1. Sync with remote first so we never diverge from manual pushes.
     try:
         git(["pull", "--rebase", "--quiet", "origin", "master"])
