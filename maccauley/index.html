@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>maccauley — MVP Rentals</title>
+<meta name="description" content="Premier Pocono group retreat — arcade, theater room, 2 game rooms, fenced backyard. Sleeps 12. Book direct with the owner, no service fees.">
+  <title>MacCauley — Pocono Retreat with Arcade, Theater &amp; Game Rooms, Sleeps 12 | MVP Rentals</title>
 <!-- Open Graph / link preview -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MVP Rentals">
@@ -31,7 +32,7 @@
   </div>
 </header>
 
-<section class="hero" id="hero"></section>
+<section class="hero" id="hero" style="background-image:url('https://a799608.github.io/mvp-guest-guides/maccauley/hero.jpg?v=2f86b72')"><div class="hero-overlay"><h1>MacCauley</h1><div class="tagline">Premier Pocono retreat with arcade, theater room, and fully fenced backyard</div></div></section>
 <section class="photo-gallery-section">
   <div class="container">
     <h2>Photos</h2>
@@ -41,17 +42,32 @@
 
 <section>
   <div class="container">
-    <h2 id="hero-h2">Loading…</h2>
-    <p id="prop-desc" class="lede"></p>
+    <h2 id="hero-h2">About MacCauley</h2>
+    <p id="prop-desc" class="lede">The ultimate Pocono group retreat in Albrightsville, PA — featuring an arcade, two dedicated game rooms, a theater room area, and TVs in every room. Fully fenced backyard with wire mesh fence for pets. Sleeps 12 across 4 bedrooms with 7 beds. Floor-to-ceiling river-rock gas fireplace. Beach access, shared pool, full kitchen, washer/dryer. Near Jim Thorpe, ski resorts, and Pocono Speedway.</p>
     <h3 style="margin-top:24px;">What&apos;s included</h3>
-    <ul id="prop-included" class="included-list"></ul>
+    <ul id="prop-included" class="included-list">
+<li class="included-section">Community</li>
+<li>Beach access</li>
+<li>Lake access</li>
+<li><span>Pool access</span><span class="amenity-note"> (outdoor seasonal community)</span></li>
+<li class="included-section">Home</li>
+<li><span>High speed Wi-Fi</span><span class="amenity-note"> (~400 Mbps)</span></li>
+<li>Pets encouraged</li>
+<li><span>4 HDTVs with streaming</span><span class="amenity-note"> (Netflix, Hulu, Amazon, Disney+ / Fire TV)</span></li>
+<li>Half acre lot</li>
+<li>In-home washer &amp; dryer</li>
+<li>Multiple game room spaces</li>
+<li>Game Room 1: Arcade cabinet (multi-game), pool table, ping pong</li>
+<li>Game Room 2: Foosball, air hockey, darts</li>
+<li>Theater room</li>
+</ul>
   </div>
 </section>
 <section class="wordcloud-section">
   <div class="container">
     <h2>What our guests have to say</h2>
     <p class="wordcloud-subtitle">Words from real reviews</p>
-    <img src="../assets/wordclouds/maccauley.png" alt="Words guests use most often when reviewing MacCauley" loading="lazy" style="width:100%;max-width:1200px;height:auto;display:block;margin:0 auto;">
+    <img src="../assets/wordclouds/maccauley.png" alt="Words guests use most often when reviewing MacCauley" width="1200" height="600" loading="lazy" style="width:100%;max-width:1200px;height:auto;display:block;margin:0 auto;">
   </div>
 </section>
 
@@ -156,7 +172,6 @@ window.SITE_CONFIG.basePath = "../";
     document.querySelector("main, section").innerHTML = "<div class=\"container\"><p>Property not found.</p></div>";
     return;
   }
-  document.title = prop.name + " — MVP Rentals";
   document.body.style.setProperty("--accent", prop.color);
 
   var hero = document.getElementById("hero");
@@ -170,7 +185,7 @@ window.SITE_CONFIG.basePath = "../";
   tagline.textContent = (prop.tagline && prop.tagline.indexOf("@") !== 0) ? prop.tagline : prop.address;
   overlay.appendChild(h1);
   overlay.appendChild(tagline);
-  hero.appendChild(overlay);
+  if (!hero.querySelector(".hero-overlay")) if (!hero.querySelector(".hero-overlay")) hero.appendChild(overlay);
 
   document.getElementById("hero-h2").textContent = "About " + prop.name;
   document.getElementById("prop-desc").textContent = prop.description;
@@ -205,8 +220,10 @@ window.SITE_CONFIG.basePath = "../";
       includedEl.appendChild(__renderAmenityItem(item));
     });
   }
-  __renderSection("Community", __inc.community);
-  __renderSection("Home", __inc.home);
+  if (!includedEl.children.length) {
+    __renderSection("Community", __inc.community);
+    __renderSection("Home", __inc.home);
+  }
 
   var rateEl = document.getElementById("rate-card");
   function fmt(v, prefix) {

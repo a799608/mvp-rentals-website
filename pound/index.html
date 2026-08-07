@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>pound — MVP Rentals</title>
+<meta name="description" content="Cozy Albrightsville cottage with fenced yard, pool &amp; beach access. Sleeps 8, pet friendly, near Jim Thorpe. Book direct — no service fees.">
+  <title>Pound — Cozy Pocono Cottage, Fenced Yard, Pet Friendly, Sleeps 8 | MVP Rentals</title>
 <!-- Open Graph / link preview -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MVP Rentals">
@@ -31,7 +32,7 @@
   </div>
 </header>
 
-<section class="hero" id="hero"></section>
+<section class="hero" id="hero" style="background-image:url('https://a799608.github.io/mvp-guest-guides/pound/hero.jpg?v=2f86b72')"><div class="hero-overlay"><h1>Pound</h1><div class="tagline">Cozy Pocono cottage with fenced yard, pool, and beach access for families</div></div></section>
 <section class="photo-gallery-section">
   <div class="container">
     <h2>Photos</h2>
@@ -41,17 +42,28 @@
 
 <section>
   <div class="container">
-    <h2 id="hero-h2">Loading…</h2>
-    <p id="prop-desc" class="lede"></p>
+    <h2 id="hero-h2">About Pound</h2>
+    <p id="prop-desc" class="lede">A cozy cottage in Albrightsville with a fully fenced yard, beach access, and shared seasonal pool. Comfortably sleeps 8 across 3 bedrooms. Features a full kitchen, washer/dryer, streaming HDTV, propane fireplace, and dedicated workspace. Self check-in via keypad. Pet friendly. Close to Jim Thorpe, ski slopes, and Pocono water parks.</p>
     <h3 style="margin-top:24px;">What&apos;s included</h3>
-    <ul id="prop-included" class="included-list"></ul>
+    <ul id="prop-included" class="included-list">
+<li class="included-section">Community</li>
+<li>Beach access</li>
+<li>Lake access</li>
+<li><span>Pool access</span><span class="amenity-note"> (outdoor seasonal community)</span></li>
+<li class="included-section">Home</li>
+<li><span>High speed Wi-Fi</span><span class="amenity-note"> (~400 Mbps)</span></li>
+<li>Pets encouraged</li>
+<li><span>4 HDTVs with streaming</span><span class="amenity-note"> (Netflix, Hulu, Amazon, Disney+ / Fire TV)</span></li>
+<li>Half acre lot</li>
+<li>In-home washer &amp; dryer</li>
+</ul>
   </div>
 </section>
 <section class="wordcloud-section">
   <div class="container">
     <h2>What our guests have to say</h2>
     <p class="wordcloud-subtitle">Words from real reviews</p>
-    <img src="../assets/wordclouds/pound.png" alt="Words guests use most often when reviewing Pound" loading="lazy" style="width:100%;max-width:1200px;height:auto;display:block;margin:0 auto;">
+    <img src="../assets/wordclouds/pound.png" alt="Words guests use most often when reviewing Pound" width="1200" height="600" loading="lazy" style="width:100%;max-width:1200px;height:auto;display:block;margin:0 auto;">
   </div>
 </section>
 
@@ -156,7 +168,6 @@ window.SITE_CONFIG.basePath = "../";
     document.querySelector("main, section").innerHTML = "<div class=\"container\"><p>Property not found.</p></div>";
     return;
   }
-  document.title = prop.name + " — MVP Rentals";
   document.body.style.setProperty("--accent", prop.color);
 
   var hero = document.getElementById("hero");
@@ -170,7 +181,7 @@ window.SITE_CONFIG.basePath = "../";
   tagline.textContent = (prop.tagline && prop.tagline.indexOf("@") !== 0) ? prop.tagline : prop.address;
   overlay.appendChild(h1);
   overlay.appendChild(tagline);
-  hero.appendChild(overlay);
+  if (!hero.querySelector(".hero-overlay")) if (!hero.querySelector(".hero-overlay")) hero.appendChild(overlay);
 
   document.getElementById("hero-h2").textContent = "About " + prop.name;
   document.getElementById("prop-desc").textContent = prop.description;
@@ -205,8 +216,10 @@ window.SITE_CONFIG.basePath = "../";
       includedEl.appendChild(__renderAmenityItem(item));
     });
   }
-  __renderSection("Community", __inc.community);
-  __renderSection("Home", __inc.home);
+  if (!includedEl.children.length) {
+    __renderSection("Community", __inc.community);
+    __renderSection("Home", __inc.home);
+  }
 
   var rateEl = document.getElementById("rate-card");
   function fmt(v, prefix) {

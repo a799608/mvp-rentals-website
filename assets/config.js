@@ -74,14 +74,14 @@ window.SITE_CONFIG = {
       slug: "trails",
       name: "Trails",
       address: "845 Towamensing Trails Rd",
-      tagline: "Secluded Pocono cottage with pool, beach access, and pet-friendly fenced yard",
+      tagline: "Secluded pet-friendly Pocono cottage with pool and beach access",
       heroPhoto: "https://a799608.github.io/mvp-guest-guides/trails/hero.jpg?v=2f86b72",
       color: "#4BACC6",
       maxGuests: 10,
       bedrooms: 3,
       bathrooms: 2,
       beds: 6,
-      description: "A private cottage tucked into thick pines at the edge of a Pocono lake community. Three-floor layout includes a third-floor covered deck — perfect for rain or snow storms. Fully equipped kitchen, beach access, shared seasonal pool, washer/dryer, and HDTV with streaming. Fenced yard for pets. Ten minutes to Jim Thorpe, near ski slopes and water parks.",
+      description: "A private cottage tucked into thick pines at the edge of a Pocono lake community in Albrightsville, PA. Three-floor layout includes a third-floor covered deck — perfect for rain or snow storms. Sleeps 10 across 3 bedrooms with 6 beds. Fully equipped kitchen, beach access, shared seasonal pool, washer/dryer, propane fireplace, and HDTV with streaming. Pet friendly — half-acre wooded lot. Ten minutes to Jim Thorpe, near ski slopes and water parks.",
       included: {
         community: [
           "Beach access",
@@ -229,7 +229,7 @@ window.SITE_CONFIG = {
       bedrooms: 3,
       bathrooms: 2,
       beds: 6,
-      description: "A charming cabin retreat in Albrightsville with a fully fenced yard, lake and beach access, and shared seasonal pool. Sleeps 10 across 3 bedrooms. Ideal for families and groups who want the outdoors close by — hiking, skiing, and water parks all nearby. Full kitchen, streaming HDTV, washer/dryer, and self check-in. Pets warmly welcome.",
+      description: "A charming cabin retreat in Albrightsville with a fully fenced yard, lake and beach access, and shared seasonal pool. Sleeps 10 across 3 bedrooms. Ideal for families and groups who want the outdoors close by — hiking, skiing, and water parks all nearby. Full kitchen, streaming HDTV, washer/dryer, propane fireplace, and self check-in. Pets warmly welcome.",
       included: {
         community: [
           "Beach access",
@@ -359,7 +359,7 @@ window.SITE_CONFIG = {
       bedrooms: 3,
       bathrooms: 2,
       beds: 5,
-      description: "A cozy cottage in Albrightsville with a fully fenced yard, beach access, and shared seasonal pool. Comfortably sleeps 8 across 3 bedrooms. Features a full kitchen, washer/dryer, streaming HDTV, and dedicated workspace. Self check-in via keypad. Pet friendly. Close to Jim Thorpe, ski slopes, and Pocono water parks.",
+      description: "A cozy cottage in Albrightsville with a fully fenced yard, beach access, and shared seasonal pool. Comfortably sleeps 8 across 3 bedrooms. Features a full kitchen, washer/dryer, streaming HDTV, propane fireplace, and dedicated workspace. Self check-in via keypad. Pet friendly. Close to Jim Thorpe, ski slopes, and Pocono water parks.",
       included: {
         community: [
           "Beach access",
@@ -501,7 +501,7 @@ window.SITE_CONFIG = {
       bedrooms: 4,
       bathrooms: 2,
       beds: 7,
-      description: "The ultimate Pocono group retreat — featuring an arcade, two dedicated game rooms, a theater room area, and TVs in every room. Fully fenced backyard with wire mesh fence for pets. Sleeps 12 across 4 bedrooms with 7 beds. Beach access, shared pool, full kitchen, washer/dryer. Near Jim Thorpe, ski resorts, and Pocono Speedway.",
+      description: "The ultimate Pocono group retreat in Albrightsville, PA — featuring an arcade, two dedicated game rooms, a theater room area, and TVs in every room. Fully fenced backyard with wire mesh fence for pets. Sleeps 12 across 4 bedrooms with 7 beds. Floor-to-ceiling river-rock gas fireplace. Beach access, shared pool, full kitchen, washer/dryer. Near Jim Thorpe, ski resorts, and Pocono Speedway.",
       included: {
         community: [
           "Beach access",
@@ -704,7 +704,7 @@ window.SITE_CONFIG = {
       bedrooms: 3,
       bathrooms: 2,
       beds: 6,
-      description: "A spacious Pocono retreat designed for families and groups. Features dedicated game rooms, a fully fenced backyard for kids and pets, beach access, and shared seasonal pool. Sleeps 10 across 3 bedrooms. Full kitchen, streaming HDTV, washer, and dedicated workspace. Self check-in via keypad. Near Jim Thorpe, ski slopes, and Pocono water parks.",
+      description: "A spacious Pocono retreat in Albrightsville, PA, designed for families and groups. Features dedicated game rooms, a fully fenced backyard for kids and pets, beach access, and shared seasonal pool. Sleeps 10 across 3 bedrooms. Full kitchen, streaming HDTV, washer, propane fireplace, and dedicated workspace. Self check-in via keypad. Near Jim Thorpe, ski slopes, and Pocono water parks.",
       included: {
         community: [
           "Beach access",
@@ -882,7 +882,7 @@ window.SITE_CONFIG = {
       bedrooms: 3,
       bathrooms: 1,
       beds: 4,
-      description: "A stylish mountain modern retreat ideal for couples or small groups. Features a fully fenced yard for pets, beach and lake access, and shared seasonal pool. Sleeps 6 in 3 bedrooms with 4 beds. Full kitchen, streaming TV, washer/dryer, and dedicated workspace. Near Jim Thorpe, ski slopes, and Pocono water parks. Easy self check-in.",
+      description: "A stylish mountain modern retreat in Albrightsville, PA, ideal for couples or small groups. Features a fully fenced yard for pets, beach and lake access, and shared seasonal pool. Sleeps 6 in 3 bedrooms with 4 beds. Full kitchen, streaming TV, washer/dryer, stone masonry gas fireplace, and dedicated workspace. Near Jim Thorpe, ski slopes, and Pocono water parks. Easy self check-in.",
       included: {
         community: [
           "Beach access",
