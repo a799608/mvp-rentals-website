@@ -273,6 +273,41 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
 <button type="button" class="change-dates-btn" id="changeDatesBtn"><span class="icon">&larr;</span>Change dates</button>
 <div class="result-summary" id="resultSummary"></div>
 
+<!-- BAKED:LANDING-CONTENT START -->
+<style>
+.landing-content { background: #07120a; color: rgba(255,255,255,0.85); padding: 56px 20px 110px; }
+.landing-content .lc-inner { max-width: 960px; margin: 0 auto; }
+.landing-content h2 { color: var(--gold); font-size: 24px; letter-spacing: 0.5px; margin: 44px 0 14px; }
+.landing-content h2:first-child { margin-top: 0; }
+.landing-content p { line-height: 1.65; font-size: 15.5px; color: rgba(255,255,255,0.82); max-width: 780px; }
+.home-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+.home-card { display: flex; flex-direction: column; gap: 6px; background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 18px 18px 16px; text-decoration: none; transition: border-color 0.25s, background 0.25s; }
+.home-card:hover { border-color: var(--gold); background: rgba(255,255,255,0.07); }
+.home-card__name { color: var(--gold); font-weight: 700; font-size: 17px; letter-spacing: 0.4px; }
+.home-card__tag { color: rgba(255,255,255,0.78); font-size: 13.5px; line-height: 1.45; }
+.home-card__meta { color: rgba(255,255,255,0.55); font-size: 12.5px; letter-spacing: 0.3px; margin-top: auto; }
+@media (max-width: 860px) { .home-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .home-cards { grid-template-columns: 1fr; } .landing-content { padding-top: 40px; } }
+</style>
+<section class="landing-content">
+<div class="lc-inner">
+<h2>Pet-Friendly Pocono Vacation Homes, Direct From the Owner</h2>
+<p>MVP Rentals is six vacation homes in Albrightsville, PA &mdash; a lake community in the Poconos with beach access, lake access, and a seasonal pool, ten minutes from Jim Thorpe and close to the ski slopes and water parks. Every home is pet friendly, five have fully fenced yards, and every booking is direct with the owner: no service fees, no middleman. Pick your dates above and see which homes are open.</p>
+<h2>The Six Homes</h2>
+<div class="home-cards">
+<a class="home-card" href="trails/"><span class="home-card__name">Trails</span><span class="home-card__tag">Secluded pet-friendly Pocono cottage with pool and beach access</span><span class="home-card__meta">Sleeps 10 &middot; 3 bd / 2 ba</span></a>
+<a class="home-card" href="wylie/"><span class="home-card__name">Wylie</span><span class="home-card__tag">Rustic Pocono cabin with lake access, fenced yard, and pet-friendly perks</span><span class="home-card__meta">Sleeps 10 &middot; 3 bd / 2 ba</span></a>
+<a class="home-card" href="pound/"><span class="home-card__name">Pound</span><span class="home-card__tag">Cozy Pocono cottage with fenced yard, pool, and beach access for families</span><span class="home-card__meta">Sleeps 8 &middot; 3 bd / 2 ba</span></a>
+<a class="home-card" href="milton/"><span class="home-card__name">Milton</span><span class="home-card__tag">Pocono family retreat with game rooms, fenced yard, pool, and beach access</span><span class="home-card__meta">Sleeps 10 &middot; 3 bd / 2 ba</span></a>
+<a class="home-card" href="maccauley/"><span class="home-card__name">MacCauley</span><span class="home-card__tag">Premier Pocono retreat with arcade, theater room, and fully fenced backyard</span><span class="home-card__meta">Sleeps 12 &middot; 4 bd / 2 ba</span></a>
+<a class="home-card" href="petrarch/"><span class="home-card__name">Petrarch</span><span class="home-card__tag">Modern Pocono mountain retreat for couples, pet-friendly with fenced yard</span><span class="home-card__meta">Sleeps 6 &middot; 3 bd / 1 ba</span></a>
+</div>
+<h2>Why Book Direct?</h2>
+<p>Booking here is booking with Will, the owner &mdash; the same person who sends your door code and answers your texts during your stay. Same homes and same calendar as the big platforms, but with no service fee added: the price you see is the price. Pay by Venmo, Zelle, or check; your reservation is confirmed as soon as payment is received.</p>
+</div>
+</section>
+<!-- BAKED:LANDING-CONTENT END -->
+
 <div class="bottom-links" style="margin-bottom:6px;">
   <span style="opacity:.7;">Our homes:</span>
   <a href="trails/">Trails</a>

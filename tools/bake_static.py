@@ -137,11 +137,79 @@ def bake_landing():
     print("baked landing    title+meta")
 
 
+
+
+LANDING_START = "<!-- BAKED:LANDING-CONTENT START -->"
+LANDING_END = "<!-- BAKED:LANDING-CONTENT END -->"
+
+
+def landing_sections_html(props):
+    order = ["trails", "wylie", "pound", "milton", "maccauley", "petrarch"]
+    cards = []
+    for slug in order:
+        p = props[slug]
+        cards.append(
+            '<a class="home-card" href="%s/">'
+            '<span class="home-card__name">%s</span>'
+            '<span class="home-card__tag">%s</span>'
+            '<span class="home-card__meta">Sleeps %s &middot; %s bd / %s ba</span>'
+            "</a>"
+            % (slug, escape(p["name"]), escape(p.get("tagline") or ""),
+               p.get("maxGuests", "?"), p.get("bedrooms", "?"), p.get("bathrooms", "?")))
+    return "\n".join([
+        LANDING_START,
+        '<style>',
+        '.landing-content { background: #07120a; color: rgba(255,255,255,0.85); padding: 56px 20px 110px; }',
+        '.landing-content .lc-inner { max-width: 960px; margin: 0 auto; }',
+        '.landing-content h2 { color: var(--gold); font-size: 24px; letter-spacing: 0.5px; margin: 44px 0 14px; }',
+        '.landing-content h2:first-child { margin-top: 0; }',
+        '.landing-content p { line-height: 1.65; font-size: 15.5px; color: rgba(255,255,255,0.82); max-width: 780px; }',
+        '.home-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }',
+        '.home-card { display: flex; flex-direction: column; gap: 6px; background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 18px 18px 16px; text-decoration: none; transition: border-color 0.25s, background 0.25s; }',
+        '.home-card:hover { border-color: var(--gold); background: rgba(255,255,255,0.07); }',
+        '.home-card__name { color: var(--gold); font-weight: 700; font-size: 17px; letter-spacing: 0.4px; }',
+        '.home-card__tag { color: rgba(255,255,255,0.78); font-size: 13.5px; line-height: 1.45; }',
+        '.home-card__meta { color: rgba(255,255,255,0.55); font-size: 12.5px; letter-spacing: 0.3px; margin-top: auto; }',
+        '@media (max-width: 860px) { .home-cards { grid-template-columns: repeat(2, 1fr); } }',
+        '@media (max-width: 560px) { .home-cards { grid-template-columns: 1fr; } .landing-content { padding-top: 40px; } }',
+        '</style>',
+        '<section class="landing-content">',
+        '<div class="lc-inner">',
+        '<h2>Pet-Friendly Pocono Vacation Homes, Direct From the Owner</h2>',
+        '<p>MVP Rentals is six vacation homes in Albrightsville, PA &mdash; a lake community in the Poconos with beach access, lake access, and a seasonal pool, ten minutes from Jim Thorpe and close to the ski slopes and water parks. Every home is pet friendly, five have fully fenced yards, and every booking is direct with the owner: no service fees, no middleman. Pick your dates above and see which homes are open.</p>',
+        '<h2>The Six Homes</h2>',
+        '<div class="home-cards">',
+    ] + cards + [
+        '</div>',
+        '<h2>Why Book Direct?</h2>',
+        '<p>Booking here is booking with Will, the owner &mdash; the same person who sends your door code and answers your texts during your stay. Same homes and same calendar as the big platforms, but with no service fee added: the price you see is the price. Pay by Venmo, Zelle, or check; your reservation is confirmed as soon as payment is received.</p>',
+        '</div>',
+        '</section>',
+        LANDING_END,
+    ])
+
+
+def bake_landing_content(props):
+    path = os.path.join(ROOT, "index.html")
+    h = io.open(path, encoding="utf-8").read()
+    block = landing_sections_html(props)
+    if LANDING_START in h:
+        h = re.sub(re.escape(LANDING_START) + r".*?" + re.escape(LANDING_END), block, h, flags=re.S)
+    else:
+        anchor = '<div class="bottom-links" style="margin-bottom:6px;">'
+        if anchor not in h:
+            sys.exit("FAIL landing-content: anchor not found")
+        h = h.replace(anchor, block + "\n\n" + anchor, 1)
+    io.open(path, "w", encoding="utf-8", newline="").write(h)
+    print("baked landing    content sections (about + homes + why-direct)")
+
+
 def main():
     props = load_config()
     for slug in TITLES:
         bake_property(slug, props[slug])
     bake_landing()
+    bake_landing_content(props)
     print("done")
 
 
