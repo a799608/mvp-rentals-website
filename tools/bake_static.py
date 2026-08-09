@@ -112,8 +112,8 @@ def bake_property(slug, prop):
 
     # --- JS guards: baked content must not be duplicated or overwritten ---
     h = h.replace('  document.title = prop.name + " — MVP Rentals";\n', "")
-    h = h.replace("hero.appendChild(overlay);",
-                  'if (!hero.querySelector(".hero-overlay")) hero.appendChild(overlay);')
+    h = re.sub(r'(?:if \(!hero\.querySelector\("\.hero-overlay"\)\) )*hero\.appendChild\(overlay\);',
+               'if (!hero.querySelector(".hero-overlay")) hero.appendChild(overlay);', h)
     h = h.replace('  __renderSection("Community", __inc.community);\n'
                   '  __renderSection("Home", __inc.home);',
                   '  if (!includedEl.children.length) {\n'
@@ -196,7 +196,7 @@ def bake_landing_content(props):
     if LANDING_START in h:
         h = re.sub(re.escape(LANDING_START) + r".*?" + re.escape(LANDING_END), block, h, flags=re.S)
     else:
-        anchor = '<div class="bottom-links" style="margin-bottom:6px;">'
+        anchor = '<div class="bottom-links" style="bottom:34px; padding:12px 0 0;">'
         if anchor not in h:
             sys.exit("FAIL landing-content: anchor not found")
         h = h.replace(anchor, block + "\n\n" + anchor, 1)

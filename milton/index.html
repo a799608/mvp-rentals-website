@@ -184,7 +184,7 @@ window.SITE_CONFIG.basePath = "../";
   tagline.textContent = (prop.tagline && prop.tagline.indexOf("@") !== 0) ? prop.tagline : prop.address;
   overlay.appendChild(h1);
   overlay.appendChild(tagline);
-  if (!hero.querySelector(".hero-overlay")) if (!hero.querySelector(".hero-overlay")) hero.appendChild(overlay);
+  if (!hero.querySelector(".hero-overlay")) hero.appendChild(overlay);
 
   document.getElementById("hero-h2").textContent = "About " + prop.name;
   document.getElementById("prop-desc").textContent = prop.description;
