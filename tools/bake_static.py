@@ -176,7 +176,7 @@ def landing_sections_html(props):
         '<section class="landing-content">',
         '<div class="lc-inner">',
         '<h2>Pet-Friendly Pocono Vacation Homes, Direct From the Owner</h2>',
-        '<p>MVP Rentals &mdash; My Vacation Property Rentals &mdash; are six vacation homes in Albrightsville, PA, located in a lake community in the heart of the Poconos just minutes from Jim Thorpe, ski slopes, water parks, whitewater rafting, miles of hiking and biking trails and more. You will have access to the amenities located within the community including the sandy beach at the lake, community outdoor pool, pickleball, basketball, volleyball, and tennis. Every home is pet friendly and 5 of 6 have fully fenced back yards. Book direct with the owner &mdash; no service fees, no middleman.</p>',
+        '<p>MVP Rentals &mdash; My Vacation Property Rentals &mdash; are six vacation homes in Albrightsville, PA, located in a lake community in the heart of the Poconos just minutes from Jim Thorpe, ski slopes, water parks, whitewater rafting, and the state parks &mdash; Hickory Run, Beltzville, and Lehigh Gorge &mdash; with miles of hiking and biking trails and more. You will have access to the amenities located within the community including the sandy beach at the lake, community outdoor pool, pickleball, basketball, volleyball, and tennis courts. Every home is pet friendly and 5 of 6 have fully fenced back yards. Book direct with the owner &mdash; no service fees, no middleman.</p>',
         '<h2>The Six Homes</h2>',
         '<div class="home-cards">',
     ] + cards + [
