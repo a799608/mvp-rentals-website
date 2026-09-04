@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MVP Rentals — We're Hiring: Housekeeper / Property Caretaker</title>
+<meta name="description" content="Full-time Housekeeper / Property Caretaker for six Pocono vacation homes in Albrightsville, PA. $20/hour, 40 hours guaranteed year-round, W2. $500 referral bonus.">
+
+<!-- Open Graph / link-preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MVP Rentals">
+<meta property="og:url" content="https://a799608.github.io/mvp-rentals-website/careers.html">
+<meta property="og:title" content="MVP Rentals is Hiring — Housekeeper / Property Caretaker">
+<meta property="og:description" content="$20/hour · 40 hours guaranteed every week, year-round · W2. Six homes, all in Towamensing Trails. $500 referral bonus — pass it on.">
+<meta property="og:image" content="https://a799608.github.io/mvp-rentals-website/og-cover.jpg?v=1">
+<meta property="og:image:secure_url" content="https://a799608.github.io/mvp-rentals-website/og-cover.jpg?v=1">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MVP Rentals">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MVP Rentals is Hiring — Housekeeper / Property Caretaker">
+<meta name="twitter:description" content="$20/hour · 40 hours guaranteed year-round · W2 · $500 referral bonus. Six Pocono homes in Albrightsville.">
+<meta name="twitter:image" content="https://a799608.github.io/mvp-rentals-website/og-cover.jpg?v=1">
+<style>
+:root{
+  --green:#1F6224; --green-light:#D6E8D6; --green-dark:#174d1c;
+  --gold:#C8990A; --gold-bg:#FDF3D0; --cream:#E1E6C4; --bg:#07120a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:#fff;line-height:1.6;}
+a{color:inherit;}
+
+/* header */
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:12px;padding:14px 22px;
+  background:rgba(5,18,7,0.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.08);}
+.topbar img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.15);}
+.topbar .brand{font-weight:800;letter-spacing:0.6px;font-size:16px;}
+.topbar .brand span{color:var(--gold);}
+.topbar .apply-top{margin-left:auto;background:var(--gold);color:#1a1205;font-weight:800;font-size:13px;
+  text-decoration:none;padding:9px 18px;border-radius:9px;letter-spacing:0.3px;white-space:nowrap;}
+.topbar .apply-top:hover{background:#e0ac1a;}
+
+/* hero */
+.hero{max-width:860px;margin:0 auto;padding:54px 22px 20px;text-align:center;}
+.eyebrow{color:var(--gold);font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.hero h1{font-size:34px;font-weight:800;letter-spacing:0.3px;line-height:1.2;margin-bottom:8px;}
+.hero .loc{color:rgba(255,255,255,0.6);font-size:15px;margin-bottom:24px;}
+.paybar{display:flex;justify-content:center;flex-wrap:wrap;gap:0;margin:0 auto 22px;max-width:620px;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;}
+.paybar .cell{flex:1;min-width:150px;padding:16px 10px;border-right:1px solid rgba(255,255,255,0.09);}
+.paybar .cell:last-child{border-right:none;}
+.paybar .n{font-size:24px;font-weight:800;color:var(--gold);line-height:1.1;}
+.paybar .l{font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px;}
+
+/* callout banners */
+.banner{max-width:760px;margin:14px auto;padding:16px 20px;border-radius:12px;text-align:left;display:flex;gap:14px;align-items:flex-start;}
+.banner .ic{font-size:22px;line-height:1.3;}
+.banner.referral{background:rgba(200,153,10,0.12);border:1px solid rgba(200,153,10,0.4);}
+.banner.referral b{color:var(--gold);}
+.banner.sunday{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.14);}
+.banner .txt{font-size:14.5px;color:rgba(255,255,255,0.9);}
+.banner .txt b{color:#fff;}
+
+/* content sections */
+.wrap{max-width:760px;margin:0 auto;padding:0 22px;}
+.intro{font-size:16px;color:rgba(255,255,255,0.82);margin:30px auto 8px;text-align:center;max-width:680px;}
+h2{font-size:13px;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin:38px 0 4px;
+  padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.cardrow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.mini{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:18px 20px;}
+.mini h3{font-size:15px;color:#fff;margin-bottom:10px;}
+ul{list-style:none;}
+li{position:relative;padding-left:20px;margin:9px 0;font-size:14.5px;color:rgba(255,255,255,0.85);}
+li::before{content:'';position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:50%;background:var(--gold);}
+.why li::before{background:var(--green-light);}
+
+/* property grid */
+.props{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
+.prop{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);
+  text-decoration:none;display:block;aspect-ratio:4/3;background:#111;transition:transform 0.25s,border-color 0.25s;}
+.prop img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;}
+.prop::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,14,6,0.9) 0%,rgba(5,14,6,0.15) 55%,rgba(5,14,6,0) 100%);}
+.prop .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:11px 13px;}
+.prop .cap .nm{font-size:16px;font-weight:800;color:#fff;letter-spacing:0.4px;}
+.prop .cap .st{font-size:11px;color:rgba(255,255,255,0.75);margin-top:1px;}
+.prop .view{position:absolute;top:10px;right:11px;z-index:2;font-size:10px;font-weight:700;letter-spacing:0.5px;
+  text-transform:uppercase;color:var(--gold);background:rgba(5,14,6,0.65);padding:4px 8px;border-radius:6px;border:1px solid rgba(200,153,10,0.4);}
+.prop:hover{transform:translateY(-3px);border-color:var(--gold);}
+.prop:hover img{transform:scale(1.06);}
+.props-note{font-size:13px;color:rgba(255,255,255,0.55);text-align:center;margin-top:12px;}
+
+/* process */
+.steps{counter-reset:step;margin-top:16px;}
+.step{position:relative;padding:12px 0 12px 46px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.step:last-child{border-bottom:none;}
+.step::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:12px;width:30px;height:30px;
+  border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;}
+.step b{color:#fff;}
+.step .d{font-size:14px;color:rgba(255,255,255,0.78);}
+
+/* apply */
+.apply{max-width:760px;margin:44px auto 0;padding:34px 26px;text-align:center;
+  background:linear-gradient(160deg,rgba(31,98,36,0.35),rgba(23,77,28,0.15));
+  border:1px solid rgba(200,153,10,0.35);border-radius:18px;}
+.apply h2{border:none;color:#fff;font-size:22px;letter-spacing:0.3px;text-transform:none;margin:0 0 6px;}
+.apply p{color:rgba(255,255,255,0.82);font-size:15px;margin-bottom:18px;}
+.apply .contact{display:inline-block;background:var(--gold);color:#1a1205;font-weight:800;font-size:17px;
+  text-decoration:none;padding:14px 30px;border-radius:11px;letter-spacing:0.3px;}
+.apply .contact:hover{background:#e0ac1a;}
+.apply .fineprint{font-size:13px;color:rgba(255,255,255,0.6);margin-top:14px;}
+.apply .fineprint b{color:var(--gold);}
+
+footer{text-align:center;padding:36px 20px 30px;margin-top:40px;font-size:12px;color:rgba(255,255,255,0.5);
+  border-top:1px solid rgba(255,255,255,0.07);}
+footer a{color:rgba(255,255,255,0.75);text-decoration:none;margin:0 10px;}
+footer a:hover{color:var(--gold);}
+
+@media(max-width:640px){
+  .hero h1{font-size:26px;}
+  .cardrow{grid-template-columns:1fr;}
+  .props{grid-template-columns:repeat(2,1fr);}
+  .topbar .apply-top{padding:8px 13px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <img src="assets/logo.webp" alt="MVP Rentals logo">
+  <div class="brand">MVP <span>Rentals</span></div>
+  <a href="#apply" class="apply-top">Apply →</a>
+</div>
+
+<div class="hero">
+  <div class="eyebrow">Now Hiring · One Full-Time Position</div>
+  <h1>Housekeeper &amp; Property Caretaker</h1>
+  <div class="loc">Albrightsville, PA · Towamensing Trails · Full-time, year-round</div>
+
+  <div class="paybar">
+    <div class="cell"><div class="n">$20<span style="font-size:14px">/hr</span></div><div class="l">Starting Pay</div></div>
+    <div class="cell"><div class="n">~40 hrs</div><div class="l">Most Weeks · Full-Time</div></div>
+    <div class="cell"><div class="n">W2</div><div class="l">Employee · Year-Round</div></div>
+  </div>
+
+  <div class="banner referral">
+    <div class="ic">💵</div>
+    <div class="txt"><b>Know someone right for this?</b> I'm paying a <b>$500 referral bonus</b> — cash, paid once the person you refer completes their 90-day intro period. Just have them mention your name when they apply. <b>Please pass this along</b> to anyone who'd be a good fit.</div>
+  </div>
+  <div class="banner sunday">
+    <div class="ic">⚠️</div>
+    <div class="txt"><b>Sundays are required.</b> Weekends are our busiest turnover days — if you can't work Sundays, this isn't the right fit.</div>
+  </div>
+</div>
+
+<div class="wrap">
+  <p class="intro">I own six vacation rental homes, all inside the Towamensing Trails community in Albrightsville — no driving all over the Poconos, every house just minutes from the last. I'm hiring one full-time person whose main job is turnover cleaning, but this is <b>more than a cleaning job</b> — it also covers day-to-day caretaking of the homes and grounds. If you're a strong, detail-oriented cleaner, <b>I'll teach you the caretaking side.</b></p>
+
+  <h2>Why this beats cleaning gigs</h2>
+  <ul class="why">
+    <li><b>Steady, full-time work.</b> Right around 40 hours most weeks, year-round — summer and winter. No chasing clients, no dead weeks, no wondering what this month will pay.</li>
+    <li><b>Legit W2 employment.</b> Taxes withheld, workers' comp coverage, steady weekly paycheck.</li>
+    <li><b>Time to do it right.</b> You'll never be rushed through a clean — I'd rather you spend unhurried hours making a house spotless than race through it.</li>
+    <li><b>A schedule you can count on.</b> 4 or 5 days depending on the week's checkouts, published in advance, with two to three days off every week.</li>
+  </ul>
+
+  <h2>The Work</h2>
+  <div class="cardrow">
+    <div class="mini">
+      <h3>Turnover Cleaning</h3>
+      <ul>
+        <li>Full clean between guests — kitchens, baths, floors, dusting, beds</li>
+        <li>Laundry &amp; linens: washing, changing, keeping par stock</li>
+        <li>Staging each home so it looks like the listing photos</li>
+        <li>Restocking supplies and flagging anything that needs attention</li>
+        <li>Logging each completed clean in our simple phone dashboard</li>
+      </ul>
+    </div>
+    <div class="mini">
+      <h3>Property &amp; Grounds Caretaking</h3>
+      <p style="font-size:13px;color:var(--gold);margin:-2px 0 10px;font-weight:600;">No experience needed here — I'll train you on all of this.</p>
+      <ul>
+        <li>Running the community office and trash facility</li>
+        <li>General upkeep of the exterior and grounds — walking each property, inspecting for and picking up trash, keeping the outside tidy</li>
+        <li>Spotting needed repairs and handling small fixes on the spot (batteries, a loose hinge, minor stuff)</li>
+        <li>Shoveling walkways and steps in winter</li>
+        <li>Light errands as needed</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>The Homes You'd Care For</h2>
+  <div class="props" id="props">
+    <a class="prop" href="https://a799608.github.io/mvp-guest-guides/maccauley/" target="_blank" rel="noopener">
+      <img src="https://a799608.github.io/mvp-guest-guides/maccauley/hero.jpg" alt="MacCauley" loading="lazy">
+      <span class="view">View →</span><span class="cap"><span class="nm">MacCauley</span><br><span class="st">4 bd · 2 ba · sleeps 12</span></span>
+    </a>
+    <a class="prop" href="https://a799608.github.io/mvp-guest-guides/trails/" target="_blank" rel="noopener">
+      <img src="https://a799608.github.io/mvp-guest-guides/trails/hero.jpg" alt="Trails" loading="lazy">
+      <span class="view">View →</span><span class="cap"><span class="nm">Trails</span><br><span class="st">3 bd · 2 ba · sleeps 10</span></span>
+    </a>
+    <a class="prop" href="https://a799608.github.io/mvp-guest-guides/milton/" target="_blank" rel="noopener">
+      <img src="https://a799608.github.io/mvp-guest-guides/milton/hero.jpg" alt="Milton" loading="lazy">
+      <span class="view">View →</span><span class="cap"><span class="nm">Milton</span><br><span class="st">3 bd · 2 ba · sleeps 10</span></span>
+    </a>
+    <a class="prop" href="https://a799608.github.io/mvp-guest-guides/wylie/" target="_blank" rel="noopener">
+      <img src="https://a799608.github.io/mvp-guest-guides/wylie/hero.jpg" alt="Wylie" loading="lazy">
+      <span class="view">View →</span><span class="cap"><span class="nm">Wylie</span><br><span class="st">3 bd · 2 ba · sleeps 10</span></span>
+    </a>
+    <a class="prop" href="https://a799608.github.io/mvp-guest-guides/pound/" target="_blank" rel="noopener">
+      <img src="https://a799608.github.io/mvp-guest-guides/pound/hero.jpg" alt="Pound" loading="lazy">
+      <span class="view">View →</span><span class="cap"><span class="nm">Pound</span><br><span class="st">3 bd · 2 ba · sleeps 8</span></span>
+    </a>
+    <a class="prop" href="https://a799608.github.io/mvp-guest-guides/petrarch/" target="_blank" rel="noopener">
+      <img src="https://a799608.github.io/mvp-guest-guides/petrarch/hero.jpg" alt="Petrarch" loading="lazy">
+      <span class="view">View →</span><span class="cap"><span class="nm">Petrarch</span><br><span class="st">3 bd · 1 ba · sleeps 6</span></span>
+    </a>
+  </div>
+  <p class="props-note">Tap any home to see it — the same guides our guests use, so you can see exactly the condition these houses are kept in.</p>
+
+  <h2>What You Need</h2>
+  <ul>
+    <li>Reliable transportation and a smartphone</li>
+    <li>Weekend availability — Sundays especially</li>
+    <li>Able to handle physical work: stairs, laundry, some lifting, outdoor work in all seasons</li>
+    <li><b>A real eye for detail</b> — the standard is "spotless and staged," not "good enough" — and someone who notices what needs doing without being told. This matters more than anything else.</li>
+    <li>Solid cleaning or housekeeping experience. That's what I'm hiring for — the caretaking side is trainable, so if you clean well and sweat the details, I'll teach you the rest.</li>
+  </ul>
+
+  <h2>How Hiring Works</h2>
+  <div class="steps">
+    <div class="step"><b>Quick phone call.</b><div class="d">A short conversation to make sure it's a fit on both sides.</div></div>
+    <div class="step"><b>2–3 paid trial cleans.</b><div class="d">At full pay — you clean a few real turnovers so we both know it works.</div></div>
+    <div class="step"><b>Offer + 90-day intro period.</b><div class="d">A standard introductory period, then you're on for the long haul.</div></div>
+  </div>
+</div>
+
+<div class="apply" id="apply">
+  <h2>Apply — or refer someone</h2>
+  <p>Send your name, where you're located, a sentence or two about your experience — and, if someone referred you, their name.</p>
+  <a class="contact" href="CONTACT_HREF">CONTACT_LABEL</a>
+  <div class="fineprint">Referring someone? Have them include your name so you get your <b>$500 bonus</b>.</div>
+</div>
+
+<footer>
+  MVP Rentals · Towamensing Trails, Albrightsville PA<br>
+  <a href="index.html">Booking Site</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a>
+</footer>
+
+</body>
+</html>
