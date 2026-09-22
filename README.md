@@ -122,6 +122,14 @@ the Twilio A2P 10DLC campaign.
 
 - [ ] **Cycle property photos on cards** ??? only `hero.jpg` exists per property right now. To enable rotating photos on the landing-page tiles and the `available.html` cards, drop additional images into the `mvp-guest-guides` repo at `<slug>/photo1.jpg`, `<slug>/photo2.jpg`, etc. Then update `assets/config.js` (add a `gallery: []` array per property) and the cycling JS (cross-fade every 4-5s) on both `index.html` and `available.html`.
 
+## House photos (self-hosted since 2026-09-22)
+
+Every house photo is a file on this site, in `<house>/photos/`. Nothing loads from Airbnb or VRBO.
+
+- Each house page shows the same photos as that house's Airbnb photo tour, in Airbnb's order and room grouping.
+- `tools/self_host_photos.py` rebuilds the photo folders and `tools/photo_manifest.json` from the public Airbnb photo tours; run it after photos change on Airbnb, then update `assets/config.js` to match.
+- From 2026-04-28 to 2026-09-22 the pages pulled every photo from Airbnb's image server (commit cddef47); that dependency is gone.
+
 ## Rate methodology (v1.1+)
 
 All six properties use Airbnb Smart Pricing (no fixed weekday/weekend rate). For the website:
