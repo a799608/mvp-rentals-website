@@ -61,23 +61,33 @@ def main():
     summary = (gen.stdout.strip().splitlines() or ["(no output)"])[0]
     log("regenerated -- %s" % summary)
 
-    # 3. Stage ONLY availability.json (explicit path, never -A).
+    # 2b. Regenerate ical/direct_<house>.ics (direct bookings for VRBO/Airbnb to import; added 2026-10-09
+    # after the MacCauley double booking). A failure here never blocks availability.json.
+    ics = subprocess.run([sys.executable, os.path.join(REPO, "update_direct_ics.py")],
+                         capture_output=True, text=True)
+    if ics.returncode != 0:
+        log("WARN update_direct_ics.py failed (availability.json still publishes): %s" % (ics.stderr or "").strip()[:500])
+    else:
+        log("regenerated -- %s" % ((ics.stdout.strip().splitlines() or ["(no output)"])[-1]))
+
+    # 3. Stage ONLY availability.json and the ical files (explicit paths, never -A).
+    PATHS = ["availability.json", "ical"]
     try:
-        git(["add", "availability.json"])
+        git(["add", "--"] + PATHS)
     except subprocess.CalledProcessError as e:
         log("WARN git add failed: %s" % (e.stderr or "").strip())
         return 0
 
-    # 4. Gate: only commit/push when the file actually changed vs HEAD.
-    diff = git(["diff", "--cached", "--quiet", "availability.json"], check=False)
+    # 4. Gate: only commit/push when something actually changed vs HEAD.
+    diff = git(["diff", "--cached", "--quiet", "--"] + PATHS, check=False)
     if diff.returncode == 0:
         log("no change -- nothing to publish")
         return 0
 
-    # 5. Commit (only availability.json) + push. Never fail the parent.
+    # 5. Commit (only those paths) + push. Never fail the parent.
     ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     try:
-        git(["commit", "-m", "auto: refresh availability.json %s" % ts, "--", "availability.json"])
+        git(["commit", "-m", "auto: refresh availability %s" % ts, "--"] + PATHS)
     except subprocess.CalledProcessError as e:
         log("WARN commit failed: %s" % (e.stderr or "").strip())
         return 0
