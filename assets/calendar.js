@@ -18,6 +18,13 @@
     return new Date(parts[0], parts[1] - 1, parts[2]);
   }
 
+  // Today's date in Eastern time (Will 2026-10-13: everything Eastern), as a local
+  // midnight Date so it compares with the grid's cell dates on any device.
+  function etToday() {
+    return parseYmd(new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York",
+      year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date()));
+  }
+
   function isWeekendNight(date) {
     var dow = date.getDay(); // 0=Sun, 5=Fri, 6=Sat
     return dow === 5 || dow === 6;
@@ -160,7 +167,7 @@
       grid.className = "calendar-grid";
       wrap.appendChild(grid);
 
-      var today = new Date(); today.setHours(0,0,0,0);
+      var today = etToday();
       var dows = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
       dows.forEach(function (d) {
         var hd = document.createElement("div");
@@ -205,7 +212,7 @@
 
     function renderAll() {
       monthsWrap.innerHTML = "";
-      var start = startOfMonth(new Date());
+      var start = startOfMonth(etToday());
       for (var m = 0; m < monthsToShow; m++) {
         var monthDate = new Date(start.getFullYear(), start.getMonth() + m, 1);
         monthsWrap.appendChild(renderMonth(monthDate));
@@ -268,7 +275,7 @@
     var getCheckOut = opts.getCheckOut || function () { return null; };
 
     var bookedSet = new Set();
-    var displayMonth = startOfMonth(new Date());
+    var displayMonth = startOfMonth(etToday());
     var loaded = false;
     var activeField = "checkIn";
 
@@ -316,7 +323,7 @@
       grid.className = "calendar-grid";
       monthWrap.appendChild(grid);
 
-      var today = new Date(); today.setHours(0,0,0,0);
+      var today = etToday();
       var dows = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
       dows.forEach(function (d) {
         var hd = document.createElement("div");
@@ -410,7 +417,7 @@
         displayMonth = startOfMonth(d);
         render();
       },
-      jumpToToday: function () { displayMonth = startOfMonth(new Date()); render(); },
+      jumpToToday: function () { displayMonth = startOfMonth(etToday()); render(); },
       rerender: render,
       getBookedSet: function () { return bookedSet; },
       isLoaded: function () { return loaded; },

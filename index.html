@@ -345,7 +345,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
   var fetchPromise = null;
   var hasResult = false; // true once Start Your Trip has been clicked successfully
 
-  function ymdToday() { var d = new Date(); d.setHours(0,0,0,0); return d.toISOString().slice(0,10); }
+  function ymdToday() { return new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date()); }  // Eastern
   function fmt(d) { return d.toISOString().slice(0,10); }
   function parseYmd(s) { var p = s.split('-').map(Number); return new Date(p[0], p[1]-1, p[2]); }
   function addDays(d, n) { var x = new Date(d); x.setDate(x.getDate()+n); return x; }
