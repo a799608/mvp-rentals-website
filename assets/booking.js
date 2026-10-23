@@ -14,33 +14,63 @@
     return isNaN(n) ? null : n;
   }
 
-  // Renders the live total panel based on selection + property rates.
+  // Nightly direct prices (Will 2026-10-23). prices.json is published every 15 minutes from the one price list:
+  // each night = the higher of the Airbnb / VRBO listed price. The discount % is read live from the Google Sheet
+  // "MVP Direct Pricing" (Discount!B2) on every page load, so a change there shows on the next load; if the sheet
+  // cannot be read, prices.json's defaultDiscount (15) is used.
+  var PRICES = { data: null, discount: null, ready: false, listeners: [] };
+  function pricesUrl() { return window.location.origin + "/prices.json"; }   // site root on every page
+  function loadPrices() {
+    fetch(pricesUrl() + "?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        PRICES.data = d;
+        PRICES.discount = safeNum(d.defaultDiscount);
+        var sheet = d.discountSheet;
+        if (!sheet) return null;
+        return fetch("https://docs.google.com/spreadsheets/d/" + sheet + "/gviz/tq?tqx=out:csv&sheet=Discount&range=B2&t=" + Date.now(), { cache: "no-store" })
+          .then(function (r) { return r.ok ? r.text() : ""; })
+          .then(function (t) {
+            var n = parseFloat(String(t || "").replace(/["%\s]/g, ""));
+            if (!isNaN(n) && n >= 0 && n < 100) PRICES.discount = n;
+          })
+          .catch(function () {});
+      })
+      .catch(function () {})
+      .then(function () {
+        PRICES.ready = true;
+        PRICES.listeners.forEach(function (fn) { fn(); });
+      });
+  }
+  loadPrices();
+
+  // Renders the live total panel based on selection + nightly prices.
   // Returns the most-recent computed total (number) or null.
   function makeTotalPanel(opts) {
     var container = opts.container;
     var property = opts.property;
     var r = property.rates || {};
-    var midweek = safeNum(r.midweek);
-    var weekendNight = safeNum(r.weekendNight);
-    var weekly = safeNum(r.weekly);
-    var cleaning = safeNum(r.cleaningFee);
     var petFee = safeNum(r.petFee);
 
-    var ratesUsable = midweek !== null && weekendNight !== null && weekly !== null && cleaning !== null;
-
-    // True when the stay contains BOTH a Friday and a Saturday night (full weekend).
-    function hasFullWeekend(ciYmd, nights) {
-      var parts = (ciYmd || "").split("-");
-      if (parts.length !== 3) return false;
-      var d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
-      var fri = false, sat = false;
+    function cleaningFee() {
+      var c = PRICES.data && PRICES.data.cleaning && PRICES.data.cleaning[property.slug];
+      return safeNum(c != null ? c : r.cleaningFee);
+    }
+    // Sum of the discounted nightly prices for check-in .. night before check-out; null if any night has no price.
+    function stayNights(ciYmd, nights) {
+      var map = PRICES.data && PRICES.data.nights && PRICES.data.nights[property.slug];
+      if (!map || PRICES.discount === null) return null;
+      var p = (ciYmd || "").split("-");
+      var d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+      var sum = 0;
       for (var i = 0; i < nights; i++) {
-        var dow = d.getDay();
-        if (dow === 5) fri = true;
-        if (dow === 6) sat = true;
+        var key = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+        var base = safeNum(map[key]);
+        if (base === null || map[key] == null) return null;
+        sum += Math.round(base * (1 - PRICES.discount / 100));
         d.setDate(d.getDate() + 1);
       }
-      return fri && sat;
+      return sum;
     }
 
     // "2026-06-05" -> "Friday 6/5"  (day-of-week helps guests catch a wrong-day pick)
@@ -72,14 +102,6 @@
 
     function render() {
       body.innerHTML = "";
-      if (!ratesUsable) {
-        var p = document.createElement("div");
-        p.className = "empty-state";
-        p.textContent = "Rates not yet published for this property — contact us for a quote.";
-        body.appendChild(p);
-        state.total = null;
-        return;
-      }
       if (!state.checkIn || !state.checkOut) {
         var p2 = document.createElement("div");
         p2.className = "empty-state";
@@ -88,27 +110,33 @@
         state.total = null;
         return;
       }
-      var nights = state.nights;
-      var accommodation, accLabel, cleaningCharged;
-      if (nights >= 7) {
-        accommodation = weekly;
-        accLabel = "Weekly (" + nights + " nights)";
-        cleaningCharged = false;
-      } else {
-        var full = hasFullWeekend(state.checkIn, nights);
-        accommodation = state.weekendNights * weekendNight + state.weekdayNights * midweek;
-        cleaningCharged = !full;
-        if (full && nights === 2) accLabel = "Weekend";
-        else if (state.weekendNights > 0) accLabel = "Stay (" + nights + " night" + (nights === 1 ? "" : "s") + ")";
-        else accLabel = "Midweek (" + nights + " night" + (nights === 1 ? "" : "s") + ")";
+      if (!PRICES.ready) {
+        var p3 = document.createElement("div");
+        p3.className = "empty-state";
+        p3.textContent = "Loading prices…";
+        body.appendChild(p3);
+        state.total = null;
+        return;
       }
+      var nights = state.nights;
+      var accommodation = stayNights(state.checkIn, nights);
+      var cleaning = cleaningFee();
+      if (accommodation === null || cleaning === null) {
+        var p = document.createElement("div");
+        p.className = "empty-state";
+        p.textContent = "Prices for these dates aren't published yet — send your request and we'll quote you.";
+        body.appendChild(p);
+        state.total = null;
+        return;
+      }
+      var accLabel = "Stay (" + nights + " night" + (nights === 1 ? "" : "s") + ")";
       var petCost = (state.pets && petFee !== null) ? petFee * nights : 0;
-      var total = accommodation + (cleaningCharged ? cleaning : 0) + petCost;
+      var total = accommodation + cleaning + petCost;
 
       var lines = [];
       lines.push({ label: fmtDay(state.checkIn) + " → " + fmtDay(state.checkOut), value: "" });
       lines.push({ label: accLabel, value: dollars(accommodation) });
-      lines.push({ label: "Cleaning fee", value: cleaningCharged ? dollars(cleaning) : "Included" });
+      lines.push({ label: "Cleaning fee", value: dollars(cleaning) });
       if (state.pets && petFee !== null) lines.push({ label: "Pet fee (" + nights + " night" + (nights === 1 ? "" : "s") + ")", value: dollars(petCost) });
       lines.forEach(function (l) {
         var row = document.createElement("div");
@@ -123,12 +151,13 @@
       var note = document.createElement("div");
       note.className = "empty-state";
       note.style.marginTop = "8px";
-      note.textContent = "Estimate only — holiday and peak rates may apply. We'll confirm your exact total when we reply to your request.";
+      note.textContent = "Nightly prices include our book-direct discount. We'll confirm your exact total when we reply to your request.";
       body.appendChild(note);
       state.total = total;
     }
 
     render();
+    PRICES.listeners.push(render);
 
     return {
       onCalendarChange: function (sel) {
@@ -410,7 +439,41 @@
     confirm.focus();
   }
 
+  // Rate card on each property page, from the same nightly prices: lowest discounted midweek and weekend night
+  // still open in the price list, plus cleaning and pet fee (replaces the hand-typed weekly/weekend table, 2026-10-23).
+  function renderRateCard(el, property) {
+    function draw() {
+      el.innerHTML = "";
+      var map = PRICES.data && PRICES.data.nights && PRICES.data.nights[property.slug];
+      var disc = PRICES.discount;
+      var mid = null, wk = null;
+      if (map && disc !== null) {
+        Object.keys(map).forEach(function (k) {
+          var p = k.split("-"); var dow = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])).getDay();
+          var v = Math.round(Number(map[k]) * (1 - disc / 100));
+          if (dow === 5 || dow === 6) { if (wk === null || v < wk) wk = v; } else { if (mid === null || v < mid) mid = v; }
+        });
+      }
+      var c = PRICES.data && PRICES.data.cleaning ? PRICES.data.cleaning[property.slug] : null;
+      var pet = (property.rates || {}).petFee;
+      var rows = [
+        { label: "Midweek nights<span class='rate-note'>from, per night</span>", value: mid !== null ? dollars(mid) : "Ask" },
+        { label: "Weekend nights<span class='rate-note'>from, per night</span>", value: wk !== null ? dollars(wk) : "Ask" },
+        { label: "Cleaning fee<span class='rate-note'>per stay</span>", value: c != null ? dollars(Number(c)) : "Ask" },
+        { label: "Pet fee<span class='rate-note'>per night</span>", value: pet != null && !isNaN(Number(pet)) ? dollars(Number(pet)) : "Ask" },
+      ];
+      rows.forEach(function (r) {
+        var item = document.createElement("div");
+        item.className = "rate-item";
+        item.innerHTML = "<div class=\"label\">" + r.label + "</div><div class=\"value\">" + r.value + "</div>";
+        el.appendChild(item);
+      });
+    }
+    if (PRICES.ready) draw(); else PRICES.listeners.push(draw);
+  }
+
   window.MVPBooking = {
+    renderRateCard: renderRateCard,
     makeTotalPanel: makeTotalPanel,
     makeBookingForm: makeBookingForm,
     renderPayments: renderPayments,

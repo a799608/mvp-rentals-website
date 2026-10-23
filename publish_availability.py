@@ -70,8 +70,16 @@ def main():
     else:
         log("regenerated -- %s" % ((ics.stdout.strip().splitlines() or ["(no output)"])[-1]))
 
-    # 3. Stage ONLY availability.json and the ical files (explicit paths, never -A).
-    PATHS = ["availability.json", "ical"]
+    # 2c. Regenerate prices.json from the one price list (Will 2026-10-23: website prices feed from the platform
+    # prices; higher of Airbnb / VRBO per night, discount applied live in the browser). Never blocks availability.
+    pr = subprocess.run([sys.executable, os.path.join(REPO, "update_prices.py")], capture_output=True, text=True)
+    if pr.returncode != 0:
+        log("WARN update_prices.py failed (availability.json still publishes): %s" % (pr.stderr or "").strip()[:500])
+    else:
+        log("regenerated -- %s" % ((pr.stdout.strip().splitlines() or ["(no output)"])[-1]))
+
+    # 3. Stage ONLY availability.json, prices.json and the ical files (explicit paths, never -A).
+    PATHS = ["availability.json", "prices.json", "ical"]
     try:
         git(["add", "--"] + PATHS)
     except subprocess.CalledProcessError as e:

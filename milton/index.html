@@ -225,26 +225,7 @@ window.SITE_CONFIG.basePath = "../";
   }
 
   var rateEl = document.getElementById("rate-card");
-  function fmt(v, prefix) {
-    if (typeof v === "string" && v.indexOf("@") === 0) return "Ask";
-    var n = Number(v);
-    if (isNaN(n)) return "Ask";
-    return (prefix || "$") + n;
-  }
-  var rates = [
-    { label: "Weekly<span class='rate-note'>cleaning included</span>", value: fmt(prop.rates.weekly) },
-    { label: "Weekend<span class='rate-note'>cleaning included</span>", value: fmt(prop.rates.weekend) },
-    { label: "Midweek / night<span class='rate-note'>+ cleaning</span>", value: fmt(prop.rates.midweek) },
-    { label: "Holiday Weekend<span class='rate-note'>cleaning included</span>", value: fmt(prop.rates.holidayWeekend) },
-    { label: "Cleaning fee<span class='rate-note'>per stay</span>", value: fmt(prop.rates.cleaningFee) },
-    { label: "Pet fee<span class='rate-note'>per night</span>", value: fmt(prop.rates.petFee) },
-  ];
-  rates.forEach(function (r) {
-    var item = document.createElement("div");
-    item.className = "rate-item";
-    item.innerHTML = "<div class=\"label\">" + r.label + "</div><div class=\"value\">" + r.value + "</div>";
-    rateEl.appendChild(item);
-  });
+  window.MVPBooking.renderRateCard(rateEl, prop);   // nightly prices from prices.json (2026-10-23)
 
   var totalPanel = window.MVPBooking.makeTotalPanel({
     container: document.getElementById("total-panel"),
