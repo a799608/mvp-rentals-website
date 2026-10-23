@@ -687,6 +687,20 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
       anchorPopover(openField === 'checkIn' ? checkInEl : checkOutEl);
     });
 
+    // Pre-fill dates from the link (?checkIn=YYYY-MM-DD&checkOut=YYYY-MM-DD[&guests=N])
+    // and run the search, so a shared link opens straight to the open homes.
+    var qp = new URLSearchParams(window.location.search);
+    var qCi = qp.get('checkIn') || '', qCo = qp.get('checkOut') || '';
+    var ymdRe = /^\d{4}-\d{2}-\d{2}$/;
+    if (ymdRe.test(qCi) && ymdRe.test(qCo) && qCi < qCo) {
+      state.checkIn = qCi;
+      state.checkOut = qCo;
+      syncInputs();
+      var qGuests = parseInt(qp.get('guests') || '', 10);
+      if (qGuests > 0) document.getElementById('guestsInput').value = qGuests;
+      handleStartTrip();
+    }
+
     // Expose for other handlers.
     window.__unionPopoverState = state;
     window.__unionPopoverClose = closePopover;
