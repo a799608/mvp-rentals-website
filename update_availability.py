@@ -19,6 +19,48 @@ def parse_date(s):
             pass
     return None
 
+# Will 2026-10-23: the site's calendar must also show dates held directly on a platform calendar (owner blocks), not
+# only bookings in mvp_bookings. Each VRBO listing's calendar export (read from the Airbnb import settings, where
+# Airbnb pulls the same link) lists VRBO reservations and VRBO blocks. Blocks longer than LONG_BLOCK_NIGHTS are the
+# booking-window blocks (e.g. Nov 2027 - Dec 2028) and are ignored: Will wants no booking window on the website,
+# every request is approved by hand. A calendar that cannot be fetched is skipped; the sheet still publishes.
+VRBO_ICAL = {
+    "Trails": "http://www.vrbo.com/icalendar/8c52983e7d934481913b17f5cd26ffb4.ics?nonTentative",
+    "Pound": "http://www.vrbo.com/icalendar/2b457fb9dd2f4845bcddd69836f0e4ae.ics?nonTentative",
+    "Milton": "http://www.vrbo.com/icalendar/f7734688237042a7a11edef57712f2f8.ics?nonTentative",
+    "MacCauley": "http://www.vrbo.com/icalendar/02dd7e2ac92048a58cc198aa8cecd150.ics?nonTentative",
+    "Wylie": "http://www.vrbo.com/icalendar/c3d6bad523234c30be4d4c0522849fa7.ics?nonTentative",
+    "Petrarch": "http://www.vrbo.com/icalendar/4c24908eed474325aa6ad40514a48702.ics?nonTentative",
+}
+LONG_BLOCK_NIGHTS = 60
+
+
+def add_vrbo_calendars(out, today):
+    import re, urllib.request
+    from datetime import datetime
+    notes = []
+    for prop, url in VRBO_ICAL.items():
+        try:
+            req = urllib.request.Request(url.replace("http://", "https://"), headers={"User-Agent": "Mozilla/5.0"})
+            body = urllib.request.urlopen(req, timeout=20).read().decode("utf-8", "replace")
+        except Exception as e:
+            notes.append(f"{prop} not read ({type(e).__name__})"); continue
+        have = {tuple(r) for r in out.get(prop, [])}
+        added = skipped_long = 0
+        for ev in re.findall(r"BEGIN:VEVENT(.*?)END:VEVENT", body, re.S):
+            a = re.search(r"DTSTART;VALUE=DATE:(\d{8})", ev); z = re.search(r"DTEND;VALUE=DATE:(\d{8})", ev)
+            if not a or not z: continue
+            ci = datetime.strptime(a.group(1), "%Y%m%d").date(); co = datetime.strptime(z.group(1), "%Y%m%d").date()
+            if co < today or co <= ci: continue
+            if "Blocked" in ev and (co - ci).days > LONG_BLOCK_NIGHTS:
+                skipped_long += 1; continue
+            r = (ci.isoformat(), co.isoformat())
+            if r not in have:
+                out.setdefault(prop, []).append(list(r)); have.add(r); added += 1
+        notes.append(f"{prop} +{added}" + (f" (ignored {skipped_long} window block)" if skipped_long else ""))
+    return "; ".join(notes)
+
+
 def main():
     svc = get_sheets_service()
     today = date.today()
@@ -53,12 +95,14 @@ def main():
             invalid.append((i + 5, prop, str(row[1]), str(row[2])))
             continue
         out.setdefault(prop, []).append([ci.isoformat(), co.isoformat()])
+    plat = add_vrbo_calendars(out, today)
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(out, f, separators=(",", ":"))
     sz = os.path.getsize(OUT_PATH)
     total = sum(len(v) for v in out.values())
     print(f"[ok] wrote {OUT_PATH} ({sz} bytes) -- {total} future bookings across {len(out)} properties, skipped {skipped_past} past + {skipped_cancelled} cancelled")
     for p, v in sorted(out.items()): print(f"   {p:12s} {len(v)} bookings")
+    print(f"   VRBO calendars: {plat}")
     if invalid:
         print(f"[warn] skipped {len(invalid)} invalid range(s) (checkout <= checkin) -- fix these rows in mvp_bookings:")
         for r in invalid: print(f"   row {r[0]:>4}  {r[1]:12s} checkin={r[2]} checkout={r[3]}")
