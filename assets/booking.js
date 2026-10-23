@@ -14,10 +14,8 @@
     return isNaN(n) ? null : n;
   }
 
-  // Nightly direct prices (Will 2026-10-23). prices.json is published every 15 minutes from the one price list:
-  // each night = the higher of the Airbnb / VRBO listed price. The discount % is read live from the Google Sheet
-  // "MVP Direct Pricing" (Discount!B2) on every page load, so a change there shows on the next load; if the sheet
-  // cannot be read, prices.json's defaultDiscount (15) is used.
+  // Nightly direct prices (Will 2026-10-23). prices.json is published from the one price list: each night = the
+  // higher of the Airbnb / VRBO listed price, and "discount" = the direct discount % (set in update_prices.py).
   var PRICES = { data: null, discount: null, ready: false, listeners: [] };
   function pricesUrl() { return window.location.origin + "/prices.json"; }   // site root on every page
   function loadPrices() {
@@ -25,16 +23,7 @@
       .then(function (r) { return r.json(); })
       .then(function (d) {
         PRICES.data = d;
-        PRICES.discount = safeNum(d.defaultDiscount);
-        var sheet = d.discountSheet;
-        if (!sheet) return null;
-        return fetch("https://docs.google.com/spreadsheets/d/" + sheet + "/gviz/tq?tqx=out:csv&sheet=Discount&range=B2&t=" + Date.now(), { cache: "no-store" })
-          .then(function (r) { return r.ok ? r.text() : ""; })
-          .then(function (t) {
-            var n = parseFloat(String(t || "").replace(/["%\s]/g, ""));
-            if (!isNaN(n) && n >= 0 && n < 100) PRICES.discount = n;
-          })
-          .catch(function () {});
+        PRICES.discount = safeNum(d.discount != null ? d.discount : d.defaultDiscount);
       })
       .catch(function () {})
       .then(function () {

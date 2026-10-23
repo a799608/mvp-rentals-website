@@ -7,8 +7,7 @@
 "trails": 180,
 "wylie": 180
 },
-"defaultDiscount": 15,
-"discountSheet": "1PVcqNJMyqtcC8nARTYlFKlzpglpjmt42M_SiQuvdfH0",
+"discount": 15,
 "nights": {
 "maccauley": {
 "2026-10-23": 585,
