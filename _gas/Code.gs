@@ -64,7 +64,7 @@ function jsonResponse_(obj) {
 // poconomvp.com/go/ calls GET ?click=1&h=<house>&s=<sms|email>&g=<guest code>&k=<campaign> before opening the house page.
 // ("c" cannot be used: Apps Script web apps reserve it and answer 400.)
 const CLICKS_TAB = 'Link Clicks';
-const CLICK_HOUSES = ['trails', 'maccauley', 'petrarch', 'wylie', 'pound', 'milton'];
+const CLICK_HOUSES = ['trails', 'maccauley', 'petrarch', 'wylie', 'pound', 'milton', 'flyer'];   // flyer = /halloween/ page opened
 
 function logClick_(p) {
   const h = String(p.h || '').toLowerCase();
