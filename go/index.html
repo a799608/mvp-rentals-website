@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>MVP Rentals</title>
+<style>body{margin:0;background:#120a1e;color:#f6efe3;font-family:Inter,'Segoe UI',Arial,sans-serif;display:grid;place-items:center;min-height:100vh}a{color:#ffb15c}</style>
+</head><body><p id="m">Opening the house&hellip;</p>
+<script>
+/* Link-click counter for texts and emails (Will 2026-10-26). Logs house, channel, guest code and campaign to the
+   'Link Clicks' tab through the site's Apps Script backend, then opens the house page. A failed log never blocks
+   the visitor. Links look like /go/?h=trails&s=sms&g=K7Q2M&k=hw26 */
+(function () {
+  var HOUSES = ["trails", "maccauley", "petrarch", "wylie", "pound", "milton"];
+  var LOG = "https://script.google.com/macros/s/AKfycbxSb0ZFe_XbDMviK9BKrXz64gBbv7WE3oylP4LyVjZ1MpOcy5Z8sdkhe_t7BGrKxDt6qQ/exec";
+  var q = new URLSearchParams(location.search);
+  var h = (q.get("h") || "").toLowerCase();
+  var dest = HOUSES.indexOf(h) >= 0 ? "/" + h + "/" : "/";
+  var done = false;
+  function go() { if (!done) { done = true; location.replace(dest); } }
+  if (h) {
+    var u = LOG + "?click=1&h=" + encodeURIComponent(h) + "&s=" + encodeURIComponent(q.get("s") || "") +
+            "&g=" + encodeURIComponent(q.get("g") || "") + "&k=" + encodeURIComponent(q.get("k") || "");
+    try { fetch(u, { mode: "no-cors", keepalive: true }).then(go, go); } catch (e) { go(); }
+  }
+  setTimeout(go, 1500);
+  document.getElementById("m").innerHTML = 'Opening the house&hellip; <a href="' + dest + '">tap here</a> if it doesn\'t open.';
+})();
+</script></body></html>

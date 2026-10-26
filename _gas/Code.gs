@@ -60,7 +60,31 @@ function jsonResponse_(obj) {
  * Shape:
  *   { "Trails": [["2026-04-30","2026-05-03"], ...], "Wylie": [...], ... }
  */
+// Link-click log (Will 2026-10-26: "track access to the website so we could see if it drives traffic").
+// poconomvp.com/go/ calls GET ?click=1&h=<house>&s=<sms|email>&g=<guest code>&k=<campaign> before opening the house page.
+// ("c" cannot be used: Apps Script web apps reserve it and answer 400.)
+const CLICKS_TAB = 'Link Clicks';
+const CLICK_HOUSES = ['trails', 'maccauley', 'petrarch', 'wylie', 'pound', 'milton'];
+
+function logClick_(p) {
+  const h = String(p.h || '').toLowerCase();
+  if (CLICK_HOUSES.indexOf(h) < 0) return;
+  const clean = function (v) { return String(v || '').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 24); };
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  let tab = ss.getSheetByName(CLICKS_TAB);
+  if (!tab) {
+    tab = ss.insertSheet(CLICKS_TAB);
+    tab.appendRow(['Clicked (ET)', 'House', 'Channel', 'Guest code', 'Campaign']);
+  }
+  tab.appendRow([Utilities.formatDate(new Date(), 'America/New_York', 'yyyy-MM-dd HH:mm:ss'),
+                 h, clean(p.s), clean(p.g), clean(p.k)]);
+}
+
 function doGet(e) {
+  if (e && e.parameter && e.parameter.click) {
+    try { logClick_(e.parameter); } catch (err) { /* a failed log never blocks the visitor */ }
+    return ContentService.createTextOutput('ok');
+  }
   try {
     // 5-min CacheService ? most calls serve from cache (~50ms instead of 10-15s)
     const cache = CacheService.getScriptCache();
