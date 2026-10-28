@@ -709,7 +709,7 @@ window.SITE_CONFIG = {
       bedrooms: 3,
       bathrooms: 2,
       beds: 6,
-      description: "A spacious Pocono retreat in Albrightsville, PA, designed for families and groups. Features dedicated game rooms, a fully fenced backyard for kids and pets, beach access, and shared seasonal pool. Sleeps 10 across 3 bedrooms. Full kitchen, streaming HDTV, washer, propane fireplace, and dedicated workspace. Self check-in via keypad. Near Jim Thorpe, ski slopes, and Pocono water parks.",
+      description: "A spacious Pocono retreat in Albrightsville, PA, designed for families and groups. Features dedicated game rooms, a fully fenced backyard for kids and pets, beach access, and shared seasonal pool. Sleeps 10 across 3 bedrooms. Full kitchen, streaming HDTV, washer, and dedicated workspace. Self check-in via keypad. Near Jim Thorpe, ski slopes, and Pocono water parks.",
       included: {
         community: [
           "Beach access",
