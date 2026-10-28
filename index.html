@@ -99,8 +99,13 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
 .filter-chip input[type=checkbox] { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; }
 
 .logo-wrap { position: relative; }
-.snowflake { position: absolute; color: rgba(220,240,255,0.9); font-size: 9px; opacity: 0; animation: snowfall linear infinite; pointer-events: none; z-index: 20; text-shadow: 0 0 4px rgba(255,255,255,0.7); }
-@keyframes snowfall { 0% { transform: translateY(-8px) rotate(0deg); opacity: 0.9; } 80% { opacity: 0.6; } 100% { transform: translateY(100px) rotate(180deg); opacity: 0; } }
+/* Autumn falling leaves over the logo (Will 2026-10-28; same look as the Form 2 autumn landing) */
+.leaf { position: absolute; top: 0; font-size: 12px; line-height: 1; opacity: 0; animation: leafFallA linear infinite; pointer-events: none; z-index: 20; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
+@keyframes leafFallA { 0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 40% { transform: translateY(30px) translateX(6px) rotate(180deg); opacity: 1; } 70% { transform: translateY(65px) translateX(-5px) rotate(340deg); opacity: 0.9; } 100% { transform: translateY(100px) translateX(3px) rotate(520deg); opacity: 0; } }
+@keyframes leafFallB { 0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 0; } 12% { opacity: 1; } 30% { transform: translateY(20px) translateX(-8px) rotate(90deg); opacity: 1; } 60% { transform: translateY(55px) translateX(6px) rotate(260deg); opacity: 0.95; } 100% { transform: translateY(100px) translateX(-2px) rotate(500deg); opacity: 0; } }
+@keyframes leafFallC { 0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 0; } 15% { opacity: 1; } 50% { transform: translateY(42px) translateX(4px) rotate(200deg); opacity: 1; } 80% { transform: translateY(78px) translateX(-7px) rotate(400deg); opacity: 0.85; } 100% { transform: translateY(100px) translateX(2px) rotate(560deg); opacity: 0; } }
+@keyframes leafFallD { 0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 35% { transform: translateY(26px) translateX(-4px) rotate(130deg); opacity: 1; } 65% { transform: translateY(60px) translateX(8px) rotate(310deg); opacity: 0.9; } 100% { transform: translateY(100px) translateX(-3px) rotate(540deg); opacity: 0; } }
+@keyframes leafFallE { 0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 45% { transform: translateY(36px) translateX(9px) rotate(240deg); opacity: 1; } 75% { transform: translateY(72px) translateX(1px) rotate(420deg); opacity: 0.85; } 100% { transform: translateY(100px) translateX(-6px) rotate(580deg); opacity: 0; } }
 
 .value-props { display: flex; justify-content: center; gap: 14px; margin: 4px 0 18px; flex-wrap: wrap; }
 .value-prop { font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 0.4px; text-transform: uppercase; font-weight: 600; }
@@ -543,22 +548,27 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #07120a; color: #
 
   showAlwaysClickable();
 
-  function createSnowflakes() {
+  function createLeaves() {
     var wrap = document.getElementById('logoWrap');
     if (!wrap) return;
-    var glyphs = ['\u2744', '\u2745', '\u2746', '\u2022', '\u00b7', '\u2726'];
-    for (var i = 0; i < 14; i++) {
-      var sf = document.createElement('span');
-      sf.className   = 'snowflake';
-      sf.textContent = glyphs[i % glyphs.length];
-      sf.style.left              = (Math.random() * 88 + 6) + '%';
-      sf.style.fontSize          = (7 + Math.random() * 7) + 'px';
-      sf.style.animationDuration = (2.5 + Math.random() * 3.5) + 's';
-      sf.style.animationDelay    = (Math.random() * 5) + 's';
-      wrap.appendChild(sf);
+    var colorPool = ['#D32F2F', '#E67E22', '#F9A825', '#FDD835']; // red, orange, gold, yellow (cycled so all 4 show)
+    var namePool  = ['leafFallA', 'leafFallB', 'leafFallC', 'leafFallD', 'leafFallE'];
+    for (var i = 0; i < 12; i++) {
+      var lf = document.createElement('span');
+      lf.className   = 'leaf';
+      lf.textContent = '\ud83c\udf41\ufe0e'; // maple leaf + VS15 = text mode, so CSS color applies
+      lf.style.color = colorPool[i % colorPool.length];
+      lf.style.webkitTextFillColor = colorPool[i % colorPool.length];
+      lf.style.left              = (Math.random() * 88 + 6) + '%';
+      lf.style.fontSize          = (9 + Math.random() * 6) + 'px';
+      var dur = 4 + Math.random() * 5;
+      lf.style.animationDuration = dur + 's';
+      lf.style.animationDelay    = (-Math.random() * dur) + 's';
+      lf.style.animationName     = namePool[Math.floor(Math.random() * namePool.length)];
+      wrap.appendChild(lf);
     }
   }
-  createSnowflakes();
+  createLeaves();
 
   // Popover-mode union calendar attached to the Check-in / Check-out boxes.
   (function bootUnionPopover() {
