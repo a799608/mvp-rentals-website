@@ -15,14 +15,49 @@ const BOOKINGS_TAB = 'Sheet1';
 const HEADER_ROW = 4;
 const DATA_START_ROW = 5;
 
-// 1-indexed columns on Sheet1
-const COL_PROPERTY = 4;   // D
-const COL_CHECKIN = 5;    // E
-const COL_CHECKOUT = 6;   // F
-const COL_CANCELLED = 47; // AU
+// Columns are found by their header NAME, never by a fixed number or letter
+// (Will 2026-11-04). A missing or duplicated header stops with an error that
+// names it; there is no position fallback.
+// Sheet1 (header row 4):
+const SHEET1_COLS = { PROPERTY: 'Property', CHECKIN: 'Check-In Date', CHECKOUT: 'Check-Out Date', CANCELLED: 'Cancelled Date' };
 
 const REQUESTS_TAB = 'Booking Requests';
 const NOTIFY_EMAIL = 'wm.m.morris@gmail.com';
+// Booking Requests (header row 1):
+const REQUEST_COLS = {
+  SUBMITTED: 'Submitted At', PROPERTY: 'Property', CHECKIN: 'Check-In', CHECKOUT: 'Check-Out', NIGHTS: 'Nights',
+  NAME: 'Name', EMAIL: 'Email', PHONE: 'Phone', PARTY: 'Party Size', PETS: 'Pets', PET_COUNT: 'Pet Count',
+  MESSAGE: 'Message', SMS: 'SMS Consent', TOTAL: 'Estimated Total', SOURCE: 'Source',
+};
+
+// Read a tab's header row once and return {KEY: 1-based column} for every name in `names`.
+function headerCols_(sh, headerRow, names) {
+  const header = sh.getRange(headerRow, 1, 1, Math.max(sh.getLastColumn(), 1)).getValues()[0];
+  const seen = Object.create(null), dup = Object.create(null);
+  header.forEach(function (h, i) {
+    const n = String(h == null ? '' : h).trim();
+    if (!n) return;
+    if (n in seen) dup[n] = true; else seen[n] = i + 1;
+  });
+  const out = {};
+  Object.keys(names).forEach(function (k) {
+    const n = names[k];
+    if (dup[n]) throw new Error('Column "' + n + '" appears more than once in the header row of tab "' + sh.getName() + '"');
+    if (!(n in seen)) throw new Error('Column "' + n + '" not found in the header row of tab "' + sh.getName() + '"');
+    out[k] = seen[n];
+  });
+  return out;
+}
+
+// A row for appendRow with each value placed under its header.
+function rowByHeader_(cols, values) {
+  let width = 0;
+  Object.keys(values).forEach(function (k) { width = Math.max(width, cols[k]); });
+  const row = [];
+  for (let i = 0; i < width; i++) row.push('');
+  Object.keys(values).forEach(function (k) { row[cols[k] - 1] = values[k]; });
+  return row;
+}
 
 function fmtYmd_(value) {
   if (!value) return '';
@@ -65,6 +100,8 @@ function jsonResponse_(obj) {
 // ("c" cannot be used: Apps Script web apps reserve it and answer 400.)
 const CLICKS_TAB = 'Link Clicks';
 const CLICK_HOUSES = ['trails', 'maccauley', 'petrarch', 'wylie', 'pound', 'milton', 'flyer'];   // flyer = /halloween/ page opened
+// Link Clicks (header row 1):
+const CLICK_COLS = { TIME: 'Clicked (ET)', HOUSE: 'House', CHANNEL: 'Channel', GUEST: 'Guest code', CAMPAIGN: 'Campaign' };
 
 function logClick_(p) {
   const h = String(p.h || '').toLowerCase();
@@ -76,8 +113,10 @@ function logClick_(p) {
     tab = ss.insertSheet(CLICKS_TAB);
     tab.appendRow(['Clicked (ET)', 'House', 'Channel', 'Guest code', 'Campaign']);
   }
-  tab.appendRow([Utilities.formatDate(new Date(), 'America/New_York', 'yyyy-MM-dd HH:mm:ss'),
-                 h, clean(p.s), clean(p.g), clean(p.k)]);
+  tab.appendRow(rowByHeader_(headerCols_(tab, 1, CLICK_COLS), {
+    TIME: Utilities.formatDate(new Date(), 'America/New_York', 'yyyy-MM-dd HH:mm:ss'),
+    HOUSE: h, CHANNEL: clean(p.s), GUEST: clean(p.g), CAMPAIGN: clean(p.k),
+  }));
 }
 
 function doGet(e) {
@@ -100,20 +139,21 @@ function doGet(e) {
     const lastRow = sh.getLastRow();
     if (lastRow < DATA_START_ROW) return jsonResponse_({});
     const numRows = lastRow - DATA_START_ROW + 1;
-    // Read only the columns we need rather than all 47.
-    // D = property (col 4), E = checkin (5), F = checkout (6), AU = cancelled (47)
-    // Two small ranges = much faster than one giant range.
-    const propRange = sh.getRange(DATA_START_ROW, COL_PROPERTY, numRows, 3).getValues(); // D-F
-    const cancelRange = sh.getRange(DATA_START_ROW, COL_CANCELLED, numRows, 1).getValues(); // AU
+    // Read only the columns we need (found by header name), one small range each,
+    // rather than the whole sheet.
+    const c = headerCols_(sh, HEADER_ROW, SHEET1_COLS);
+    const colOf = function (col) { return sh.getRange(DATA_START_ROW, col, numRows, 1).getValues(); };
+    const propCol = colOf(c.PROPERTY), inCol = colOf(c.CHECKIN), outCol = colOf(c.CHECKOUT);
+    const cancelRange = colOf(c.CANCELLED);
     // Filter to future bookings only ? past stays are irrelevant for availability checks.
     const todayStr = Utilities.formatDate(new Date(), Session.getScriptTimeZone() || 'America/New_York', 'yyyy-MM-dd');
     const out = {};
-    for (let i = 0; i < propRange.length; i++) {
-      const property = propRange[i][0];
+    for (let i = 0; i < propCol.length; i++) {
+      const property = propCol[i][0];
       if (!property) continue;
       if (cancelRange[i][0]) continue; // skip cancelled
-      const checkIn = fmtYmd_(propRange[i][1]);
-      const checkOut = fmtYmd_(propRange[i][2]);
+      const checkIn = fmtYmd_(inCol[i][0]);
+      const checkOut = fmtYmd_(outCol[i][0]);
       if (!checkIn || !checkOut) continue;
       if (checkOut < todayStr) continue; // past booking ? skip
       const key = String(property).trim();
@@ -160,23 +200,23 @@ function doPost(e) {
       tab.setFrozenRows(1);
     }
     const now = new Date();
-    tab.appendRow([
-      now,
-      body.property,
-      body.checkIn,
-      body.checkOut,
-      Number(body.nights || 0),
-      body.name,
-      body.email,
-      body.phone,
-      Number(body.partySize || 0),
-      body.pets ? 'Yes' : 'No',
-      Number(body.petCount || 0),
-      body.message || '',
-      body.smsConsent ? 'Yes' : 'No',
-      body.total != null ? body.total : '',
-      'website',
-    ]);
+    tab.appendRow(rowByHeader_(headerCols_(tab, 1, REQUEST_COLS), {
+      SUBMITTED: now,
+      PROPERTY: body.property,
+      CHECKIN: body.checkIn,
+      CHECKOUT: body.checkOut,
+      NIGHTS: Number(body.nights || 0),
+      NAME: body.name,
+      EMAIL: body.email,
+      PHONE: body.phone,
+      PARTY: Number(body.partySize || 0),
+      PETS: body.pets ? 'Yes' : 'No',
+      PET_COUNT: Number(body.petCount || 0),
+      MESSAGE: body.message || '',
+      SMS: body.smsConsent ? 'Yes' : 'No',
+      TOTAL: body.total != null ? body.total : '',
+      SOURCE: 'website',
+    }));
 
     const subject = 'New booking request: ' + body.property + ' ' +
       body.checkIn + ' to ' + body.checkOut + ' from ' + body.name;
