@@ -110,8 +110,17 @@
   var resid=qs('resid'),prop=qs('prop'),guest=qs('guest'),ci=qs('ci'),co=qs('co'),total=qs('total');
   var pay1=qs('pay1'),pay2=qs('pay2'),pay2due=qs('pay2due');
   var second=qs('second')==='1',due=qs('due');
+  var deposit=qs('deposit')==='1';
 
   if(!resid||!prop||!ci||!co||!total){document.getElementById('prMissing').style.display='';return;}
+
+  // Deposit-only mode (2026-11-12): no rental fee (donated / certificate stay); `total` carries the
+  // fully refundable damage deposit, which is the only payment.
+  if(deposit){
+    var ds=document.querySelector('.pr-sub');
+    if(ds) ds.textContent='Will has approved your request. There is no rental fee for this stay. A fully refundable damage deposit is due to confirm your dates; it is returned after check-out. Reservation is not confirmed until it is received.';
+    var dl=document.querySelector('.pr-row.total .k'); if(dl) dl.textContent='Refundable damage deposit';
+  }
 
   // Second-payment (balance) mode: the reservation is already confirmed and this
   // link collects the remaining balance. `total` carries the balance amount.
