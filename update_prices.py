@@ -27,20 +27,53 @@ OVERRIDES = {
 }
 
 
+# Weekly (7+ night) discounts the platforms apply (Will 2026-11-18: "if the platform applys a weekly discount you need
+# to do that to the direct pricing too"). Source = the file the platform loaders set them from (change_log.csv
+# 2026-11-04 rows): Airbnb one % per listing, all dates; VRBO one % per month, loaded Jan-Sep 2027 only (VRBO weekly
+# set to 0% on every date 2026-10-12, so other months stay 0). VRBO holiday ranges were left untouched by that load
+# and are not modelled here.
+WEEKLY_FILE = r"H:/Claude/pricing_comps/step1/load/weekly_targets.json"
+VRBO_WEEKLY_YEAR = "2027"
+
+
+def load_weekly():
+    try:
+        w = json.load(open(WEEKLY_FILE, encoding="utf-8"))
+        return w.get("airbnb", {}), w.get("vrbo", {})
+    except Exception as e:
+        print("WARN weekly discounts not loaded (%s); 7+ night stays priced like short stays" % e)
+        return {}, {}
+
+
 def main():
     today = dt.date.today().isoformat()
+    abnb_wk, vrbo_wk = load_weekly()
     nights = {s: {} for s in SLUG.values()}
+    weekly = {s: {} for s in SLUG.values()}
     with open(LEDGER, encoding="utf-8") as f:
         for r in csv.DictReader(f):
             if r["date"] < today or r["house"] not in SLUG: continue
-            listed = [int(float(r[p])) for p in ("airbnb", "vrbo") if r.get(p) not in (None, "")]
-            if listed: nights[SLUG[r["house"]]][r["date"]] = max(listed)   # Will 2026-10-23: higher of Airbnb / VRBO, x 0.85
+            h, d = r["house"], r["date"]
+            ab = int(float(r["airbnb"])) if r.get("airbnb") not in (None, "") else None
+            vr = int(float(r["vrbo"])) if r.get("vrbo") not in (None, "") else None
+            listed = [p for p in (ab, vr) if p is not None]
+            if not listed: continue
+            nights[SLUG[h]][d] = max(listed)   # Will 2026-10-23: higher of Airbnb / VRBO, x 0.85
+            # 7+ nights: each platform's price after its weekly discount, then the higher of the two (before DISCOUNT).
+            a_pct = float(abnb_wk.get(h, 0) or 0)
+            v_pct = float((vrbo_wk.get(h) or {}).get(str(int(d[5:7])), 0) or 0) if d[:4] == VRBO_WEEKLY_YEAR else 0.0
+            wk = [p * (1 - pct / 100) for p, pct in ((ab, a_pct), (vr, v_pct)) if p is not None]
+            weekly[SLUG[h]][d] = round(max(wk), 2)
     for slug, days in OVERRIDES.items():
         for d, p in days.items():
             if d >= today:
                 nights[slug][d] = p
+                weekly[slug][d] = p
     data = {"source": "price_ledger.csv: higher of Airbnb / VRBO listed price per night", "discount": DISCOUNT,
-            "cleaning": CLEANING, "nights": nights}
+            "cleaning": CLEANING, "nights": nights,
+            "weekly_min_nights": 7,
+            "weekly_source": "weekly_targets.json: higher of Airbnb / VRBO listed price after each platform's 7+ night discount",
+            "weekly": weekly}
     new = json.dumps(data, indent=0, sort_keys=True)
     old = open(OUT, encoding="utf-8").read() if os.path.exists(OUT) else ""
     if new != old:

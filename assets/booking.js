@@ -46,8 +46,13 @@
       return safeNum(c != null ? c : r.cleaningFee);
     }
     // Sum of the discounted nightly prices for check-in .. night before check-out; null if any night has no price.
+    // 7+ nights use the "weekly" prices: each platform's price after its weekly discount, higher of the two
+    // (Will 2026-11-18). Shorter stays use "nights".
     function stayNights(ciYmd, nights) {
-      var map = PRICES.data && PRICES.data.nights && PRICES.data.nights[property.slug];
+      var minWk = PRICES.data && safeNum(PRICES.data.weekly_min_nights);
+      var useWk = minWk !== null && nights >= minWk && PRICES.data.weekly && PRICES.data.weekly[property.slug];
+      var map = useWk ? PRICES.data.weekly[property.slug]
+                      : (PRICES.data && PRICES.data.nights && PRICES.data.nights[property.slug]);
       if (!map || PRICES.discount === null) return null;
       var p = (ciYmd || "").split("-");
       var d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
